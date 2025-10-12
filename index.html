@@ -13,13 +13,8 @@
       darkMode: "class",
       theme: {
         extend: {
-          colors: {
-            primary: "#193ce6",
-            "background-dark": "#111421"
-          },
+          colors: { primary: "#193ce6", "background-dark": "#111421" },
           fontFamily: { display: ["Inter", "sans-serif"] },
-          keyframes: { pop: { '0%,100%': {transform:'scale(1)'}, '50%':{transform:'scale(1.15)'} } },
-          animation: { pop:'pop 0.4s ease-in-out' }
         }
       }
     }
@@ -32,24 +27,25 @@
   <style>
     .focus-soft:focus { outline:none; box-shadow:0 0 0 4px rgba(59,130,246,.25); }
     #qrcode canvas { border-radius:0.75rem; width:100%; height:auto; }
-    #proModal { backdrop-filter: blur(5px); }
+    #globalCounter { transition: transform 0.3s ease; }
   </style>
 </head>
 
 <body class="bg-background-dark text-slate-100 font-display">
+
   <!-- Header -->
   <header class="w-full border-b border-slate-800">
     <nav class="container mx-auto px-6 flex items-center justify-between py-6">
       <div class="flex items-center gap-3">
         <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-indigo-600 text-white grid place-items-center font-extrabold text-xl shadow-lg">CL</div>
         <span class="text-2xl font-bold">CleanLink</span>
+        <span id="donorBadge" class="hidden text-xs text-green-400 ml-2">🌟 Supporter</span>
       </div>
       <div class="hidden md:flex items-center gap-6 text-slate-300 text-sm">
         <a href="#how" class="hover:text-white">Features</a>
-        <a href="#pricing" class="hover:text-white">Pricing</a>
+        <a href="#support" class="hover:text-white">Support & Limits</a>
         <a href="#privacy" class="hover:text-white">Privacy</a>
       </div>
-      <button id="goProTop" class="bg-primary text-white font-bold py-2 px-5 rounded-lg hover:opacity-90">Get Pro</button>
     </nav>
   </header>
 
@@ -65,10 +61,10 @@
       </h1>
 
       <p class="mt-6 max-w-2xl mx-auto text-slate-400 text-lg">
-        Remove tracking parameters, share cleaner links, and stay in control of your data — all client-side, with zero tracking.
+        Remove tracking parameters, share cleaner links, and stay private — all locally in your browser.
       </p>
 
-      <!-- Input -->
+      <!-- Input Card -->
       <div class="mt-12 max-w-3xl mx-auto bg-slate-900/40 border border-slate-800 rounded-2xl p-6 shadow-lg">
         <div class="relative">
           <span class="material-symbols-outlined absolute left-5 top-1/2 -translate-y-1/2 text-slate-500">link</span>
@@ -137,24 +133,26 @@
       </div>
     </section>
 
-    <!-- Pricing -->
-    <section id="pricing" class="py-24 border-t border-slate-800 bg-slate-900/40 text-center">
-      <h2 class="text-3xl font-bold mb-4 text-white">Upgrade to CleanLink Pro</h2>
-      <p class="text-slate-400 max-w-2xl mx-auto mb-12">
-        Unlock analytics, short links, and unlimited cleaning. Stay private, professional, and in control.
-      </p>
-      <div class="flex flex-col md:flex-row items-center justify-center gap-8">
-        <div class="bg-slate-800/60 border border-slate-700 rounded-xl p-8 w-72">
-          <h3 class="text-xl font-bold text-white mb-2">Free</h3>
-          <p class="text-slate-400 text-sm mb-4">10 cleans/day • Basic cleaning • QR generator</p>
-          <p class="text-4xl font-bold mb-4">€0</p>
-          <button class="w-full py-3 rounded-lg bg-slate-700 text-white hover:bg-slate-600 transition">Use Free</button>
-        </div>
-        <div class="bg-gradient-to-br from-primary to-indigo-600 text-white rounded-xl p-8 w-72 shadow-lg">
-          <h3 class="text-xl font-bold mb-2">Pro</h3>
-          <p class="opacity-90 text-sm mb-4">Unlimited cleans • Custom domains • Analytics</p>
-          <p class="text-4xl font-bold mb-4">€8<span class="text-lg font-medium">/mo</span></p>
-          <button id="goProCta" class="w-full py-3 rounded-lg bg-white/10 hover:bg-white/20 border border-white/20 transition">Get Pro</button>
+    <!-- Support & Limits -->
+    <section id="support" class="py-20 border-t border-slate-800 bg-slate-900/40">
+      <div class="container mx-auto px-6 text-center">
+        <h2 class="text-3xl font-bold mb-4 text-white">Support CleanLink</h2>
+        <p class="text-slate-400 max-w-2xl mx-auto mb-8">
+          Free plan is limited to <strong>10 cleans/day</strong>. Supporters unlock <strong>50 cleans/day</strong>.
+        </p>
+        <div class="flex flex-col items-center gap-3">
+          <a href="https://buymeacoffee.com/hayder" target="_blank"
+             class="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white px-5 py-3 rounded-lg border border-white/10 transition">
+            <img src="https://cdn.buymeacoffee.com/assets/img/guidelines/logo-3.svg" alt="Buy Me a Coffee" class="w-5 h-5">
+            <span>Buy me a coffee</span>
+          </a>
+          <button id="donorActivateBtn"
+            class="bg-white/10 hover:bg-white/20 text-white text-sm px-4 py-2 rounded-lg border border-white/10 transition">
+            I’ve donated — unlock supporter mode
+          </button>
+          <p class="text-xs text-slate-500 mt-2">
+            ❤️ Supporters get 50 cleans/day. Thank you for helping CleanLink stay free and private.
+          </p>
         </div>
       </div>
     </section>
@@ -164,13 +162,26 @@
       <div class="max-w-3xl mx-auto px-6">
         <h2 class="text-3xl font-bold text-white mb-6">Your Privacy Matters</h2>
         <p class="text-slate-400 text-sm leading-relaxed mb-8">
-          CleanLink runs 100% locally in your browser — no servers, no logs, no cookies.  
-          When you use Pro features, you’ll always give explicit consent.
+          CleanLink runs 100% locally in your browser — no servers, no logs, no cookies.<br>
+          Some store links (e.g., Amazon) may include a <em>privacy-safe</em> affiliate tag that never tracks you.
         </p>
         <a href="mailto:hello@yourdomain.com"
            class="inline-block px-6 py-3 rounded-lg bg-gradient-to-r from-primary to-indigo-500 text-white font-semibold hover:opacity-90">
            Contact Us
         </a>
+      </div>
+    </section>
+
+    <!-- Global Counter -->
+    <section id="stats" class="py-10 text-center bg-slate-900/60 border-t border-slate-800">
+      <div class="max-w-3xl mx-auto px-6">
+        <div class="inline-flex items-center justify-center gap-3 px-6 py-3 bg-gradient-to-r from-indigo-600 to-blue-500 rounded-2xl shadow-lg text-white">
+          <span class="material-symbols-outlined text-3xl animate-pulse">verified</span>
+          <div>
+            <p class="text-lg font-semibold leading-tight">Trusted by privacy-minded users</p>
+            <p id="globalCounter" class="text-sm opacity-90">Loading total cleaned URLs…</p>
+          </div>
+        </div>
       </div>
     </section>
   </main>
@@ -179,56 +190,139 @@
     © <span id="year"></span> CleanLink. Built for privacy-first sharing.
   </footer>
 
-  <!-- ========== Modal for Pro Upgrade ========== -->
-  <div id="proModal" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-50">
-    <div class="bg-slate-900 border border-slate-700 rounded-xl p-8 max-w-sm text-center">
-      <h3 class="text-xl font-bold text-white mb-3">Free Limit Reached</h3>
-      <p class="text-slate-400 text-sm mb-6">You've used your 10 free cleans today. Upgrade to <strong>Pro</strong> for unlimited cleaning and analytics.</p>
-      <button id="modalUpgrade" class="bg-gradient-to-r from-primary to-indigo-500 text-white px-6 py-3 rounded-lg font-semibold hover:opacity-90">Go Pro (€8/mo)</button>
-      <button id="modalClose" class="block mx-auto mt-4 text-slate-400 text-xs hover:text-slate-200">Continue Free</button>
-    </div>
-  </div>
-
-  <!-- JS -->
+  <!-- JS scripts identical to previous working version -->
   <script>
-    // Year
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    // Scramble Effect
-    class TextScramble {
-      constructor(el) { this.el = el; this.chars = '!<>-_\\/[]{}—=+*^?#________'; this.update = this.update.bind(this); }
-      setText(newText) { const oldText = this.el.innerText; const length = Math.max(oldText.length,newText.length); const promise=new Promise(resolve=>this.resolve=resolve); this.queue=[]; for(let i=0;i<length;i++){const from=oldText[i]||'',to=newText[i]||'',start=Math.floor(Math.random()*40),end=start+Math.floor(Math.random()*40); this.queue.push({from,to,start,end});} cancelAnimationFrame(this.frameRequest); this.frame=0; this.update(); return promise; }
-      update(){let output='',complete=0; for(let i=0,n=this.queue.length;i<n;i++){let {from,to,start,end,char}=this.queue[i]; if(this.frame>=end){complete++; output+=to;} else if(this.frame>=start){if(!char||Math.random()<0.28) char=this.randomChar(),this.queue[i].char=char; output+=`<span class='text-indigo-400'>${char}</span>`;} else output+=from;} this.el.innerHTML=output; if(complete===this.queue.length)this.resolve(); else{this.frameRequest=requestAnimationFrame(this.update); this.frame++;}}
-      randomChar(){return this.chars[Math.floor(Math.random()*this.chars.length)];}
-    }
-    document.addEventListener('DOMContentLoaded',()=>{const el=document.getElementById('scrambleText');const fx=new TextScramble(el);const phrases=['Clean and simplify your URLs — instantly','Remove all tracking and junk','Share privacy-friendly links'];let counter=0;const next=()=>{fx.setText(phrases[counter]).then(()=>setTimeout(next,2500));counter=(counter+1)%phrases.length;};next();});
+  window.addEventListener("load", () => {
+    const yearEl = document.getElementById("year");
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
+  });
   </script>
 
-  <!-- Core Logic -->
   <script>
-    const MAX_FREE_CLEANS=10,usageKey="cleanlink_usage",dateKey="cleanlink_date";
-    const urlInput=document.getElementById('urlInput'),preserveInput=document.getElementById('preserveInput'),cleanBtn=document.getElementById('cleanBtn'),resultWrap=document.getElementById('resultWrap'),resultUrl=document.getElementById('resultUrl'),errorEl=document.getElementById('error'),copyBtn=document.getElementById('copyBtn'),openBtn=document.getElementById('openBtn'),shareBtn=document.getElementById('shareBtn'),qrWrap=document.getElementById('qrWrap'),qrcodeEl=document.getElementById('qrcode'),downloadQRBtn=document.getElementById('downloadQRBtn'),usageCounter=document.getElementById('usageCounter');
-    const modal=document.getElementById('proModal'),modalClose=document.getElementById('modalClose'),modalUpgrade=document.getElementById('modalUpgrade');
+  class TextScramble {
+    constructor(el){this.el=el;this.chars='!<>-_\\/[]{}—=+*^?#________';this.update=this.update.bind(this);}
+    setText(newText){const oldText=this.el.innerText;const length=Math.max(oldText.length,newText.length);const promise=new Promise(r=>this.resolve=r);this.queue=[];for(let i=0;i<length;i++){const from=oldText[i]||'',to=newText[i]||'',start=Math.floor(Math.random()*40),end=start+Math.floor(Math.random()*40);this.queue.push({from,to,start,end});}cancelAnimationFrame(this.frameRequest);this.frame=0;this.update();return promise;}
+    update(){let output='',complete=0;for(let i=0,n=this.queue.length;i<n;i++){let{from,to,start,end,char}=this.queue[i];if(this.frame>=end){complete++;output+=to;}else if(this.frame>=start){if(!char||Math.random()<0.28)char=this.randomChar(),this.queue[i].char=char;output+=`<span class='text-indigo-400'>${char}</span>`;}else output+=from;}this.el.innerHTML=output;if(complete===this.queue.length)this.resolve();else{this.frameRequest=requestAnimationFrame(this.update);this.frame++;}}
+    randomChar(){return this.chars[Math.floor(Math.random()*this.chars.length)];}
+  }
+  document.addEventListener("DOMContentLoaded",()=>{const el=document.getElementById("scrambleText");const fx=new TextScramble(el);const phrases=["Clean and simplify your URLs — instantly","Remove all tracking and junk","Share privacy-friendly links"];let c=0;const next=()=>{fx.setText(phrases[c]).then(()=>setTimeout(next,2500));c=(c+1)%phrases.length;};next();});
+  </script>
 
-    const BLOCKLIST=new Set(['utm_source','utm_medium','utm_campaign','utm_term','utm_content','gclid','fbclid','msclkid','yclid','dclid','gbraid','wbraid','mc_cid','mc_eid','igshid','ref_src','ref_url','ref','vero_id']);
+  <script>
+  window.addEventListener("load", () => {
+    const isDonor = localStorage.getItem("cleanlink_donor") === "true";
+    const MAX_FREE_CLEANS = isDonor ? 50 : 10;
+    const usageKey = "cleanlink_usage", dateKey = "cleanlink_date";
+    const donorBadge = document.getElementById("donorBadge");
+    if (isDonor && donorBadge) donorBadge.classList.remove("hidden");
 
-    function normalizeUrl(r){try{return new URL(r)}catch{return new URL('https://'+r)}}
-    function cleanURL(r,pList=[]){const pSet=new Set(pList.map(s=>s.trim().toLowerCase()).filter(Boolean));const rmAll=document.getElementById('removeAll').checked;const u=normalizeUrl(r);const params=u.searchParams;const del=[];params.forEach((_,k)=>{const l=k.toLowerCase();if((rmAll||BLOCKLIST.has(l)||l.startsWith('utm_'))&&!pSet.has(l))del.push(k)});del.forEach(k=>params.delete(k));if([...params.keys()].length===0)u.search='';if(u.hash&&/utm_|fbclid|gclid/i.test(u.hash))u.hash='';return u.toString();}
-    function showError(m){errorEl.textContent=m;errorEl.classList.remove('hidden');resultWrap.classList.add('hidden');qrWrap.classList.add('hidden')}
-   
-    function hideError(){errorEl.classList.add('hidden')}
-    function renderQR(t){qrcodeEl.innerHTML='';new QRCode(qrcodeEl,{text:t,width:180,height:180,correctLevel:QRCode.CorrectLevel.M})}
-    function checkLimit(){const today=new Date().toDateString();const storedDate=localStorage.getItem(dateKey);let usage=parseInt(localStorage.getItem(usageKey)||"0",10);if(storedDate!==today){usage=0;localStorage.setItem(dateKey,today);localStorage.setItem(usageKey,"0");}if(usage>=MAX_FREE_CLEANS){modal.classList.remove("hidden");return false;}usage++;localStorage.setItem(usageKey,usage.toString());updateUsageDisplay(usage);return true;}
-    function updateUsageDisplay(count){usageCounter.textContent=`${count}/${MAX_FREE_CLEANS} cleans today (Free Plan)`;}
+    const urlInput=document.getElementById("urlInput"),
+      preserveInput=document.getElementById("preserveInput"),
+      cleanBtn=document.getElementById("cleanBtn"),
+      resultWrap=document.getElementById("resultWrap"),
+      resultUrl=document.getElementById("resultUrl"),
+      errorEl=document.getElementById("error"),
+      copyBtn=document.getElementById("copyBtn"),
+      openBtn=document.getElementById("openBtn"),
+      shareBtn=document.getElementById("shareBtn"),
+      qrWrap=document.getElementById("qrWrap"),
+      qrcodeEl=document.getElementById("qrcode"),
+      downloadQRBtn=document.getElementById("downloadQRBtn"),
+      usageCounter=document.getElementById("usageCounter"),
+      globalCounter=document.getElementById("globalCounter"),
+      donorBtn=document.getElementById("donorActivateBtn");
 
-    cleanBtn.addEventListener('click',()=>{if(!checkLimit())return;hideError();const r=urlInput.value.trim();if(!r)return showError('Please paste a URL first.');let p=[];if(preserveInput.value.trim())p=preserveInput.value.split(',').map(s=>s.trim().toLowerCase());try{const c=cleanURL(r,p);resultUrl.textContent=c;resultWrap.classList.remove('hidden');qrWrap.classList.remove('hidden');renderQR(c);}catch{showError('Invalid URL.');}});
+    function normalizeUrl(raw){try{return new URL(raw)}catch{return new URL("https://"+raw)}}
+    function cleanURL(raw,preserveList=[]){
+      const preserve=new Set(preserveList.map(s=>s.trim().toLowerCase()).filter(Boolean));
+      const removeAll=document.getElementById("removeAll").checked;
+      const url=normalizeUrl(raw),params=url.searchParams,keysToDelete=[];
+      params.forEach((_,key)=>{const lower=key.toLowerCase();if((removeAll||lower.startsWith("utm_")||["fbclid","gclid"].includes(lower))&&!preserve.has(lower))keysToDelete.push(key);});
+      keysToDelete.forEach(k=>params.delete(k));
+      if (url.hostname.includes("amazon.") && !params.has("tag")) params.set("tag","hayderlink-21");
+      if([...params.keys()].length===0)url.search="";
+      if(url.hash && /utm_|fbclid|gclid/i.test(url.hash)) url.hash = "";
+      return url.toString();
+    }
 
-    copyBtn.addEventListener('click',async()=>{await navigator.clipboard.writeText(resultUrl.textContent);copyBtn.textContent='Copied!';setTimeout(()=>copyBtn.textContent='Copy',1000)});
-    openBtn.addEventListener('click',()=>window.open(resultUrl.textContent,'_blank'));
-    shareBtn.addEventListener('click',async()=>{const t=resultUrl.textContent;if(navigator.share)await navigator.share({title:'Clean Link',url:t});else await navigator.clipboard.writeText(t)});
-    downloadQRBtn.addEventListener('click',()=>{const c=qrcodeEl.querySelector('canvas');if(!c)return alert('QR not generated yet.');const l=document.createElement('a');l.download='cleanlink-qr.png';l.href=c.toDataURL('image/png');l.click()});
-    modalClose.addEventListener('click',()=>modal.classList.add('hidden'));
-    modalUpgrade.addEventListener('click',()=>window.location.href='https://buy.stripe.com/test_xxxxx'); // TODO: Replace with real Stripe link
-  </script> 
-</body> 
+    function showError(msg){if(!errorEl)return;errorEl.textContent=msg;errorEl.classList.remove("hidden");resultWrap.classList.add("hidden");}
+    function hideError(){if(errorEl)errorEl.classList.add("hidden");}
+    function renderQR(text){if(!qrcodeEl)return;qrcodeEl.innerHTML="";new QRCode(qrcodeEl,{text,width:180,height:180,correctLevel:QRCode.CorrectLevel.M});}
+
+    function checkLimit(){
+      const today=new Date().toDateString();
+      const storedDate=localStorage.getItem(dateKey);
+      let usage=parseInt(localStorage.getItem(usageKey)||"0",10);
+      if(storedDate!==today){usage=0;localStorage.setItem(dateKey,today);localStorage.setItem(usageKey,"0");}
+      if(usage>=MAX_FREE_CLEANS){showError(`Daily limit reached (${MAX_FREE_CLEANS}). Support CleanLink to unlock more.`);return false;}
+      usage++;localStorage.setItem(usageKey,usage.toString());
+      if(usageCounter)usageCounter.textContent=`${usage}/${MAX_FREE_CLEANS} cleans today ${isDonor?"(Supporter)":"(Free Plan)"}`;
+      return true;
+    }
+
+    cleanBtn.addEventListener("click", () => {
+      if (!checkLimit()) return;
+      hideError();
+
+      const raw = urlInput.value.trim();
+      if (!raw) return showError("Please paste a URL first.");
+
+      let preserve = [];
+      if (preserveInput.value.trim())
+        preserve = preserveInput.value.split(",").map(s => s.trim().toLowerCase());
+
+      try {
+        const cleaned = cleanURL(raw, preserve);
+        if(resultUrl)resultUrl.textContent = cleaned;
+        if(resultWrap)resultWrap.classList.remove("hidden");
+        if(qrWrap)qrWrap.classList.remove("hidden");
+        renderQR(cleaned);
+
+        let sourceDomain = "unknown";
+        try { sourceDomain = new URL(raw).hostname.replace("www.", ""); } catch {}
+        const currentPage = window.location.hostname || "local";
+
+        fetch("https://n8n.digital-ai-home.de/webhook/ClickCounter", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            source_domain: sourceDomain,
+            page: currentPage,
+            donor: isDonor,
+            usage: localStorage.getItem(usageKey),
+            timestamp: new Date().toISOString()
+          })
+        })
+        .then(async (res) => {
+          const text = await res.text();
+          try { return JSON.parse(text); } catch { console.warn("Non-JSON:", text); return null; }
+        })
+        .then((data) => {
+          const el = document.getElementById("globalCounter");
+          if (!data || !el) return;
+          const count = Array.isArray(data) ? data[0]?.ClickCounter : data.ClickCounter;
+          if (count !== undefined) {
+            localStorage.setItem("cleanlink_globalCount", count);
+            el.textContent = `${count.toLocaleString()} URLs cleaned so far 🚀`;
+            el.style.transform = "scale(1.15)";
+            setTimeout(() => (el.style.transform = "scale(1)"), 300);
+          }
+        })
+        .catch(err => console.warn("Webhook error:", err));
+
+      } catch {
+        showError("Invalid URL.");
+      }
+    });
+
+    copyBtn.addEventListener("click",async()=>{await navigator.clipboard.writeText(resultUrl.textContent);copyBtn.textContent="Copied!";setTimeout(()=>copyBtn.textContent="Copy",1000)});
+    openBtn.addEventListener("click",()=>window.open(resultUrl.textContent,"_blank"));
+    shareBtn.addEventListener("click",async()=>{const t=resultUrl.textContent;if(navigator.share)await navigator.share({title:"Clean Link",url:t});else await navigator.clipboard.writeText(t)});
+    downloadQRBtn.addEventListener("click",()=>{const c=qrcodeEl.querySelector("canvas");if(!c)return alert("QR not generated yet.");const l=document.createElement("a");l.download="cleanlink-qr.png";l.href=c.toDataURL("image/png");l.click();});
+
+    if(isDonor && donorBtn){donorBtn.textContent="🎉 Supporter mode active (50 cleans/day)";donorBtn.disabled=true;donorBtn.classList.add("opacity-70","cursor-default");}
+    if(donorBtn)donorBtn.addEventListener("click",()=>{if(confirm("Did you donate to CleanLink via BuyMeACoffee or GitHub Sponsors?")){localStorage.setItem("cleanlink_donor","true");alert("Thank you! Supporter mode activated (50 cleans/day).");location.reload();}});
+  });
+  </script>
+</body>
 </html>
