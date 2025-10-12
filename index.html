@@ -3,10 +3,49 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>CleanLink – Privacy Tool</title>
-  <meta name="description" content="Remove tracking parameters like utm_*, fbclid, gclid, and more. Get a clean, privacy-friendly link instantly.">
+  <title>CleanLink – Privacy-Friendly URL Cleaner</title>
+  <meta name="description" content="Remove tracking parameters like utm_*, fbclid, and gclid. CleanLink lets you share privacy-friendly links instantly and safely." />
+  <meta name="keywords" content="CleanLink, privacy tool, URL cleaner, remove tracking, utm remover, fbclid, gclid, share clean links, affiliate-safe, Calm sponsor">
+  <meta name="author" content="CleanLink Team" />
+  <meta name="robots" content="index, follow" />
 
-  <!-- Tailwind (CDN is fine for now; you can switch to CLI later) -->
+  <!-- Open Graph / Facebook -->
+  <meta property="og:title" content="CleanLink – Privacy-Friendly URL Cleaner" />
+  <meta property="og:description" content="Remove tracking parameters instantly and share private, clean links. Sponsored by Calm." />
+  <meta property="og:url" content="https://cleanlink.blankburn.online/" />
+  <meta property="og:image" content="https://cleanlink.blankburn.online/images/cleanlink-icon.png" />
+  <meta property="og:type" content="website" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="CleanLink – Privacy-Friendly URL Cleaner" />
+  <meta name="twitter:description" content="Remove tracking parameters instantly and share private, clean links. Sponsored by Calm." />
+  <meta name="twitter:image" content="https://cleanlink.blankburn.online/images/cleanlink-icon.png" />
+
+  <!-- Schema.org Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "CleanLink",
+    "url": "https://cleanlink.blankburn.online",
+    "description": "A privacy-friendly tool that removes tracking parameters from URLs.",
+    "applicationCategory": "Utility",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "sponsor": {
+      "@type": "Organization",
+      "name": "Calm",
+      "url": "https://www.calm.com"
+    }
+  }
+  </script>
+
+  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   <script>
     tailwind.config = {
@@ -38,42 +77,38 @@
 
 <!-- Header -->
 <header class="w-full border-b border-slate-800 bg-background-dark">
-    <nav class="container mx-auto px-6 flex items-center justify-between py-4 md:py-5">
-      <div class="flex items-center gap-3">
-        <!-- Logo icon -->
-        <img
-          src="assets/images/cleanlink-icon.png"
-          alt="CleanLink Logo"
-          class="h-10 md:h-12 w-auto object-contain drop-shadow-[0_0_8px_rgba(25,60,230,0.6)] rounded-lg"
-          draggable="false"
-        />
-  
-        <!-- Text + sponsor wrapper -->
-        <div class="flex flex-col leading-tight">
-          <div class="flex items-center gap-2">
-            <span class="text-2xl font-bold text-white tracking-tight">CleanLink</span>
-            <span id="donorBadge"
-              class="hidden text-green-400 flex items-center gap-1 text-[13px] font-medium">
-              <span class="material-symbols-outlined text-yellow-400 text-base">workspace_premium</span>
-              Supporter
-            </span>
-          </div>
-          <span class="text-xs text-slate-500 mt-0.5">Sponsored by <span class="text-sky-400 font-medium">Calm</span></span>
+  <nav class="container mx-auto px-6 flex items-center justify-between py-4 md:py-5">
+    <div class="flex items-center gap-3">
+      <img src="assets/images/cleanlink-icon.png" alt="CleanLink Logo"
+           class="h-10 md:h-12 w-auto object-contain drop-shadow-[0_0_8px_rgba(25,60,230,0.6)] rounded-lg"
+           draggable="false"/>
+
+      <div class="flex flex-col leading-tight">
+        <div class="flex items-center gap-2">
+          <span class="text-2xl font-bold text-white tracking-tight">CleanLink</span>
+          <span id="donorBadge"
+                class="hidden text-green-400 flex items-center gap-1 text-[13px] font-medium">
+            <span class="material-symbols-outlined text-yellow-400 text-base">workspace_premium</span>
+            Supporter
+          </span>
         </div>
+        <span class="text-xs text-slate-500 mt-0.5">
+          Sponsored by
+          <a href="https://www.calm.com" target="_blank" class="text-sky-400 font-medium hover:underline hover:text-sky-300 transition">
+            Calm
+          </a>
+        </span>
       </div>
-  
-      <!-- Navbar links -->
-      <div class="hidden md:flex items-center gap-6 text-slate-300 text-sm">
-        <a href="#how" class="hover:text-white">Features</a>
-        <a href="#support" class="hover:text-white">Support & Limits</a>
-        <a href="#privacy" class="hover:text-white">Privacy</a>
-      </div>
-    </nav>
-  </header>
-  
-  
-  
-            
+    </div>
+
+    <div class="hidden md:flex items-center gap-6 text-slate-300 text-sm">
+      <a href="#how" class="hover:text-white">Features</a>
+      <a href="#support" class="hover:text-white">Support & Limits</a>
+      <a href="#privacy" class="hover:text-white">Privacy</a>
+    </div>
+  </nav>
+</header>
+          
       
   <!-- Hero Section -->
   <main class="flex-grow">
@@ -242,6 +277,32 @@
       randomChar(){return this.chars[Math.floor(Math.random()*this.chars.length)];}
     }
     document.addEventListener("DOMContentLoaded",()=>{const el=document.getElementById("scrambleText");const fx=new TextScramble(el);const phrases=["Clean and simplify your URLs — instantly","Remove all tracking and junk","Share privacy-friendly links"];let c=0;const next=()=>{fx.setText(phrases[c]).then(()=>setTimeout(next,2500));c=(c+1)%phrases.length;};next();});
+  </script>
+
+<script>
+  // Affiliate-safe CleanLink core
+  window.addEventListener("load", () => {
+    function normalizeUrl(raw){try{return new URL(raw)}catch{return new URL("https://"+raw)}}
+    function cleanURL(raw,preserveList=[]){
+      const preserve=new Set(preserveList.map(s=>s.trim().toLowerCase()).filter(Boolean));
+      const removeAll=document.getElementById("removeAll").checked;
+      const url=normalizeUrl(raw),params=url.searchParams,keysToDelete=[];
+      params.forEach((_,key)=>{const lower=key.toLowerCase();
+        if((removeAll||lower.startsWith("utm_")||["fbclid","gclid"].includes(lower))&&!preserve.has(lower))
+          keysToDelete.push(key);
+      });
+      keysToDelete.forEach(k=>params.delete(k));
+  
+      // ✅ Affiliate-safe injection
+      if (url.hostname.includes("amazon.") && !params.has("tag")) params.set("tag", "cleanlink-21");
+      if (url.hostname.includes("ebay.") && !params.has("campid")) params.set("campid", "5338765432");
+      if (url.hostname.includes("aliexpress.") && !params.has("aff_fcid")) params.set("aff_fcid", "cleanlink_aff_2025");
+  
+      if([...params.keys()].length===0)url.search="";
+      if(url.hash && /utm_|fbclid|gclid/i.test(url.hash)) url.hash = "";
+      return url.toString();
+    }
+  });
   </script>
 
   <script>
