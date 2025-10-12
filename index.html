@@ -415,5 +415,16 @@
       if(donorBtn)donorBtn.addEventListener("click",()=>{if(confirm("Did you donate to CleanLink via BuyMeACoffee or GitHub Sponsors?")){localStorage.setItem("cleanlink_donor","true");alert("Thank you! Supporter mode activated (50 cleans/day).");location.reload();}});
     });
   </script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/service-worker.js')
+        .then(() => console.log('✅ Service worker registered.'))
+        .catch(err => console.log('Service worker registration failed:', err));
+    });
+  }
+  </script>
+  
 </body>
 </html>
