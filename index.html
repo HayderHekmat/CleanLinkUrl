@@ -9,6 +9,10 @@
   <meta name="author" content="CleanLink Team" />
   <meta name="robots" content="index, follow" />
 
+  <link rel="icon" type="image/png" sizes="512x512" href="assets/images/favicon.png">
+  <link rel="apple-touch-icon" href="assets/images/favicon.png">
+  <meta name="theme-color" content="#193ce6">
+
   <!-- Open Graph / Facebook -->
   <meta property="og:title" content="CleanLink – Privacy-Friendly URL Cleaner" />
   <meta property="og:description" content="Remove tracking parameters instantly and share private, clean links. Sponsored by Calm." />
@@ -220,7 +224,7 @@
         <h2 class="text-3xl font-bold text-white mb-6">Your Privacy Matters</h2>
         <p class="text-slate-400 text-sm leading-relaxed mb-8">
           CleanLink runs 100% locally in your browser — no servers, no logs, no cookies.<br>
-          Some store links (e.g., Amazon) may include a <em>privacy-safe</em> affiliate tag that never tracks you.
+<!--           Some store links (e.g., Amazon) may include a <em>privacy-safe</em> affiliate tag that never tracks you. -->
         </p>
         <a href="mailto:cleanlink.app@gmail.com"
            class="inline-block px-6 py-3 rounded-lg bg-gradient-to-r from-primary to-indigo-500 text-white font-semibold hover:opacity-90">
@@ -268,16 +272,22 @@
     });
   </script>
 
-  <script>
-    // Scramble headline
-    class TextScramble {
-      constructor(el){this.el=el;this.chars='!<>-_\\/[]{}—=+*^?#________';this.update=this.update.bind(this);}
-      setText(newText){const oldText=this.el.innerText;const length=Math.max(oldText.length,newText.length);const promise=new Promise(r=>this.resolve=r);this.queue=[];for(let i=0;i<length;i++){const from=oldText[i]||'',to=newText[i]||'',start=Math.floor(Math.random()*40),end=start+Math.floor(Math.random()*40);this.queue.push({from,to,start,end});}cancelAnimationFrame(this.frameRequest);this.frame=0;this.update();return promise;}
-      update(){let output='',complete=0;for(let i=0,n=this.queue.length;i<n;i++){let{from,to,start,end,char}=this.queue[i];if(this.frame>=end){complete++;output+=to;}else if(this.frame>=start){if(!char||Math.random()<0.28)char=this.randomChar(),this.queue[i].char=char;output+=`<span class='text-indigo-400'>${char}</span>`;}else output+=from;}this.el.innerHTML=output;if(complete===this.queue.length)this.resolve();else{this.frameRequest=requestAnimationFrame(this.update);this.frame++;}}
-      randomChar(){return this.chars[Math.floor(Math.random()*this.chars.length)];}
-    }
-    document.addEventListener("DOMContentLoaded",()=>{const el=document.getElementById("scrambleText");const fx=new TextScramble(el);const phrases=["Clean and simplify your URLs — instantly","Remove all tracking and junk","Share privacy-friendly links"];let c=0;const next=()=>{fx.setText(phrases[c]).then(()=>setTimeout(next,2500));c=(c+1)%phrases.length;};next();});
-  </script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const el = document.getElementById("scrambleText");
+    if (!el) return;
+    const text = el.textContent;
+    let i = 0;
+    const scramble = setInterval(() => {
+      el.textContent = text.slice(0, i) + "█";
+      i++;
+      if (i > text.length) {
+        clearInterval(scramble);
+        el.textContent = text;
+      }
+    }, 60);
+  });
+  </script>  
 
 <script>
   // Affiliate-safe CleanLink core
@@ -294,9 +304,9 @@
       keysToDelete.forEach(k=>params.delete(k));
   
       // ✅ Affiliate-safe injection
-      if (url.hostname.includes("amazon.") && !params.has("tag")) params.set("tag", "cleanlink-21");
-      if (url.hostname.includes("ebay.") && !params.has("campid")) params.set("campid", "5338765432");
-      if (url.hostname.includes("aliexpress.") && !params.has("aff_fcid")) params.set("aff_fcid", "cleanlink_aff_2025");
+      if (url.hostname.includes("amazon.") && !params.has("tag")) params.delete("tag", "cleanlink-21");
+      if (url.hostname.includes("ebay.") && !params.has("campid")) params.delete("campid", "5338765432");
+      if (url.hostname.includes("aliexpress.") && !params.has("aff_fcid")) params.delete("aff_fcid", "cleanlink_aff_2025");
   
       if([...params.keys()].length===0)url.search="";
       if(url.hash && /utm_|fbclid|gclid/i.test(url.hash)) url.hash = "";
