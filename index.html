@@ -111,11 +111,16 @@
       <a href="#support" class="hover:text-white">Support & Limits</a>
       <a href="#privacy" class="hover:text-white">Privacy</a>
 
+      <span id="privacyBadge" class="hidden text-xs text-slate-400">
+        🔒 Privacy Mode Active
+      </span>
+
       <!-- 🌓 Theme toggle button -->
       <button id="themeToggle" class="ml-2 text-slate-400 hover:text-white flex items-center gap-1">
         <span class="material-symbols-outlined text-base">light_mode</span>
       </button>
     </div>
+    
   </nav>
 </header>
           
@@ -151,6 +156,11 @@
           <label class="flex items-center gap-2 text-slate-400 text-sm cursor-pointer">
             <input id="removeAll" type="checkbox" class="rounded border-slate-600">
             <span>Remove all parameters</span>
+          </label>
+          <!-- ✅ Privacy Mode toggle -->
+          <label class="flex items-center gap-2 text-slate-400 text-sm cursor-pointer">
+            <input id="privacyMode" type="checkbox" class="rounded border-slate-600">
+            <span>Privacy Mode</span>
           </label>
           <input id="preserveInput" placeholder="Preserve: ref,aff_id"
             class="bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-sm text-slate-400 w-56 focus:ring-2 focus:ring-primary/30" />
@@ -355,6 +365,30 @@
     window.addEventListener("load", () => {
       const yearEl = document.getElementById("year");
       if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+      const privacyToggle = document.getElementById("privacyMode");
+      const privacyBadge = document.getElementById("privacyBadge");
+
+      // Restore state
+      const privacyEnabled = localStorage.getItem("cleanlink_privacy") === "true";
+      if (privacyEnabled) {
+        privacyToggle.checked = true;
+        privacyBadge?.classList.remove("hidden");
+      }
+
+      // Handle toggle
+      privacyToggle.addEventListener("change", () => {
+        const enabled = privacyToggle.checked;
+        localStorage.setItem("cleanlink_privacy", enabled);
+        if (enabled) {
+          alert("🔒 Privacy Mode enabled – external connections disabled.");
+          privacyBadge?.classList.remove("hidden");
+        } else {
+          alert("🌐 Privacy Mode disabled – external connections allowed.");
+          privacyBadge?.classList.add("hidden");
+        }
+      });
+
     });
   </script>
 
@@ -499,6 +533,35 @@
         } catch {
           showError("Invalid URL.");
         }
+
+        // Inside your cleanBtn.addEventListener("click", ...)
+        const isPrivacy = privacyToggle.checked;
+
+        // Skip n8n webhook analytics in privacy mode
+        if (!isPrivacy) {
+          fetch("https://n8n.digital-ai-home.de/webhook/ClickCounter", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              source_domain: (()=>{try{return new URL(raw).hostname.replace("www.","")}catch{return "unknown"}})(),
+              page: window.location.hostname || "local",
+              donor: isDonor,
+              usage: localStorage.getItem(usageKey),
+              timestamp: new Date().toISOString()
+            })
+          })
+          .then(r=>r.text()).then(txt=>{/* ... existing analytics logic ... */})
+          .catch(()=>{});
+        }
+
+        // If privacy mode enabled → hide shorten button
+        const shortenBtn = document.getElementById("shortenBtn");
+        if (isPrivacy && shortenBtn) {
+          shortenBtn.disabled = true;
+          shortenBtn.title = "Disabled in Privacy Mode";
+          shortenBtn.classList.add("opacity-50", "cursor-not-allowed");
+        }
+
       });
 
       copyBtn.addEventListener("click",async()=>{await navigator.clipboard.writeText(resultUrl.textContent);copyBtn.textContent="Copied!";setTimeout(()=>copyBtn.textContent="Copy",1000)});
