@@ -13,20 +13,17 @@
   <link rel="apple-touch-icon" href="assets/images/favicon.png">
   <meta name="theme-color" content="#193ce6">
 
-  <!-- Open Graph / Facebook -->
   <meta property="og:title" content="CleanLink – Privacy-Friendly URL Cleaner" />
   <meta property="og:description" content="Remove tracking parameters instantly and share private, clean links. Sponsored by Calm." />
   <meta property="og:url" content="https://cleanlink.blankburn.online/" />
   <meta property="og:image" content="https://cleanlink.blankburn.online/images/cleanlink-icon.png" />
   <meta property="og:type" content="website" />
 
-  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="CleanLink – Privacy-Friendly URL Cleaner" />
   <meta name="twitter:description" content="Remove tracking parameters instantly and share private, clean links. Sponsored by Calm." />
   <meta name="twitter:image" content="https://cleanlink.blankburn.online/images/cleanlink-icon.png" />
 
-  <!-- Schema.org Structured Data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -49,7 +46,12 @@
   }
   </script>
 
-  <!-- Tailwind -->
+  <script>
+    if (localStorage.getItem("theme") === "light") {
+      document.documentElement.classList.remove("dark");
+    }
+  </script>  
+
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   <script>
     tailwind.config = {
@@ -63,10 +65,8 @@
     }
   </script>
 
-  <!-- QRCode.js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
-  <!-- Fonts/Icons -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
 
@@ -77,11 +77,9 @@
   </style>
 </head>
 
-<body class="bg-background-dark text-slate-100 font-display">
-  
+<body class="bg-white dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display transition-colors duration-300">
 
-<!-- Header -->
-<header class="w-full border-b border-slate-800 bg-background-dark">
+<header class="w-full border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-background-dark transition-colors duration-300">
   <nav class="container mx-auto px-6 flex items-center justify-between py-4 md:py-5">
     <div class="flex items-center gap-3">
       <img src="assets/images/cleanlink-icon.png" alt="CleanLink Logo"
@@ -90,144 +88,270 @@
 
       <div class="flex flex-col leading-tight">
         <div class="flex items-center gap-2">
-          <span class="text-2xl font-bold text-white tracking-tight">CleanLink</span>
+          <span class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight transition-colors">CleanLink</span>
           <span id="donorBadge"
                 class="hidden text-green-400 flex items-center gap-1 text-[13px] font-medium">
             <span class="material-symbols-outlined text-yellow-400 text-base">workspace_premium</span>
             Supporter
           </span>
         </div>
-        <span class="text-xs text-slate-500 mt-0.5">
+        <span class="text-xs text-slate-500 dark:text-slate-500 mt-0.5 transition-colors">
           Sponsored by
-          <a href="https://www.calm.com" target="_blank" class="text-sky-400 font-medium hover:underline hover:text-sky-300 transition">
+          <a href="https://www.calm.com" target="_blank" class="text-sky-500 dark:text-sky-400 font-medium hover:underline hover:text-sky-400 dark:hover:text-sky-300 transition">
             Calm
           </a>
         </span>
       </div>
     </div>
 
-    <div class="hidden md:flex items-center gap-6 text-slate-300 text-sm">
-      <a href="#how" class="hover:text-white">Features</a>
-      <a href="#support" class="hover:text-white">Support & Limits</a>
-      <a href="#privacy" class="hover:text-white">Privacy</a>
+    <div class="hidden md:flex items-center gap-6 text-slate-600 dark:text-slate-300 text-sm">
+      <a href="#how" class="hover:text-slate-900 dark:hover:text-white transition-colors">Features</a>
+      <a href="#support" class="hover:text-slate-900 dark:hover:text-white transition-colors">Support & Limits</a>
+      <a href="#privacy" class="hover:text-slate-900 dark:hover:text-white transition-colors">Privacy</a>
 
-      <span id="privacyBadge" class="hidden text-xs text-slate-400">
+      <span id="privacyBadge" class="hidden text-xs text-slate-600 dark:text-slate-400 transition-colors">
         🔒 Privacy Mode Active
       </span>
 
-      <!-- 🌓 Theme toggle button -->
-      <button id="themeToggle" class="ml-2 text-slate-400 hover:text-white flex items-center gap-1">
+      <button id="themeToggle" class="ml-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white flex items-center gap-1 transition-colors">
         <span class="material-symbols-outlined text-base">light_mode</span>
       </button>
     </div>
-    
   </nav>
 </header>
           
-      
-  <!-- Hero Section -->
   <main class="flex-grow">
-    <section class="py-20 text-center px-6 relative overflow-hidden">
+    <section class="py-20 text-center px-6 relative overflow-hidden transition-colors duration-300">
       <div class="absolute -top-32 -left-32 w-64 h-64 bg-primary/20 rounded-full blur-3xl"></div>
       <div class="absolute -bottom-32 -right-32 w-64 h-64 bg-primary/30 rounded-full blur-3xl"></div>
 
-      <h1 id="scrambleText" class="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-tight tracking-tight">
+      <h1 id="scrambleText" class="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 dark:text-white leading-tight tracking-tight transition-colors">
         Clean and simplify your URLs — instantly
       </h1>
 
-      <p class="mt-6 max-w-2xl mx-auto text-slate-400 text-lg">
+      <p class="mt-6 max-w-2xl mx-auto text-slate-600 dark:text-slate-400 text-lg transition-colors">
         Remove tracking parameters, share cleaner links, and stay private — all locally in your browser.
       </p>
 
-      <!-- Input Card -->
-      <div class="mt-12 max-w-3xl mx-auto bg-slate-900/40 border border-slate-800 rounded-2xl p-6 shadow-lg">
-        <div class="relative">
-          <span class="material-symbols-outlined absolute left-5 top-1/2 -translate-y-1/2 text-slate-500">link</span>
+      <div class="mt-12 max-w-3xl mx-auto bg-white dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-lg transition-colors duration-300">
+        <!-- Mode Toggle -->
+        <div class="flex justify-center mb-6">
+          <div class="inline-flex bg-slate-100 dark:bg-slate-800 rounded-lg p-1">
+            <button id="singleModeBtn" class="flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-colors bg-white dark:bg-slate-700 text-slate-900 dark:text-white shadow-sm">
+              <span class="material-symbols-outlined text-base">link</span>
+              Single URL
+            </button>
+            <button id="bulkModeBtn" class="flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-colors text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">
+              <span class="material-symbols-outlined text-base">format_list_bulleted</span>
+              Bulk URLs
+            </button>
+          </div>
+        </div>
+
+        <!-- Single URL Mode -->
+        <div id="singleMode" class="relative">
+          <span class="material-symbols-outlined absolute left-5 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500 transition-colors">link</span>
           <input id="urlInput" type="url" placeholder="Paste your URL here..."
-            class="w-full bg-slate-900/70 border border-slate-700 rounded-xl py-4 pl-14 pr-36 text-white placeholder:text-slate-500 focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all text-lg" />
+            class="w-full bg-slate-50 dark:bg-slate-900/70 border border-slate-300 dark:border-slate-700 rounded-xl py-4 pl-14 pr-36 text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all text-lg" />
           <button id="cleanBtn"
             class="absolute right-4 top-1/2 -translate-y-1/2 bg-gradient-to-r from-primary to-indigo-500 text-white font-semibold px-5 py-2 rounded-lg hover:opacity-90 flex items-center gap-1">
-            <span>Clean</span>
+            <span id="cleanBtnText">Clean</span>
             <span class="material-symbols-outlined text-sm">arrow_forward</span>
           </button>
         </div>
 
-        <div class="mt-4 flex items-center justify-between">
-          <label class="flex items-center gap-2 text-slate-400 text-sm cursor-pointer">
+        <!-- Bulk URL Mode -->
+        <div id="bulkMode" class="hidden">
+          <div class="relative">
+            <span class="material-symbols-outlined absolute left-5 top-5 text-slate-400 dark:text-slate-500 transition-colors">format_list_bulleted</span>
+            <textarea id="bulkInput" placeholder="Paste multiple URLs here (one per line)..."
+              class="w-full bg-slate-50 dark:bg-slate-900/70 border border-slate-300 dark:border-slate-700 rounded-xl py-4 pl-14 pr-36 text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all text-lg min-h-[120px] resize-y"
+            ></textarea>
+            <button id="bulkCleanBtn"
+              class="absolute right-4 top-4 bg-gradient-to-r from-primary to-indigo-500 text-white font-semibold px-5 py-2 rounded-lg hover:opacity-90">
+              Clean All
+            </button>
+          </div>
+          <div class="flex items-center justify-center gap-2 mt-3 text-xs text-slate-600 dark:text-slate-400">
+            <span id="bulkCount">0 URLs to clean</span>
+          </div>
+        </div>
+
+        <div class="mt-4 flex items-center justify-between flex-wrap gap-2">
+          <label class="flex items-center gap-2 text-slate-700 dark:text-slate-400 text-sm cursor-pointer transition-colors">
             <input id="removeAll" type="checkbox" class="rounded border-slate-600">
             <span>Remove all parameters</span>
           </label>
-          <!-- ✅ Privacy Mode toggle -->
-          <label class="flex items-center gap-2 text-slate-400 text-sm cursor-pointer">
+          <label class="flex items-center gap-2 text-slate-700 dark:text-slate-400 text-sm cursor-pointer transition-colors">
             <input id="privacyMode" type="checkbox" class="rounded border-slate-600">
             <span>Privacy Mode</span>
           </label>
-          <input id="preserveInput" placeholder="Preserve: ref,aff_id"
-            class="bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-sm text-slate-400 w-56 focus:ring-2 focus:ring-primary/30" />
+          <label class="flex items-center gap-2 text-slate-700 dark:text-slate-400 text-sm cursor-pointer transition-colors">
+            <input id="httpsCheck" type="checkbox" class="rounded border-slate-600">
+            <span>Check HTTPS</span>
+          </label>
+          <label class="flex items-center gap-2 text-slate-700 dark:text-slate-400 text-sm cursor-pointer transition-colors">
+            <input id="domainAgeCheck" type="checkbox" class="rounded border-slate-600">
+            <span>Domain age</span>
+          </label>
+
+          <!-- Custom Parameters Dropdown -->
+          <div class="relative">
+            <button id="preserveDropdownBtn"
+              class="bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-lg px-3 py-2 text-sm text-slate-700 dark:text-slate-400 w-56 text-left focus:ring-2 focus:ring-primary/30 flex items-center justify-between transition-colors">
+              <span id="preserveDropdownText">Preserve parameters</span>
+              <span class="material-symbols-outlined text-base">expand_more</span>
+            </button>
+
+            <div id="preserveDropdownMenu"
+              class="absolute top-full mt-1 w-56 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-lg shadow-lg z-50 hidden">
+              <div class="p-3 space-y-2 max-h-48 overflow-y-auto">
+                <!-- Common tracking parameters -->
+                <label class="flex items-center gap-2 text-slate-700 dark:text-slate-400 text-sm cursor-pointer">
+                  <input type="checkbox" value="utm_source" class="rounded border-slate-600 preserve-param">
+                  <span>utm_source</span>
+                </label>
+                <label class="flex items-center gap-2 text-slate-700 dark:text-slate-400 text-sm cursor-pointer">
+                  <input type="checkbox" value="utm_medium" class="rounded border-slate-600 preserve-param">
+                  <span>utm_medium</span>
+                </label>
+                <label class="flex items-center gap-2 text-slate-700 dark:text-slate-400 text-sm cursor-pointer">
+                  <input type="checkbox" value="utm_campaign" class="rounded border-slate-600 preserve-param">
+                  <span>utm_campaign</span>
+                </label>
+                <label class="flex items-center gap-2 text-slate-700 dark:text-slate-400 text-sm cursor-pointer">
+                  <input type="checkbox" value="utm_term" class="rounded border-slate-600 preserve-param">
+                  <span>utm_term</span>
+                </label>
+                <label class="flex items-center gap-2 text-slate-700 dark:text-slate-400 text-sm cursor-pointer">
+                  <input type="checkbox" value="utm_content" class="rounded border-slate-600 preserve-param">
+                  <span>utm_content</span>
+                </label>
+
+                <hr class="border-slate-200 dark:border-slate-700 my-2">
+
+                <label class="flex items-center gap-2 text-slate-700 dark:text-slate-400 text-sm cursor-pointer">
+                  <input type="checkbox" value="fbclid" class="rounded border-slate-600 preserve-param">
+                  <span>fbclid</span>
+                </label>
+                <label class="flex items-center gap-2 text-slate-700 dark:text-slate-400 text-sm cursor-pointer">
+                  <input type="checkbox" value="gclid" class="rounded border-slate-600 preserve-param">
+                  <span>gclid</span>
+                </label>
+
+                <hr class="border-slate-200 dark:border-slate-700 my-2">
+
+                <label class="flex items-center gap-2 text-slate-700 dark:text-slate-400 text-sm cursor-pointer">
+                  <input type="checkbox" value="ref" class="rounded border-slate-600 preserve-param">
+                  <span>ref</span>
+                </label>
+                <label class="flex items-center gap-2 text-slate-700 dark:text-slate-400 text-sm cursor-pointer">
+                  <input type="checkbox" value="aff_id" class="rounded border-slate-600 preserve-param">
+                  <span>aff_id</span>
+                </label>
+                <label class="flex items-center gap-2 text-slate-700 dark:text-slate-400 text-sm cursor-pointer">
+                  <input type="checkbox" value="affiliate" class="rounded border-slate-600 preserve-param">
+                  <span>affiliate</span>
+                </label>
+                <label class="flex items-center gap-2 text-slate-700 dark:text-slate-400 text-sm cursor-pointer">
+                  <input type="checkbox" value="partner" class="rounded border-slate-600 preserve-param">
+                  <span>partner</span>
+                </label>
+
+                <!-- Custom parameter input -->
+                <hr class="border-slate-200 dark:border-slate-700 my-2">
+                <input id="customParamInput" placeholder="+ Add custom..."
+                  class="bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded px-2 py-1 text-sm text-slate-700 dark:text-slate-400 w-full focus:ring-1 focus:ring-primary/30 placeholder:text-slate-400 dark:placeholder:text-slate-500 transition-colors" />
+                <button id="addCustomParamBtn"
+                  class="text-xs text-sky-600 dark:text-sky-400 hover:text-sky-800 dark:hover:text-sky-300 mt-1">
+                  Add parameter
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
-        <p id="usageCounter" class="mt-3 text-xs text-slate-500 text-center">0/10 cleans today (Free Plan)</p>
+        <p id="usageCounter" class="mt-3 text-xs text-slate-600 dark:text-slate-500 text-center transition-colors">0/10 cleans today (Free Plan)</p>
       </div>
 
-      <!-- Result -->
-      <div id="resultWrap" class="hidden mt-10 max-w-3xl mx-auto bg-slate-900/50 border border-slate-800 rounded-2xl p-6">
-        <p class="text-slate-400 text-sm mb-2">Clean URL</p>
-        <div id="resultUrl" class="bg-slate-800/60 border border-slate-700 rounded-lg p-3 font-mono text-slate-100 break-all"></div>
-        <div class="flex gap-3 mt-4">
-          <button id="copyBtn" class="bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-lg px-3 py-2 text-sm">Copy</button>
-          <button id="openBtn" class="bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-lg px-3 py-2 text-sm">Open</button>
-          <button id="shareBtn" class="bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-lg px-3 py-2 text-sm">Share</button>
+      <div id="resultWrap" class="hidden mt-10 max-w-3xl mx-auto bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 transition-colors duration-300">
+        <!-- Single URL Results -->
+        <div id="singleResults">
+          <p class="text-slate-600 dark:text-slate-400 text-sm mb-2 transition-colors">Clean URL</p>
+          <div id="resultUrl" class="bg-slate-100 dark:bg-slate-800/60 border border-slate-300 dark:border-slate-700 rounded-lg p-3 font-mono text-slate-900 dark:text-slate-100 break-all transition-colors"></div>
         </div>
 
-        <div id="historyWrap" class="hidden mt-6 max-w-3xl mx-auto bg-slate-900/40 border border-slate-800 rounded-xl p-5 text-left">
-          <h3 class="text-slate-300 font-semibold mb-3 flex items-center gap-1">
+        <!-- Bulk URL Results -->
+        <div id="bulkResults" class="hidden">
+          <div class="flex items-center justify-between mb-3">
+            <p class="text-slate-600 dark:text-slate-400 text-sm transition-colors">Clean URLs <span id="bulkResultsCount" class="font-semibold"></span></p>
+            <button id="bulkCopyAllBtn" class="bg-slate-200 hover:bg-slate-300 dark:bg-slate-800 dark:hover:bg-slate-700 border border-slate-300 dark:border-slate-700 rounded-lg px-3 py-1 text-xs text-slate-900 dark:text-white transition-colors">Copy All</button>
+          </div>
+          <div id="bulkResultList" class="bg-slate-100 dark:bg-slate-800/60 border border-slate-300 dark:border-slate-700 rounded-lg p-3 font-mono text-slate-900 dark:text-slate-100 max-h-96 overflow-y-auto space-y-2"></div>
+        </div>
+
+        <div id="httpsStatus" class="hidden mt-3 flex items-center gap-2 text-sm">
+          <span id="httpsIcon" class="material-symbols-outlined text-base"></span>
+          <span id="httpsText" class="text-slate-700 dark:text-slate-300 transition-colors"></span>
+        </div>
+
+        <div id="domainAgeStatus" class="hidden mt-3 flex items-center gap-2 text-sm">
+          <span id="domainAgeIcon" class="material-symbols-outlined text-base"></span>
+          <span id="domainAgeText" class="text-slate-700 dark:text-slate-300 transition-colors"></span>
+        </div>
+        <div class="flex gap-3 mt-4">
+          <button id="copyBtn" class="bg-slate-200 hover:bg-slate-300 dark:bg-slate-800 dark:hover:bg-slate-700 border border-slate-300 dark:border-slate-700 rounded-lg px-3 py-2 text-sm text-slate-900 dark:text-white transition-colors">Copy</button>
+          <button id="openBtn" class="bg-slate-200 hover:bg-slate-300 dark:bg-slate-800 dark:hover:bg-slate-700 border border-slate-300 dark:border-slate-700 rounded-lg px-3 py-2 text-sm text-slate-900 dark:text-white transition-colors">Open</button>
+          <button id="shareBtn" class="bg-slate-200 hover:bg-slate-300 dark:bg-slate-800 dark:hover:bg-slate-700 border border-slate-300 dark:border-slate-700 rounded-lg px-3 py-2 text-sm text-slate-900 dark:text-white transition-colors">Share</button>
+        </div>
+
+        <div id="historyWrap" class="hidden mt-6 bg-slate-100 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 rounded-xl p-5 text-left transition-colors duration-300">
+          <h3 class="text-slate-700 dark:text-slate-300 font-semibold mb-3 flex items-center gap-1 transition-colors">
             <span class="material-symbols-outlined text-base">history</span>
             Recent cleaned URLs
           </h3>
-          <ul id="historyList" class="text-slate-400 text-sm space-y-1"></ul>
+          <ul id="historyList" class="text-slate-600 dark:text-slate-400 text-sm space-y-1 transition-colors"></ul>
           <button id="clearHistoryBtn"
-            class="mt-3 bg-white/10 hover:bg-white/20 text-white text-xs px-3 py-1 rounded-md">
+            class="mt-3 bg-slate-200 hover:bg-slate-300 dark:bg-white/10 dark:hover:bg-white/20 text-slate-900 dark:text-white text-xs px-3 py-1 rounded-md transition-colors">
             Clear history
           </button>
         </div>
 
         <div id="qrWrap" class="hidden mt-6 flex flex-col items-center">
-          <div class="text-sm text-slate-400 mb-2">QR Code</div>
+          <div class="text-sm text-slate-600 dark:text-slate-400 mb-2 transition-colors">QR Code</div>
           <div id="qrcode" class="bg-white p-3 rounded-xl"></div>
-          <button id="downloadQRBtn" class="mt-3 bg-white/10 text-white px-4 py-2 rounded-lg hover:bg-white/20 text-sm">Download PNG</button>
+          <button id="downloadQRBtn" class="mt-3 bg-slate-200 hover:bg-slate-300 dark:bg-white/10 dark:hover:bg-white/20 text-slate-900 dark:text-white px-4 py-2 rounded-lg text-sm transition-colors">Download PNG</button>
         </div>
       </div>
-      <p id="error" class="hidden mt-4 text-sm text-red-400"></p>
+      <p id="error" class="hidden mt-4 text-sm text-red-500 dark:text-red-400 transition-colors"></p>
     </section>
 
-    <!-- Features -->
-    <section id="how" class="py-20 bg-slate-900/50 border-t border-slate-800">
+    <section id="how" class="py-20 bg-slate-100 dark:bg-slate-900/50 border-t border-slate-200 dark:border-slate-800 transition-colors duration-300">
       <div class="container mx-auto px-6 text-center">
-        <h2 class="text-3xl font-bold text-white mb-8">Why CleanLink?</h2>
+        <h2 class="text-3xl font-bold text-slate-900 dark:text-white mb-8 transition-colors">Why CleanLink?</h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div class="bg-slate-800/60 p-6 rounded-xl border border-slate-700">
+          <div class="bg-white dark:bg-slate-800/60 p-6 rounded-xl border border-slate-200 dark:border-slate-700 transition-colors duration-300">
             <span class="material-symbols-outlined text-primary text-4xl mb-3">privacy_tip</span>
-            <h3 class="text-lg font-semibold mb-2">Privacy First</h3>
-            <p class="text-slate-400 text-sm">Everything happens in your browser. We never store or track your links.</p>
+            <h3 class="text-lg font-semibold mb-2 text-slate-900 dark:text-white transition-colors">Privacy First</h3>
+            <p class="text-slate-600 dark:text-slate-400 text-sm transition-colors">Everything happens in your browser. We never store or track your links.</p>
           </div>
-          <div class="bg-slate-800/60 p-6 rounded-xl border border-slate-700">
+          <div class="bg-white dark:bg-slate-800/60 p-6 rounded-xl border border-slate-200 dark:border-slate-700 transition-colors duration-300">
             <span class="material-symbols-outlined text-primary text-4xl mb-3">cleaning_services</span>
-            <h3 class="text-lg font-semibold mb-2">Smart Cleaning</h3>
-            <p class="text-slate-400 text-sm">Removes known trackers while preserving key parameters.</p>
+            <h3 class="text-lg font-semibold mb-2 text-slate-900 dark:text-white transition-colors">Smart Cleaning</h3>
+            <p class="text-slate-600 dark:text-slate-400 text-sm transition-colors">Removes known trackers while preserving key parameters.</p>
           </div>
-          <div class="bg-slate-800/60 p-6 rounded-xl border border-slate-700">
+          <div class="bg-white dark:bg-slate-800/60 p-6 rounded-xl border border-slate-200 dark:border-slate-700 transition-colors duration-300">
             <span class="material-symbols-outlined text-primary text-4xl mb-3">share</span>
-            <h3 class="text-lg font-semibold mb-2">Easy Sharing</h3>
-            <p class="text-slate-400 text-sm">Generate QR codes and share clean links instantly.</p>
+            <h3 class="text-lg font-semibold mb-2 text-slate-900 dark:text-white transition-colors">Easy Sharing</h3>
+            <p class="text-slate-600 dark:text-slate-400 text-sm transition-colors">Generate QR codes and share clean links instantly.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Support -->
-    <section id="support" class="py-20 border-t border-slate-800 bg-slate-900/40">
+    <section id="support" class="py-20 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 transition-colors duration-300">
       <div class="container mx-auto px-6 text-center">
-        <h2 class="text-3xl font-bold mb-4 text-white">Support CleanLink</h2>
-        <p class="text-slate-400 max-w-2xl mx-auto mb-8">
+        <h2 class="text-3xl font-bold mb-4 text-slate-900 dark:text-white transition-colors">Support CleanLink</h2>
+        <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto mb-8 transition-colors">
           Free plan is limited to <strong>10 cleans/day</strong>. Supporters unlock <strong>50 cleans/day</strong>.
         </p>
         <div class="flex flex-col items-center gap-3">
@@ -236,23 +360,21 @@
             ☕ Buy me a coffee
           </a>
           <button id="donorActivateBtn"
-            class="bg-white/10 hover:bg-white/20 text-white text-sm px-4 py-2 rounded-lg border border-white/10 transition">
-            I’ve donated — unlock supporter mode
+            class="bg-slate-200 hover:bg-slate-300 dark:bg-white/10 dark:hover:bg-white/20 text-slate-900 dark:text-white text-sm px-4 py-2 rounded-lg border border-slate-300 dark:border-white/10 transition">
+            I've donated — unlock supporter mode
           </button>
-          <p class="text-xs text-slate-500 mt-2">
+          <p class="text-xs text-slate-600 dark:text-slate-500 mt-2 transition-colors">
             ❤️ Supporters get 50 cleans/day. Thank you for helping CleanLink stay free and private.
           </p>
         </div>
       </div>
     </section>
 
-    <!-- Privacy -->
-    <section id="privacy" class="py-20 bg-slate-900 border-t border-slate-800 text-center">
+    <section id="privacy" class="py-20 bg-slate-100 dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 text-center transition-colors duration-300">
       <div class="max-w-3xl mx-auto px-6">
-        <h2 class="text-3xl font-bold text-white mb-6">Your Privacy Matters</h2>
-        <p class="text-slate-400 text-sm leading-relaxed mb-8">
-          CleanLink runs 100% locally in your browser — no servers, no logs, no cookies.<br>
-<!--           Some store links (e.g., Amazon) may include a <em>privacy-safe</em> affiliate tag that never tracks you. -->
+        <h2 class="text-3xl font-bold text-slate-900 dark:text-white mb-6 transition-colors">Your Privacy Matters</h2>
+        <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-8 transition-colors">
+          CleanLink runs 100% locally in your browser — no servers, no logs, no cookies.
         </p>
         <a href="mailto:cleanlink.app@gmail.com"
            class="inline-block px-6 py-3 rounded-lg bg-gradient-to-r from-primary to-indigo-500 text-white font-semibold hover:opacity-90">
@@ -261,8 +383,7 @@
       </div>
     </section>
 
-    <!-- Global Counter -->
-    <section id="stats" class="py-10 text-center bg-slate-900/60 border-t border-slate-800">
+    <section id="stats" class="py-10 text-center bg-slate-200 dark:bg-slate-900/60 border-t border-slate-200 dark:border-slate-800 transition-colors duration-300">
       <div class="max-w-3xl mx-auto px-6">
         <div class="inline-flex items-center justify-center gap-3 px-6 py-3 bg-gradient-to-r from-indigo-600 to-blue-500 rounded-2xl shadow-lg text-white">
           <span class="material-symbols-outlined text-3xl animate-pulse">verified</span>
@@ -275,79 +396,85 @@
     </section>
   </main>
 
-  <footer class="w-full border-t border-slate-800 py-6 text-center text-slate-500 text-xs">
+  <footer class="w-full border-t border-slate-200 dark:border-slate-800 py-6 text-center text-slate-600 dark:text-slate-500 text-xs transition-colors duration-300">
     © <span id="year"></span> CleanLink. Built for privacy-first sharing.
   </footer>
 
-  <!-- 🌟 ADDITIONAL FEATURE SCRIPTS (bottom, after your existing logic) -->
-<script>
-  document.addEventListener("DOMContentLoaded", async () => {
-    /* ---------- 🌓 THEME TOGGLE ---------- */
-    const themeBtn = document.getElementById("themeToggle");
-    if (themeBtn) {
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
       const html = document.documentElement;
-      const stored = localStorage.getItem("theme");
-      if (stored === "light") html.classList.remove("dark");
-      themeBtn.addEventListener("click", () => {
-        html.classList.toggle("dark");
-        localStorage.setItem("theme", html.classList.contains("dark") ? "dark" : "light");
-      });
-    }
-  
-    /* ---------- 📋 CLIPBOARD AUTO-DETECT ---------- */
-    try {
-      const txt = await navigator.clipboard.readText();
-      if (txt.startsWith("http")) {
-        const input = document.getElementById("urlInput");
-        input.value = txt;
-        input.classList.add("ring-2","ring-primary/40");
-        setTimeout(() => input.classList.remove("ring-2","ring-primary/40"), 2000);
+      const themeBtn = document.getElementById("themeToggle");
+      const icon = themeBtn?.querySelector("span");
+    
+      const storedTheme = localStorage.getItem("theme");
+      if (storedTheme === "light") {
+        html.classList.remove("dark");
+        if (icon) icon.textContent = "dark_mode";
+      } else {
+        html.classList.add("dark");
+        if (icon) icon.textContent = "light_mode";
       }
-    } catch(e) { console.log("Clipboard read blocked", e); }
-  
-    /* ---------- 🕓 LOCAL HISTORY ---------- */
-    const historyKey = "cleanlink_history";
-    const historyWrap = document.getElementById("historyWrap");
-    const historyList = document.getElementById("historyList");
-    const clearBtn = document.getElementById("clearHistoryBtn");
-    const resultUrl = document.getElementById("resultUrl");
-    const cleanBtn = document.getElementById("cleanBtn");
-  
-    function renderHistory() {
-      const list = JSON.parse(localStorage.getItem(historyKey) || "[]");
-      if (!list.length) { historyWrap.classList.add("hidden"); return; }
-      historyWrap.classList.remove("hidden");
-      historyList.innerHTML = list.map(u =>
-        `<li><a href="${u}" target="_blank" class="text-sky-400 hover:underline">${u}</a></li>`
-      ).join("");
-    }
-    function saveHistory(url) {
-      let list = JSON.parse(localStorage.getItem(historyKey) || "[]");
-      list.unshift(url);
-      list = [...new Set(list)].slice(0, 5);
-      localStorage.setItem(historyKey, JSON.stringify(list));
-      renderHistory();
-    }
-    if (clearBtn) {
-      clearBtn.addEventListener("click", () => {
-        localStorage.removeItem(historyKey);
-        renderHistory();
+    
+      themeBtn?.addEventListener("click", () => {
+        html.classList.toggle("dark");
+        const isDark = html.classList.contains("dark");
+        localStorage.setItem("theme", isDark ? "dark" : "light");
+        if (icon) icon.textContent = isDark ? "light_mode" : "dark_mode";
       });
-    }
-  
-    // Attach to existing clean event (without modifying it)
-    const oldHandler = cleanBtn.onclick;
-    cleanBtn.addEventListener("click", () => {
-      setTimeout(() => {
-        const cleaned = resultUrl.textContent;
-        if (cleaned && cleaned.startsWith("http")) saveHistory(cleaned);
-      }, 500);
     });
-    renderHistory();
-  });
+  </script>    
+    
+  <script>
+    document.addEventListener("DOMContentLoaded", async () => {
+      try {
+        const txt = await navigator.clipboard.readText();
+        if (txt.startsWith("http")) {
+          const input = document.getElementById("urlInput");
+          input.value = txt;
+          input.classList.add("ring-2","ring-primary/40");
+          setTimeout(() => input.classList.remove("ring-2","ring-primary/40"), 2000);
+        }
+      } catch(e) { console.log("Clipboard read blocked", e); }
+    
+      const historyKey = "cleanlink_history";
+      const historyWrap = document.getElementById("historyWrap");
+      const historyList = document.getElementById("historyList");
+      const clearBtn = document.getElementById("clearHistoryBtn");
+      const resultUrl = document.getElementById("resultUrl");
+      const cleanBtn = document.getElementById("cleanBtn");
+    
+      function renderHistory() {
+        const list = JSON.parse(localStorage.getItem(historyKey) || "[]");
+        if (!list.length) { historyWrap.classList.add("hidden"); return; }
+        historyWrap.classList.remove("hidden");
+        historyList.innerHTML = list.map(u =>
+          `<li><a href="${u}" target="_blank" class="text-sky-500 dark:text-sky-400 hover:underline">${u}</a></li>`
+        ).join("");
+      }
+      function saveHistory(url) {
+        let list = JSON.parse(localStorage.getItem(historyKey) || "[]");
+        list.unshift(url);
+        list = [...new Set(list)].slice(0, 5);
+        localStorage.setItem(historyKey, JSON.stringify(list));
+        renderHistory();
+      }
+      if (clearBtn) {
+        clearBtn.addEventListener("click", () => {
+          localStorage.removeItem(historyKey);
+          renderHistory();
+        });
+      }
+    
+      cleanBtn.addEventListener("click", () => {
+        setTimeout(() => {
+          const cleaned = resultUrl.textContent;
+          if (cleaned && cleaned.startsWith("http")) saveHistory(cleaned);
+        }, 500);
+      });
+      renderHistory();
+    });
   </script>
 
-  <!-- Load Cloudflare Analytics ONLY on http/https (avoid CORS errors on file://) -->
   <script>
     (function () {
       if (location.protocol === 'http:' || location.protocol === 'https:') {
@@ -360,7 +487,6 @@
     })();
   </script>
 
-  <!-- Page JS -->
   <script>
     window.addEventListener("load", () => {
       const yearEl = document.getElementById("year");
@@ -369,14 +495,12 @@
       const privacyToggle = document.getElementById("privacyMode");
       const privacyBadge = document.getElementById("privacyBadge");
 
-      // Restore state
       const privacyEnabled = localStorage.getItem("cleanlink_privacy") === "true";
       if (privacyEnabled) {
         privacyToggle.checked = true;
         privacyBadge?.classList.remove("hidden");
       }
 
-      // Handle toggle
       privacyToggle.addEventListener("change", () => {
         const enabled = privacyToggle.checked;
         localStorage.setItem("cleanlink_privacy", enabled);
@@ -388,55 +512,27 @@
           privacyBadge?.classList.add("hidden");
         }
       });
-
     });
   </script>
 
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const el = document.getElementById("scrambleText");
-    if (!el) return;
-    const text = el.textContent;
-    let i = 0;
-    const scramble = setInterval(() => {
-      el.textContent = text.slice(0, i) + "█";
-      i++;
-      if (i > text.length) {
-        clearInterval(scramble);
-        el.textContent = text;
-      }
-    }, 60);
-  });
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const el = document.getElementById("scrambleText");
+      if (!el) return;
+      const text = el.textContent;
+      let i = 0;
+      const scramble = setInterval(() => {
+        el.textContent = text.slice(0, i) + "█";
+        i++;
+        if (i > text.length) {
+          clearInterval(scramble);
+          el.textContent = text;
+        }
+      }, 60);
+    });
   </script>  
 
-<script>
-  // Affiliate-safe CleanLink core
-  window.addEventListener("load", () => {
-    function normalizeUrl(raw){try{return new URL(raw)}catch{return new URL("https://"+raw)}}
-    function cleanURL(raw,preserveList=[]){
-      const preserve=new Set(preserveList.map(s=>s.trim().toLowerCase()).filter(Boolean));
-      const removeAll=document.getElementById("removeAll").checked;
-      const url=normalizeUrl(raw),params=url.searchParams,keysToDelete=[];
-      params.forEach((_,key)=>{const lower=key.toLowerCase();
-        if((removeAll||lower.startsWith("utm_")||["fbclid","gclid"].includes(lower))&&!preserve.has(lower))
-          keysToDelete.push(key);
-      });
-      keysToDelete.forEach(k=>params.delete(k));
-  
-      // ✅ Affiliate-safe injection
-      if (url.hostname.includes("amazon.") && !params.has("tag")) params.delete("tag", "cleanlink-21");
-      if (url.hostname.includes("ebay.") && !params.has("campid")) params.delete("campid", "5338765432");
-      if (url.hostname.includes("aliexpress.") && !params.has("aff_fcid")) params.delete("aff_fcid", "cleanlink_aff_2025");
-  
-      if([...params.keys()].length===0)url.search="";
-      if(url.hash && /utm_|fbclid|gclid/i.test(url.hash)) url.hash = "";
-      return url.toString();
-    }
-  });
-  </script>
-
   <script>
-    // Main logic
     window.addEventListener("load", () => {
       const isDonor = localStorage.getItem("cleanlink_donor") === "true";
       const MAX_FREE_CLEANS = isDonor ? 50 : 10;
@@ -444,20 +540,161 @@
       const donorBadge = document.getElementById("donorBadge");
       if (isDonor && donorBadge) donorBadge.classList.remove("hidden");
 
-      const urlInput=document.getElementById("urlInput"),
-        preserveInput=document.getElementById("preserveInput"),
-        cleanBtn=document.getElementById("cleanBtn"),
-        resultWrap=document.getElementById("resultWrap"),
-        resultUrl=document.getElementById("resultUrl"),
-        errorEl=document.getElementById("error"),
-        copyBtn=document.getElementById("copyBtn"),
-        openBtn=document.getElementById("openBtn"),
-        shareBtn=document.getElementById("shareBtn"),
-        qrWrap=document.getElementById("qrWrap"),
-        qrcodeEl=document.getElementById("qrcode"),
-        downloadQRBtn=document.getElementById("downloadQRBtn"),
-        usageCounter=document.getElementById("usageCounter"),
-        donorBtn=document.getElementById("donorActivateBtn");
+      const urlInput=document.getElementById("urlInput"),preserveInput=document.getElementById("preserveInput"),cleanBtn=document.getElementById("cleanBtn"),resultWrap=document.getElementById("resultWrap"),resultUrl=document.getElementById("resultUrl"),errorEl=document.getElementById("error"),copyBtn=document.getElementById("copyBtn"),openBtn=document.getElementById("openBtn"),shareBtn=document.getElementById("shareBtn"),qrWrap=document.getElementById("qrWrap"),qrcodeEl=document.getElementById("qrcode"),downloadQRBtn=document.getElementById("downloadQRBtn"),usageCounter=document.getElementById("usageCounter"),donorBtn=document.getElementById("donorActivateBtn"),privacyToggle=document.getElementById("privacyMode");
+
+      // Mode switching functionality
+      let isBulkMode = false;
+      const singleModeBtn = document.getElementById("singleModeBtn");
+      const bulkModeBtn = document.getElementById("bulkModeBtn");
+      const singleMode = document.getElementById("singleMode");
+      const bulkMode = document.getElementById("bulkMode");
+      const singleResults = document.getElementById("singleResults");
+      const bulkResults = document.getElementById("bulkResults");
+      const bulkInput = document.getElementById("bulkInput");
+      const bulkCount = document.getElementById("bulkCount");
+      const bulkCleanBtn = document.getElementById("bulkCleanBtn");
+      const bulkCopyAllBtn = document.getElementById("bulkCopyAllBtn");
+      const bulkResultList = document.getElementById("bulkResultList");
+      const bulkResultsCount = document.getElementById("bulkResultsCount");
+
+      function switchToMode(bulk) {
+        isBulkMode = bulk;
+        const activeBtn = bulk ? bulkModeBtn : singleModeBtn;
+        const inactiveBtn = bulk ? singleModeBtn : bulkModeBtn;
+
+        activeBtn.classList.remove("text-slate-600", "dark:text-slate-400");
+        activeBtn.classList.add("bg-white", "dark:bg-slate-700", "text-slate-900", "dark:text-white", "shadow-sm");
+        inactiveBtn.classList.remove("bg-white", "dark:bg-slate-700", "text-slate-900", "dark:text-white", "shadow-sm");
+        inactiveBtn.classList.add("text-slate-600", "dark:text-slate-400");
+
+        if (bulk) {
+          singleMode.classList.add("hidden");
+          bulkMode.classList.remove("hidden");
+          document.getElementById("singleResults").classList.add("hidden");
+          bulkResults.classList.remove("hidden");
+          updateBulkCount();
+        } else {
+          bulkMode.classList.add("hidden");
+          singleMode.classList.remove("hidden");
+          bulkResults.classList.add("hidden");
+          document.getElementById("singleResults").classList.remove("hidden");
+          resultWrap.classList.add("hidden");
+        }
+      }
+
+      singleModeBtn.addEventListener("click", () => switchToMode(false));
+      bulkModeBtn.addEventListener("click", () => switchToMode(true));
+
+      // Custom Parameters Dropdown Functionality
+      const preserveDropdownBtn = document.getElementById("preserveDropdownBtn");
+      const preserveDropdownMenu = document.getElementById("preserveDropdownMenu");
+      const preserveDropdownText = document.getElementById("preserveDropdownText");
+      const customParamInput = document.getElementById("customParamInput");
+      const addCustomParamBtn = document.getElementById("addCustomParamBtn");
+      let selectedParams = new Set();
+
+      function toggleDropdown() {
+        const isHidden = preserveDropdownMenu.classList.contains("hidden");
+        if (isHidden) {
+          preserveDropdownMenu.classList.remove("hidden");
+        } else {
+          preserveDropdownMenu.classList.add("hidden");
+        }
+      }
+
+      function closeDropdown() {
+        preserveDropdownMenu.classList.add("hidden");
+      }
+
+      function updateDropdownText() {
+        if (selectedParams.size === 0) {
+          preserveDropdownText.textContent = "Preserve parameters";
+        } else if (selectedParams.size <= 3) {
+          preserveDropdownText.textContent = Array.from(selectedParams).join(", ");
+        } else {
+          preserveDropdownText.textContent = `${selectedParams.size} parameters`;
+        }
+      }
+
+      function getSelectedParameters() {
+        return Array.from(selectedParams);
+      }
+
+      // Dropdown button click
+      preserveDropdownBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        toggleDropdown();
+      });
+
+      // Close dropdown when clicking outside
+      document.addEventListener("click", (e) => {
+        if (!preserveDropdownBtn.contains(e.target) && !preserveDropdownMenu.contains(e.target)) {
+          closeDropdown();
+        }
+      });
+
+      // Handle checkbox changes
+      document.addEventListener("change", (e) => {
+        if (e.target.classList.contains("preserve-param")) {
+          const paramName = e.target.value;
+          if (e.target.checked) {
+            selectedParams.add(paramName);
+          } else {
+            selectedParams.delete(paramName);
+          }
+          updateDropdownText();
+        }
+      });
+
+      // Add custom parameter
+      addCustomParamBtn.addEventListener("click", () => {
+        const customParam = customParamInput.value.trim();
+        if (customParam && !selectedParams.has(customParam)) {
+          selectedParams.add(customParam);
+          updateDropdownText();
+          customParamInput.value = "";
+
+          // Add the custom parameter to the dropdown with a remove button
+          const customParamContainer = customParamInput.parentElement;
+          const newParamLabel = document.createElement("label");
+          newParamLabel.className = "flex items-center justify-between gap-2 text-slate-700 dark:text-slate-400 text-sm cursor-pointer";
+          newParamLabel.innerHTML = `
+            <span class="flex items-center gap-2">
+              <input type="checkbox" value="${customParam}" class="rounded border-slate-600 preserve-param" checked>
+              <span>${customParam}</span>
+            </span>
+            <span class="text-red-500 hover:text-red-700 cursor-pointer text-xs remove-custom" data-param="${customParam}">×</span>
+          `;
+          customParamContainer.insertBefore(newParamLabel, customParamInput);
+        }
+      });
+
+      // Handle custom parameter input enter key
+      customParamInput.addEventListener("keypress", (e) => {
+        if (e.key === "Enter") {
+          addCustomParamBtn.click();
+        }
+      });
+
+      // Remove custom parameter
+      document.addEventListener("click", (e) => {
+        if (e.target.classList.contains("remove-custom")) {
+          const paramName = e.target.dataset.param;
+          selectedParams.delete(paramName);
+          e.target.closest("label").remove();
+          updateDropdownText();
+        }
+      });
+
+      function updateBulkCount() {
+        if (!bulkInput) return;
+        const urls = bulkInput.value.split('\n').map(u => u.trim()).filter(u => u.length > 0);
+        bulkCount.textContent = `${urls.length} URLs to clean`;
+      }
+
+      if (bulkInput) {
+        bulkInput.addEventListener("input", updateBulkCount);
+      }
 
       function normalizeUrl(raw){try{return new URL(raw)}catch{return new URL("https://"+raw)}}
       function cleanURL(raw,preserveList=[]){
@@ -476,6 +713,154 @@
       function hideError(){if(errorEl)errorEl.classList.add("hidden");}
       function renderQR(text){if(!qrcodeEl)return;qrcodeEl.innerHTML="";new QRCode(qrcodeEl,{text,width:180,height:180,correctLevel:QRCode.CorrectLevel.M});}
 
+      async function checkHTTPS(url){
+        const httpsStatusEl = document.getElementById("httpsStatus");
+        const httpsIconEl = document.getElementById("httpsIcon");
+        const httpsTextEl = document.getElementById("httpsText");
+
+        if (!httpsStatusEl) return;
+
+        try {
+          const httpsUrl = url.replace(/^http:/, "https:");
+          const controller = new AbortController();
+          const timeoutId = setTimeout(() => controller.abort(), 5000);
+
+          const response = await fetch(httpsUrl, {
+            method: "HEAD",
+            mode: "no-cors",
+            signal: controller.signal
+          });
+
+          clearTimeout(timeoutId);
+          httpsStatusEl.classList.remove("hidden");
+
+          if (response.type === "opaque" || url.startsWith("https://")) {
+            httpsIconEl.textContent = "verified";
+            httpsIconEl.className = "material-symbols-outlined text-base text-green-500 dark:text-green-400";
+            httpsTextEl.textContent = "HTTPS available";
+          } else {
+            httpsIconEl.textContent = "verified";
+            httpsIconEl.className = "material-symbols-outlined text-base text-green-500 dark:text-green-400";
+            httpsTextEl.textContent = "HTTPS available";
+          }
+        } catch (error) {
+          if (error.name === "AbortError") {
+            httpsStatusEl.classList.remove("hidden");
+            httpsIconEl.textContent = "schedule";
+            httpsIconEl.className = "material-symbols-outlined text-base text-yellow-500 dark:text-yellow-400";
+            httpsTextEl.textContent = "HTTPS check timed out";
+          } else {
+            httpsStatusEl.classList.remove("hidden");
+            httpsIconEl.textContent = "error";
+            httpsIconEl.className = "material-symbols-outlined text-base text-red-500 dark:text-red-400";
+            httpsTextEl.textContent = "HTTPS not available";
+          }
+        }
+      }
+
+      async function checkDomainAge(domain) {
+        const domainAgeStatusEl = document.getElementById("domainAgeStatus");
+        const domainAgeIconEl = document.getElementById("domainAgeIcon");
+        const domainAgeTextEl = document.getElementById("domainAgeText");
+
+        if (!domainAgeStatusEl) return;
+
+        try {
+          // Clean domain and check suspicious TLDs first
+          const cleanDomain = domain.toLowerCase().replace('www.', '');
+          const suspiciousTLDs = ['.tk', '.ml', '.ga', '.cf', '.gq', '.work', '.icu'];
+
+          const hasSuspiciousTLD = suspiciousTLDs.some(tld => cleanDomain.endsWith(tld));
+          if (hasSuspiciousTLD) {
+            domainAgeStatusEl.classList.remove("hidden");
+            domainAgeIconEl.textContent = "warning";
+            domainAgeIconEl.className = "material-symbols-outlined text-base text-yellow-500 dark:text-yellow-400";
+            domainAgeTextEl.textContent = "Suspicious TLD - exercise caution";
+            return;
+          }
+
+          // Try WHOIS APIs for domain age
+          const whoisAPIs = [
+            `https://api.domainsdb.info/v1/whois/${cleanDomain}`,
+            `https://api.similarweb.com/v3/domain/${cleanDomain}/rank-overview/`,
+          ];
+
+          let domainInfo = null;
+
+          for (const apiUrl of whoisAPIs) {
+            try {
+              const controller = new AbortController();
+              const timeoutId = setTimeout(() => controller.abort(), 4000);
+
+              const response = await fetch(apiUrl, {
+                method: "GET",
+                headers: {
+                  'Accept': 'application/json',
+                  'User-Agent': 'CleanLink/1.0'
+                },
+                signal: controller.signal
+              });
+
+              clearTimeout(timeoutId);
+
+              if (response.ok) {
+                const data = await response.json();
+
+                // Try different response structures
+                let creationDate = null;
+                if (data.created) creationDate = new Date(data.created);
+                else if (data.creation_date) creationDate = new Date(data.creation_date);
+                else if (data.created_date) creationDate = new Date(data.created_date);
+                else if (data.registered) creationDate = new Date(data.registered);
+
+                if (creationDate && !isNaN(creationDate.getTime())) {
+                  const today = new Date();
+                  const diffTime = Math.abs(today - creationDate);
+                  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+                  domainAgeStatusEl.classList.remove("hidden");
+
+                  if (diffDays <= 1) {
+                    domainAgeIconEl.textContent = "warning";
+                    domainAgeIconEl.className = "material-symbols-outlined text-base text-red-500 dark:text-red-400";
+                    domainAgeTextEl.textContent = `Domain registered today - very suspicious`;
+                  } else if (diffDays <= 7) {
+                    domainAgeIconEl.textContent = "warning";
+                    domainAgeIconEl.className = "material-symbols-outlined text-base text-orange-500 dark:text-orange-400";
+                    domainAgeTextEl.textContent = `Domain registered ${diffDays} days ago - high caution`;
+                  } else if (diffDays <= 30) {
+                    domainAgeIconEl.textContent = "warning";
+                    domainAgeIconEl.className = "material-symbols-outlined text-base text-yellow-500 dark:text-yellow-400";
+                    domainAgeTextEl.textContent = `Recently registered (${diffDays} days ago)`;
+                  } else {
+                    domainAgeIconEl.textContent = "verified";
+                    domainAgeIconEl.className = "material-symbols-outlined text-base text-green-500 dark:text-green-400";
+                    domainAgeTextEl.textContent = `Established domain (${Math.floor(diffDays/30)} months old)`;
+                  }
+                  return;
+                }
+              }
+            } catch (apiError) {
+              // Continue to next API
+              continue;
+            }
+          }
+
+          // If no API worked, show neutral message
+          domainAgeStatusEl.classList.remove("hidden");
+          domainAgeIconEl.textContent = "info";
+          domainAgeIconEl.className = "material-symbols-outlined text-base text-blue-500 dark:text-blue-400";
+          domainAgeTextEl.textContent = "Domain age unknown - verify manually";
+
+        } catch (error) {
+          // Network or other error
+          domainAgeStatusEl.classList.remove("hidden");
+          domainAgeIconEl.textContent = "info";
+          domainAgeIconEl.className = "material-symbols-outlined text-base text-slate-500 dark:text-slate-400";
+          domainAgeTextEl.textContent = "Could not check domain age";
+        }
+      }
+
       function checkLimit(){
         const today=new Date().toDateString();
         const storedDate=localStorage.getItem(dateKey);
@@ -490,13 +875,9 @@
       cleanBtn.addEventListener("click", () => {
         if (!checkLimit()) return;
         hideError();
-
         const raw = urlInput.value.trim();
         if (!raw) return showError("Please paste a URL first.");
-
-        let preserve = [];
-        if (preserveInput.value.trim())
-          preserve = preserveInput.value.split(",").map(s => s.trim().toLowerCase());
+        const preserve = getSelectedParameters();
 
         try {
           const cleaned = cleanURL(raw, preserve);
@@ -505,63 +886,57 @@
           if(qrWrap)qrWrap.classList.remove("hidden");
           renderQR(cleaned);
 
-          // Send analytics to your n8n webhook (safe to skip if blocked by CORS)
-          fetch("https://n8n.digital-ai-home.de/webhook/ClickCounter", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              source_domain: (()=>{try{return new URL(raw).hostname.replace("www.","")}catch{return "unknown"}})(),
-              page: window.location.hostname || "local",
-              donor: isDonor,
-              usage: localStorage.getItem(usageKey),
-              timestamp: new Date().toISOString()
-            })
-          })
-          .then(r=>r.text()).then(txt=>{
-            let data=null; try{data=JSON.parse(txt)}catch{}
-            const el = document.getElementById("globalCounter");
-            if (!data || !el) return;
-            const count = Array.isArray(data) ? data[0]?.ClickCounter : data.ClickCounter;
-            if (count !== undefined) {
-              localStorage.setItem("cleanlink_globalCount", count);
-              el.textContent = `${count.toLocaleString()} URLs cleaned so far 🚀`;
-              el.style.transform = "scale(1.15)";
-              setTimeout(() => (el.style.transform = "scale(1)"), 300);
-            }
-          }).catch(()=>{ /* ignore if blocked locally */ });
+          const httpsStatusEl = document.getElementById("httpsStatus");
+          if (httpsStatusEl) httpsStatusEl.classList.add("hidden");
 
+          const domainAgeStatusEl = document.getElementById("domainAgeStatus");
+          if (domainAgeStatusEl) domainAgeStatusEl.classList.add("hidden");
+
+          const isPrivacy = privacyToggle.checked;
+          const shouldCheckHTTPS = document.getElementById("httpsCheck").checked;
+          const shouldCheckDomainAge = document.getElementById("domainAgeCheck").checked;
+
+          if (shouldCheckHTTPS && !isPrivacy) {
+            checkHTTPS(cleaned);
+          }
+
+          if (shouldCheckDomainAge && !isPrivacy) {
+            try {
+              const domain = new URL(cleaned).hostname;
+              checkDomainAge(domain);
+            } catch {
+              // Skip domain age check for invalid URLs
+            }
+          }
+
+          if (!isPrivacy) {
+            fetch("https://n8n.digital-ai-home.de/webhook/ClickCounter", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                source_domain: (()=>{try{return new URL(raw).hostname.replace("www.","")}catch{return "unknown"}})(),
+                page: window.location.hostname || "local",
+                donor: isDonor,
+                usage: localStorage.getItem(usageKey),
+                timestamp: new Date().toISOString()
+              })
+            })
+            .then(r=>r.text()).then(txt=>{
+              let data=null; try{data=JSON.parse(txt)}catch{}
+              const el = document.getElementById("globalCounter");
+              if (!data || !el) return;
+              const count = Array.isArray(data) ? data[0]?.ClickCounter : data.ClickCounter;
+              if (count !== undefined) {
+                localStorage.setItem("cleanlink_globalCount", count);
+                el.textContent = `${count.toLocaleString()} URLs cleaned so far 🚀`;
+                el.style.transform = "scale(1.15)";
+                setTimeout(() => (el.style.transform = "scale(1)"), 300);
+              }
+            }).catch(()=>{});
+          }
         } catch {
           showError("Invalid URL.");
         }
-
-        // Inside your cleanBtn.addEventListener("click", ...)
-        const isPrivacy = privacyToggle.checked;
-
-        // Skip n8n webhook analytics in privacy mode
-        if (!isPrivacy) {
-          fetch("https://n8n.digital-ai-home.de/webhook/ClickCounter", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              source_domain: (()=>{try{return new URL(raw).hostname.replace("www.","")}catch{return "unknown"}})(),
-              page: window.location.hostname || "local",
-              donor: isDonor,
-              usage: localStorage.getItem(usageKey),
-              timestamp: new Date().toISOString()
-            })
-          })
-          .then(r=>r.text()).then(txt=>{/* ... existing analytics logic ... */})
-          .catch(()=>{});
-        }
-
-        // If privacy mode enabled → hide shorten button
-        const shortenBtn = document.getElementById("shortenBtn");
-        if (isPrivacy && shortenBtn) {
-          shortenBtn.disabled = true;
-          shortenBtn.title = "Disabled in Privacy Mode";
-          shortenBtn.classList.add("opacity-50", "cursor-not-allowed");
-        }
-
       });
 
       copyBtn.addEventListener("click",async()=>{await navigator.clipboard.writeText(resultUrl.textContent);copyBtn.textContent="Copied!";setTimeout(()=>copyBtn.textContent="Copy",1000)});
@@ -569,20 +944,99 @@
       shareBtn.addEventListener("click",async()=>{const t=resultUrl.textContent;if(navigator.share)await navigator.share({title:"Clean Link",url:t});else await navigator.clipboard.writeText(t)});
       downloadQRBtn.addEventListener("click",()=>{const c=qrcodeEl.querySelector("canvas");if(!c)return alert("QR not generated yet.");const l=document.createElement("a");l.download="cleanlink-qr.png";l.href=c.toDataURL("image/png");l.click();});
 
-      // Manual supporter unlock (simple, fast)
       if(isDonor && donorBtn){donorBtn.textContent="🎉 Supporter mode active (50 cleans/day)";donorBtn.disabled=true;donorBtn.classList.add("opacity-70","cursor-default");}
+      // Bulk URL cleaning functionality
+      bulkCleanBtn.addEventListener("click", async () => {
+        hideError();
+        const rawUrls = bulkInput.value.split('\n').map(u => u.trim()).filter(u => u.length > 0);
+
+        if (!rawUrls.length) {
+          return showError("Please paste URLs to clean (one per line).");
+        }
+
+        // Check if we have enough cleans remaining
+        const totalUsage = parseInt(localStorage.getItem(usageKey) || "0") + rawUrls.length;
+        if (totalUsage > MAX_FREE_CLEANS) {
+          return showError(`This would exceed your daily limit (${MAX_FREE_CLEANS}). You can process ${MAX_FREE_CLEANS - parseInt(localStorage.getItem(usageKey) || "0")} more URLs.`);
+        }
+
+        const preserve = getSelectedParameters();
+
+        const cleanedUrls = [];
+        let successCount = 0;
+
+        try {
+          for (const rawUrl of rawUrls) {
+            try {
+              const cleaned = cleanURL(rawUrl, preserve);
+              cleanedUrls.push(cleaned);
+              successCount++;
+            } catch {
+              cleanedUrls.push(`❌ Invalid URL: ${rawUrl}`);
+            }
+          }
+
+          // Update usage counter for successful cleans
+          const currentUsage = parseInt(localStorage.getItem(usageKey) || "0");
+          localStorage.setItem(usageKey, (currentUsage + successCount).toString());
+          if (usageCounter) usageCounter.textContent = `${currentUsage + successCount}/${MAX_FREE_CLEANS} cleans today ${isDonor ? "(Supporter)" : "(Free Plan)"}`;
+
+          // Display results
+          bulkResultList.innerHTML = cleanedUrls.map(url =>
+            `<div class="p-2 bg-white dark:bg-slate-700 rounded break-all">${url}</div>`
+          ).join("");
+          bulkResultsCount.textContent = `(${successCount} processed)`;
+          resultWrap.classList.remove("hidden");
+          bulkResults.classList.remove("hidden");
+
+          // Hide elements that don't apply to bulk mode
+          document.getElementById("qrWrap").classList.add("hidden");
+          document.getElementById("httpsStatus").classList.add("hidden");
+
+          const isPrivacy = privacyToggle.checked;
+          if (!isPrivacy && successCount > 0) {
+            // Send aggregated analytics
+            fetch("https://n8n.digital-ai-home.de/webhook/ClickCounter", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                source_domain: "bulk_processing",
+                page: window.location.hostname || "local",
+                donor: isDonor,
+                usage: localStorage.getItem(usageKey),
+                timestamp: new Date().toISOString(),
+                bulk_count: successCount
+              })
+            }).catch(() => {});
+          }
+
+        } catch (error) {
+          showError("Error processing URLs. Please try again.");
+        }
+      });
+
+      // Bulk copy all functionality
+      bulkCopyAllBtn.addEventListener("click", async () => {
+        const urls = Array.from(bulkResultList.querySelectorAll("div")).map(div => div.textContent).join('\n');
+        if (urls) {
+          await navigator.clipboard.writeText(urls);
+          bulkCopyAllBtn.textContent = "Copied!";
+          setTimeout(() => bulkCopyAllBtn.textContent = "Copy All", 1000);
+        }
+      });
+
       if(donorBtn)donorBtn.addEventListener("click",()=>{if(confirm("Did you donate to CleanLink via BuyMeACoffee or GitHub Sponsors?")){localStorage.setItem("cleanlink_donor","true");alert("Thank you! Supporter mode activated (50 cleans/day).");location.reload();}});
     });
   </script>
 
-<script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/service-worker.js')
-        .then(() => console.log('✅ Service worker registered.'))
-        .catch(err => console.log('Service worker registration failed:', err));
-    });
-  }
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js')
+          .then(() => console.log('✅ Service worker registered.'))
+          .catch(err => console.log('Service worker registration failed:', err));
+      });
+    }
   </script>
   
 </body>

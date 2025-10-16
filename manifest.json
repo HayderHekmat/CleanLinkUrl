@@ -1,0 +1,25 @@
+{
+  "name": "CleanLink - Privacy-Friendly URL Cleaner",
+  "short_name": "CleanLink",
+  "description": "Remove tracking parameters like utm_*, fbclid, and gclid. CleanLink lets you share privacy-friendly links instantly and safely.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#193ce6",
+  "theme_color": "#193ce6",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/assets/images/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/images/cleanlink-icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "categories": ["productivity", "utilities"],
+  "lang": "en-US"
+}

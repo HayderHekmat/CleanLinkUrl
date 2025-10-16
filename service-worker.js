@@ -3,9 +3,8 @@ const urlsToCache = [
   "/",
   "/index.html",
   "/manifest.json",
-  "/images/cleanlink-icon.png",
-  "/images/cleanlink-icon-192.png",
-  "/images/cleanlink-icon-512.png"
+  "/assets/images/favicon.png",
+  "/assets/images/cleanlink-icon.png"
 ];
 
 self.addEventListener("install", event => {
