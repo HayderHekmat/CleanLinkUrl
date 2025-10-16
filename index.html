@@ -78,6 +78,7 @@
 </head>
 
 <body class="bg-background-dark text-slate-100 font-display">
+  
 
 <!-- Header -->
 <header class="w-full border-b border-slate-800 bg-background-dark">
@@ -109,6 +110,11 @@
       <a href="#how" class="hover:text-white">Features</a>
       <a href="#support" class="hover:text-white">Support & Limits</a>
       <a href="#privacy" class="hover:text-white">Privacy</a>
+
+      <!-- 🌓 Theme toggle button -->
+      <button id="themeToggle" class="ml-2 text-slate-400 hover:text-white flex items-center gap-1">
+        <span class="material-symbols-outlined text-base">light_mode</span>
+      </button>
     </div>
   </nav>
 </header>
@@ -160,6 +166,18 @@
           <button id="copyBtn" class="bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-lg px-3 py-2 text-sm">Copy</button>
           <button id="openBtn" class="bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-lg px-3 py-2 text-sm">Open</button>
           <button id="shareBtn" class="bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-lg px-3 py-2 text-sm">Share</button>
+        </div>
+
+        <div id="historyWrap" class="hidden mt-6 max-w-3xl mx-auto bg-slate-900/40 border border-slate-800 rounded-xl p-5 text-left">
+          <h3 class="text-slate-300 font-semibold mb-3 flex items-center gap-1">
+            <span class="material-symbols-outlined text-base">history</span>
+            Recent cleaned URLs
+          </h3>
+          <ul id="historyList" class="text-slate-400 text-sm space-y-1"></ul>
+          <button id="clearHistoryBtn"
+            class="mt-3 bg-white/10 hover:bg-white/20 text-white text-xs px-3 py-1 rounded-md">
+            Clear history
+          </button>
         </div>
 
         <div id="qrWrap" class="hidden mt-6 flex flex-col items-center">
@@ -250,6 +268,74 @@
   <footer class="w-full border-t border-slate-800 py-6 text-center text-slate-500 text-xs">
     © <span id="year"></span> CleanLink. Built for privacy-first sharing.
   </footer>
+
+  <!-- 🌟 ADDITIONAL FEATURE SCRIPTS (bottom, after your existing logic) -->
+<script>
+  document.addEventListener("DOMContentLoaded", async () => {
+    /* ---------- 🌓 THEME TOGGLE ---------- */
+    const themeBtn = document.getElementById("themeToggle");
+    if (themeBtn) {
+      const html = document.documentElement;
+      const stored = localStorage.getItem("theme");
+      if (stored === "light") html.classList.remove("dark");
+      themeBtn.addEventListener("click", () => {
+        html.classList.toggle("dark");
+        localStorage.setItem("theme", html.classList.contains("dark") ? "dark" : "light");
+      });
+    }
+  
+    /* ---------- 📋 CLIPBOARD AUTO-DETECT ---------- */
+    try {
+      const txt = await navigator.clipboard.readText();
+      if (txt.startsWith("http")) {
+        const input = document.getElementById("urlInput");
+        input.value = txt;
+        input.classList.add("ring-2","ring-primary/40");
+        setTimeout(() => input.classList.remove("ring-2","ring-primary/40"), 2000);
+      }
+    } catch(e) { console.log("Clipboard read blocked", e); }
+  
+    /* ---------- 🕓 LOCAL HISTORY ---------- */
+    const historyKey = "cleanlink_history";
+    const historyWrap = document.getElementById("historyWrap");
+    const historyList = document.getElementById("historyList");
+    const clearBtn = document.getElementById("clearHistoryBtn");
+    const resultUrl = document.getElementById("resultUrl");
+    const cleanBtn = document.getElementById("cleanBtn");
+  
+    function renderHistory() {
+      const list = JSON.parse(localStorage.getItem(historyKey) || "[]");
+      if (!list.length) { historyWrap.classList.add("hidden"); return; }
+      historyWrap.classList.remove("hidden");
+      historyList.innerHTML = list.map(u =>
+        `<li><a href="${u}" target="_blank" class="text-sky-400 hover:underline">${u}</a></li>`
+      ).join("");
+    }
+    function saveHistory(url) {
+      let list = JSON.parse(localStorage.getItem(historyKey) || "[]");
+      list.unshift(url);
+      list = [...new Set(list)].slice(0, 5);
+      localStorage.setItem(historyKey, JSON.stringify(list));
+      renderHistory();
+    }
+    if (clearBtn) {
+      clearBtn.addEventListener("click", () => {
+        localStorage.removeItem(historyKey);
+        renderHistory();
+      });
+    }
+  
+    // Attach to existing clean event (without modifying it)
+    const oldHandler = cleanBtn.onclick;
+    cleanBtn.addEventListener("click", () => {
+      setTimeout(() => {
+        const cleaned = resultUrl.textContent;
+        if (cleaned && cleaned.startsWith("http")) saveHistory(cleaned);
+      }, 500);
+    });
+    renderHistory();
+  });
+  </script>
 
   <!-- Load Cloudflare Analytics ONLY on http/https (avoid CORS errors on file://) -->
   <script>
