@@ -1,7 +1,7 @@
 {
-  "name": "CleanLink - Privacy-Friendly URL Cleaner",
-  "short_name": "CleanLink",
-  "description": "Remove tracking parameters like utm_*, fbclid, and gclid. CleanLink lets you share privacy-friendly links instantly and safely.",
+  "name": "LinkAura - Privacy-Friendly URL Cleaner",
+  "short_name": "LinkAura",
+  "description": "Remove tracking parameters like utm_*, fbclid, and gclid. LinkAura lets you share privacy-friendly links instantly and safely.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#193ce6",
