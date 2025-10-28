@@ -292,7 +292,7 @@
             <span>URL Validation & Repair</span>
           </label>
           <label class="flex items-center gap-2 text-slate-700 dark:text-slate-400 text-sm cursor-pointer transition-colors">
-            <input id="shortenerDetectionCheck" type="checkbox" class="rounded border-slate-600" checked>
+            <input id="shortenerDetectionCheck" type="checkbox" class="rounded border-slate-600">
             <span>Shortened URL Detection & Expansion</span>
           </label>
           
@@ -461,6 +461,11 @@
           <span id="linkExpirationText" class="text-slate-700 dark:text-slate-300 transition-colors"></span>
         </div>
 
+        <div id="shortenerApiStatus" class="hidden mt-3 flex items-center gap-2 text-sm">
+          <span id="shortenerApiIcon" class="material-symbols-outlined text-base"></span>
+          <span id="shortenerApiText" class="text-slate-700 dark:text-slate-300 transition-colors"></span>
+        </div>
+
         <div id="shortenerWarningStatus" class="hidden mt-3 p-3 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg">
           <div class="flex items-start gap-2">
             <span id="shortenerWarningIcon" class="material-symbols-outlined text-base text-yellow-600 dark:text-yellow-400 mt-0.5"></span>
@@ -559,7 +564,8 @@
                 <p>2. <strong>Click Clean</strong> to remove tracking parameters</p>
                 <p>3. <strong>Copy or share</strong> your clean link instantly</p>
                 <p>4. <strong>Optional:</strong> Enable local checks (HTTPS, SSL, URL analysis, etc.) - <strong>unlimited and free</strong></p>
-                <p>5. <strong>Optional:</strong> Use premium API features (donors only) for advanced security checks</p>
+                <p>5. <strong>Optional:</strong> Enable URL shortener detection to reveal true destinations - <strong>free with API</strong></p>
+                <p>6. <strong>Optional:</strong> Use premium API features (donors only) for advanced security checks</p>
                 <div class="mt-3 p-2 bg-green-50 dark:bg-green-950/20 rounded-lg border border-green-200 dark:border-green-800">
                   <p class="text-xs text-green-800 dark:text-green-200">
                     <strong>💡 Free Forever:</strong> All local features (URL cleaning, HTTPS check, SSL check, URL analysis, link expiration, social media detection, QR codes, history) are unlimited and completely free!
@@ -659,6 +665,23 @@
                 <li>• Vulnerability scanning</li>
                 <li>• Suspicious pattern analysis</li>
                 <li>• Comprehensive security report</li>
+              </ul>
+            </div>
+          </div>
+          
+          <!-- Additional Security Features -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
+            <div class="bg-gradient-to-br from-orange-50 to-red-50 dark:from-orange-950/20 dark:to-red-950/20 p-6 rounded-xl border border-orange-200 dark:border-orange-800 transition-colors duration-300">
+              <span class="material-symbols-outlined text-orange-600 dark:text-orange-400 text-4xl mb-3">link</span>
+              <h4 class="text-lg font-semibold mb-2 text-slate-900 dark:text-white transition-colors">URL Shortener Detection</h4>
+              <p class="text-slate-600 dark:text-slate-400 text-sm transition-colors mb-3">
+                Automatically detect and expand shortened URLs to reveal their true destinations before you click.
+              </p>
+              <ul class="text-xs text-slate-500 dark:text-slate-500 text-left space-y-1">
+                <li>• Detects popular shorteners (bit.ly, tinyurl, etc.)</li>
+                <li>• Expands URLs to show true destination</li>
+                <li>• Privacy-safe server-side expansion</li>
+                <li>• Free with API connection</li>
               </ul>
             </div>
           </div>
@@ -792,6 +815,7 @@
               <li>• IP addresses are anonymized through secure proxy</li>
               <li>• No personal data stored or logged</li>
               <li>• Encrypted connections to external APIs</li>
+              <li>• URL shortener expansion through secure proxy</li>
               <li>• Automatic data deletion after processing</li>
             </ul>
           </div>
@@ -809,6 +833,7 @@
               <li>• URL structure analysis</li>
               <li>• Link expiration detection</li>
               <li>• Social media platform detection</li>
+              <li>• URL shortener detection (with API)</li>
               <li>• QR code generation and history</li>
             </ul>
           </div>
@@ -1086,6 +1111,7 @@
 
   <script>
     // Enhanced supporter status validation function with server-side verification
+    // Cache bust: 2024-01-15-v2
     async function checkSupporterStatus(token, expiry) {
       if (!token || !expiry) {
         // Clean up old supporter data if no valid token
@@ -1378,7 +1404,7 @@
         }
         
         // Handle API option checkbox changes
-        if (e.target.id === "safetyApiCheck" || e.target.id === "sslApiCheck" || e.target.id === "webSecScanCheck") {
+        if (e.target.id === "safetyApiCheck" || e.target.id === "sslApiCheck" || e.target.id === "webSecScanCheck" || e.target.id === "shortenerDetectionCheck") {
           updateApiStatusVisibility();
           // If API options are selected, try to get token
           if (isAnyApiOptionSelected()) {
@@ -2662,6 +2688,9 @@ async function generateJWT(payload, secret = 'jwt-secret-key-256-bits-minimum') 
 
       // Shortened URL Detection and Expansion
       window.checkShortenedUrl = async function(url) {
+        const shortenerApiStatusEl = document.getElementById("shortenerApiStatus");
+        const shortenerApiIconEl = document.getElementById("shortenerApiIcon");
+        const shortenerApiTextEl = document.getElementById("shortenerApiText");
         const shortenerWarningStatusEl = document.getElementById("shortenerWarningStatus");
         const shortenerWarningIconEl = document.getElementById("shortenerWarningIcon");
         const shortenerWarningTextEl = document.getElementById("shortenerWarningText");
@@ -2675,9 +2704,16 @@ async function generateJWT(payload, secret = 'jwt-secret-key-256-bits-minimum') 
           const isShortened = isShortener(urlObj.hostname);
           
           if (!isShortened) {
+            shortenerApiStatusEl.classList.add("hidden");
             shortenerWarningStatusEl.classList.add("hidden");
             return;
           }
+
+          // Show API status when shortened URL is detected
+          shortenerApiStatusEl.classList.remove("hidden");
+          shortenerApiIconEl.textContent = "link";
+          shortenerApiIconEl.className = "material-symbols-outlined text-base text-blue-500 dark:text-blue-400";
+          shortenerApiTextEl.textContent = "Shortened URL detected - click to expand";
 
           // Show warning for shortened URL
           shortenerWarningStatusEl.classList.remove("hidden");
@@ -2691,9 +2727,19 @@ async function generateJWT(payload, secret = 'jwt-secret-key-256-bits-minimum') 
               expandShortenedUrlBtn.disabled = true;
               expandShortenedUrlBtn.innerHTML = '<span class="material-symbols-outlined text-sm mr-1 animate-spin">refresh</span>Expanding...';
               
+              // Update API status during processing
+              shortenerApiIconEl.textContent = "hourglass";
+              shortenerApiIconEl.className = "material-symbols-outlined text-base text-blue-500 dark:text-blue-400 animate-spin";
+              shortenerApiTextEl.textContent = "Expanding URL...";
+              
               const expandedUrl = await expandShortenedUrl(url);
               
               if (expandedUrl !== url) {
+                // Success - show API success status
+                shortenerApiIconEl.textContent = "check_circle";
+                shortenerApiIconEl.className = "material-symbols-outlined text-base text-green-500 dark:text-green-400";
+                shortenerApiTextEl.textContent = "URL expanded successfully";
+
                 shortenerOriginalUrlEl.textContent = expandedUrl;
                 shortenerWarningTextEl.textContent = "Original URL revealed:";
                 shortenerWarningIconEl.textContent = "verified";
@@ -2707,6 +2753,11 @@ async function generateJWT(payload, secret = 'jwt-secret-key-256-bits-minimum') 
                   resultUrl.textContent = expandedUrl;
                 }
               } else {
+                // API not available - show API error status
+                shortenerApiIconEl.textContent = "error";
+                shortenerApiIconEl.className = "material-symbols-outlined text-base text-red-500 dark:text-red-400";
+                shortenerApiTextEl.textContent = "Could not expand URL";
+
                 shortenerWarningTextEl.textContent = "Could not expand URL - API not available";
                 shortenerWarningIconEl.textContent = "warning";
                 expandShortenedUrlBtn.innerHTML = '<span class="material-symbols-outlined text-sm mr-1">info</span>API Required';
@@ -2730,7 +2781,11 @@ async function generateJWT(payload, secret = 'jwt-secret-key-256-bits-minimum') 
                 `;
               }
             } catch (error) {
-              console.error('URL expansion failed:', error);
+              // API error - show API error status
+              shortenerApiIconEl.textContent = "error";
+              shortenerApiIconEl.className = "material-symbols-outlined text-base text-red-500 dark:text-red-400";
+              shortenerApiTextEl.textContent = "URL expansion failed";
+
               shortenerWarningTextEl.textContent = "Failed to expand URL";
               shortenerWarningIconEl.textContent = "error";
               expandShortenedUrlBtn.innerHTML = '<span class="material-symbols-outlined text-sm mr-1">error</span>Failed';
@@ -2740,7 +2795,7 @@ async function generateJWT(payload, secret = 'jwt-secret-key-256-bits-minimum') 
           };
 
         } catch (error) {
-          console.error('Shortened URL check failed:', error);
+          shortenerApiStatusEl.classList.add("hidden");
           shortenerWarningStatusEl.classList.add("hidden");
         }
       };
@@ -3141,6 +3196,9 @@ async function generateJWT(payload, secret = 'jwt-secret-key-256-bits-minimum') 
 
         const safetyApiStatusEl = document.getElementById("safetyApiStatus");
         if (safetyApiStatusEl) safetyApiStatusEl.classList.add("hidden");
+
+        const shortenerApiStatusEl = document.getElementById("shortenerApiStatus");
+        if (shortenerApiStatusEl) shortenerApiStatusEl.classList.add("hidden");
 
         const isPrivacy = privacyToggle.checked;
         const shouldCheckHTTPS = document.getElementById("httpsCheck").checked;
@@ -3730,7 +3788,8 @@ async function generateJWT(payload, secret = 'jwt-secret-key-256-bits-minimum') 
       const safetyApiCheck = document.getElementById("safetyApiCheck")?.checked || false;
       const sslApiCheck = document.getElementById("sslApiCheck")?.checked || false;
       const webSecScanCheck = document.getElementById("webSecScanCheck")?.checked || false;
-      return safetyApiCheck || sslApiCheck || webSecScanCheck;
+      const shortenerDetectionCheck = document.getElementById("shortenerDetectionCheck")?.checked || false;
+      return safetyApiCheck || sslApiCheck || webSecScanCheck || shortenerDetectionCheck;
     }
 
     // Function to update API status visibility
@@ -3996,6 +4055,9 @@ async function generateJWT(payload, secret = 'jwt-secret-key-256-bits-minimum') 
 
         const safetyApiStatusEl = document.getElementById("safetyApiStatus");
         if (safetyApiStatusEl) safetyApiStatusEl.classList.add("hidden");
+
+        const shortenerApiStatusEl = document.getElementById("shortenerApiStatus");
+        if (shortenerApiStatusEl) shortenerApiStatusEl.classList.add("hidden");
 
         // Check which options are enabled
         const isPrivacy = privacyToggle.checked;
