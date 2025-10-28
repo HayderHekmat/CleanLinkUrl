@@ -556,7 +556,7 @@
                 <p><strong>🔒 How to unlock:</strong> Buy coffee on BuyMeACoffee</p>
                 <p><strong>✅ What you get:</strong> Advanced security checks powered by professional APIs</p>
                 <p><strong>🔍 Features:</strong> Safety API, SSL Certificate API, Website Security Scan</p>
-                <p><strong>📊 Usage:</strong> 3 checks/day (free) → 10 checks/day (supporter)</p>
+                <p><strong>📊 Usage:</strong> 5 checks/day (free) → 10 checks/day (coffee) → 50 checks/day (supporter) → Unlimited (champion)</p>
                 <p><strong>📈 Global Counter:</strong> Shows community impact when using API features (privacy-safe, no IP sharing)</p>
                 <div class="mt-4 p-3 bg-amber-100 dark:bg-amber-900/30 rounded-lg">
                   <p class="text-xs text-amber-800 dark:text-amber-200">
@@ -1085,7 +1085,7 @@
         localStorage.removeItem("cleanlink_supporter_expiry");
         localStorage.removeItem("cleanlink_supporter_tier");
         localStorage.removeItem("cleanlink_supporter_api_calls");
-        return { isValid: false, tier: null, apiCalls: 3 };
+        return { isValid: false, tier: null, apiCalls: 5 };
       }
       
       const now = Date.now();
@@ -1098,7 +1098,7 @@
         localStorage.removeItem("cleanlink_supporter_expiry");
         localStorage.removeItem("cleanlink_supporter_tier");
         localStorage.removeItem("cleanlink_supporter_api_calls");
-        return { isValid: false, tier: null, apiCalls: 3 };
+        return { isValid: false, tier: null, apiCalls: 5 };
       }
       
       // Get JWT token first, then verify supporter token
@@ -1136,7 +1136,7 @@
           localStorage.removeItem("cleanlink_supporter_expiry");
           localStorage.removeItem("cleanlink_supporter_tier");
           localStorage.removeItem("cleanlink_supporter_api_calls");
-          return { isValid: false, tier: null, apiCalls: 3 };
+          return { isValid: false, tier: null, apiCalls: 5 };
         }
       } catch (error) {
         console.warn('Token verification failed, using local validation:', error);
@@ -1200,6 +1200,7 @@
       if (usageCounter) {
         usageCounter.textContent = `${currentUsage}/${MAX_FREE_CLEANS} API calls today (${tierName})`;
       }
+
 
       // Make elements and functions globally available
       window.urlInput = document.getElementById("urlInput");
@@ -2030,13 +2031,27 @@ async function generateJWT(payload, secret = 'n8n-jwt-secret-key-256-bits-minimu
         const supporterExpiry = localStorage.getItem("cleanlink_supporter_expiry");
         const supporterStatus = await checkSupporterStatus(supporterToken, supporterExpiry);
         
-        if (!supporterStatus.isValid) {
+        // Use the main usage counter for all premium features
+        const isDonor = supporterStatus.isValid;
+        const MAX_FREE_CLEANS = supporterStatus.apiCalls;
+        const usageKey = "cleanlink_usage", dateKey = "cleanlink_date";
+        const today = new Date().toDateString();
+        const storedDate = localStorage.getItem(dateKey);
+        let currentUsage = parseInt(localStorage.getItem(usageKey) || "0", 10);
+        
+        if (storedDate !== today) {
+          currentUsage = 0;
+          localStorage.setItem(dateKey, today);
+          localStorage.setItem(usageKey, "0");
+        }
+        
+        if (currentUsage >= MAX_FREE_CLEANS) {
           const webSecStatusEl = document.createElement("div");
           webSecStatusEl.id = "webSecScanStatus";
           webSecStatusEl.className = "mt-3 flex items-center gap-2 text-sm";
           webSecStatusEl.innerHTML = `
-            <span class="material-symbols-outlined text-base text-amber-500 dark:text-amber-400">lock</span>
-            <span>Premium feature - Support LinkAura to unlock WebSecScan</span>
+            <span class="material-symbols-outlined text-base text-amber-500 dark:text-amber-400">premium</span>
+            <span>Premium feature limit reached (${MAX_FREE_CLEANS}/day) - Upgrade for more</span>
           `;
           document.getElementById("resultWrap").appendChild(webSecStatusEl);
           return;
@@ -2190,6 +2205,17 @@ async function generateJWT(payload, secret = 'n8n-jwt-secret-key-256-bits-minimu
                 `;
                 document.body.appendChild(reportContainer);
               }
+              
+              // Increment main usage counter for all premium features
+              const newUsage = currentUsage + 1;
+              localStorage.setItem(usageKey, newUsage.toString());
+              
+              // Update main usage counter display
+              const usageCounter = document.getElementById('usageCounter');
+              if (usageCounter) {
+                const tierName = isDonor ? (supporterStatus.tier === 'champion' ? 'Champion' : supporterStatus.tier === 'coffee' ? 'Coffee' : 'Supporter') : 'Free Plan';
+                usageCounter.textContent = `${newUsage}/${MAX_FREE_CLEANS} API calls today (${tierName})`;
+              }
             } else {
               // JSON Response - Handle as regular API response
               const result = await response.json();
@@ -2219,9 +2245,16 @@ async function generateJWT(payload, secret = 'n8n-jwt-secret-key-256-bits-minimu
               resultWrap.appendChild(webSecStatusEl);
             }
 
-            // Increment usage counter
+            // Increment main usage counter for all premium features
             const newUsage = currentUsage + 1;
-            localStorage.setItem(apiUsageKey, newUsage.toString());
+            localStorage.setItem(usageKey, newUsage.toString());
+            
+            // Update main usage counter display
+            const usageCounter = document.getElementById('usageCounter');
+            if (usageCounter) {
+              const tierName = isDonor ? (supporterStatus.tier === 'champion' ? 'Champion' : supporterStatus.tier === 'coffee' ? 'Coffee' : 'Supporter') : 'Free Plan';
+              usageCounter.textContent = `${newUsage}/${MAX_FREE_CLEANS} API calls today (${tierName})`;
+            }
 
             // Hide progress bar on success
             hideProgress();
@@ -3809,7 +3842,8 @@ async function generateJWT(payload, secret = 'n8n-jwt-secret-key-256-bits-minimu
     // Enhanced Clean Button Functionality
     async function handleCleanClick() {
       // Note: Basic URL cleaning and security checks are unlimited
-      // Premium features (Safety API, WebSecScan) have their own limits
+      // Premium features (Safety API, SSL Certificate API, WebSecScan) share the same usage counter
+      // Usage: 5/day (free) → 10/day (coffee) → 50/day (supporter) → Unlimited (champion)
 
       const urlInput = document.getElementById('urlInput');
       const rawUrl = urlInput?.value.trim();
