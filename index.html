@@ -291,6 +291,10 @@
             <input id="urlValidationCheck" type="checkbox" class="rounded border-slate-600">
             <span>URL Validation & Repair</span>
           </label>
+          <label class="flex items-center gap-2 text-slate-700 dark:text-slate-400 text-sm cursor-pointer transition-colors">
+            <input id="shortenerDetectionCheck" type="checkbox" class="rounded border-slate-600" checked>
+            <span>Shortened URL Detection & Expansion</span>
+          </label>
           
           <!-- Premium API Features -->
           <div class="w-full border-t border-slate-300 dark:border-slate-700 my-2"></div>
@@ -455,6 +459,24 @@
         <div id="linkExpirationStatus" class="hidden mt-3 flex items-center gap-2 text-sm">
           <span id="linkExpirationIcon" class="material-symbols-outlined text-base"></span>
           <span id="linkExpirationText" class="text-slate-700 dark:text-slate-300 transition-colors"></span>
+        </div>
+
+        <div id="shortenerWarningStatus" class="hidden mt-3 p-3 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg">
+          <div class="flex items-start gap-2">
+            <span id="shortenerWarningIcon" class="material-symbols-outlined text-base text-yellow-600 dark:text-yellow-400 mt-0.5"></span>
+            <div class="flex-1">
+              <div class="flex items-center gap-2 mb-2">
+                <span id="shortenerWarningText" class="text-yellow-800 dark:text-yellow-200 font-medium text-sm"></span>
+              </div>
+              <div class="flex items-center gap-2">
+                <button id="expandShortenedUrlBtn" class="bg-yellow-600 hover:bg-yellow-700 text-white text-xs px-3 py-1 rounded-md transition-colors">
+                  <span class="material-symbols-outlined text-sm mr-1">open_in_new</span>
+                  Expand URL
+                </button>
+                <span id="shortenerOriginalUrl" class="text-yellow-700 dark:text-yellow-300 text-xs font-mono break-all"></span>
+              </div>
+            </div>
+          </div>
         </div>
 
             <div id="socialDetectionStatus" class="hidden mt-3 flex items-center gap-2 text-sm">
@@ -1013,21 +1035,9 @@
     if (typeof window !== 'undefined' && window.location) {
       // Simulate security headers for demonstration
       // NOTE: In production, these should be set as HTTP headers by the server
-      console.log('🔒 Security Headers: X-XSS-Protection enabled for LinkAura');
     }
   </script>
 
-  <script>
-    (function () {
-      if (location.protocol === 'http:' || location.protocol === 'https:') {
-        var s = document.createElement('script');
-        s.defer = true;
-        s.src = 'https://static.cloudflareinsights.com/beacon.min.js';
-        s.setAttribute('data-cf-beacon', '{"token": "a087e0ab1b964e219ffad6193585d684"}');
-        document.body.appendChild(s);
-      }
-    })();
-  </script>
 
   <script>
     window.addEventListener("load", () => {
@@ -1075,7 +1085,6 @@
   </script>  
 
   <script>
-    console.log('🔧 Script loading - Cache bust: 2024-01-15');
     // Enhanced supporter status validation function with server-side verification
     async function checkSupporterStatus(token, expiry) {
       if (!token || !expiry) {
@@ -1139,7 +1148,6 @@
           return { isValid: false, tier: null, apiCalls: 5 };
         }
       } catch (error) {
-        console.warn('Token verification failed, using local validation:', error);
         // Fallback to local validation
         const tier = localStorage.getItem("cleanlink_supporter_tier") || "supporter";
         const apiCalls = parseInt(localStorage.getItem("cleanlink_supporter_api_calls") || "50");
@@ -1592,7 +1600,6 @@
         const isPrivacy = document.getElementById('privacyMode')?.checked || false;
 
         if (isPrivacy) {
-          console.log('🔒 Privacy Mode enabled — skipping SSL certificate check');
           return { verdict: 'privacy', message: 'Privacy mode active' };
         }
 
@@ -1710,7 +1717,7 @@
 
 
 
-async function generateJWT(payload, secret = 'n8n-jwt-secret-key-256-bits-minimum') {
+async function generateJWT(payload, secret = 'jwt-secret-key-256-bits-minimum') {
         // Simplified JWT for demo - use standard base64
         const header = btoa(JSON.stringify({
           alg: 'HS256',
@@ -1726,7 +1733,7 @@ async function generateJWT(payload, secret = 'n8n-jwt-secret-key-256-bits-minimu
 
         const body = btoa(JSON.stringify(bodyData)).replace(/=/g, '');
 
-        // Use a simpler approach for n8n compatibility
+        // Use a simpler approach for compatibility
         // Generate a predictable signature for demo
         const message = header + '.' + body;
         const signature = btoa('demo-signature-cleanlink-' + message.substring(0, 10)).replace(/=/g, '');
@@ -1856,7 +1863,7 @@ async function generateJWT(payload, secret = 'n8n-jwt-secret-key-256-bits-minimu
 
           const jwtToken = await generateJWT(jwtPayload);
 
-          // Enhanced analysis before sending to n8n (reuse existing urlObj)
+          // Enhanced analysis before sending to security API (reuse existing urlObj)
           const path = urlObj.pathname;
           const query = urlObj.search;
           const fragment = urlObj.hash;
@@ -1893,7 +1900,6 @@ async function generateJWT(payload, secret = 'n8n-jwt-secret-key-256-bits-minimu
           const hasMicroDomain = (domain.split('.').length > 3) || (domain.length > 63);
 
           // Check domain length and fragmentation
-          console.log('🔍 Checking domain fragmentation');
           const subdomain = domain.replace(/\.[^.]+$/, '').replace(/^[^\.]+\./, '');
           const hasSuspiciousSubdomain = subdomain.includes('login') || subdomain.includes('secure') ||
                                         subdomain.includes('account') || subdomain.includes('verify');
@@ -1935,14 +1941,14 @@ async function generateJWT(payload, secret = 'n8n-jwt-secret-key-256-bits-minimu
             suspicionReasons.push("regex pattern match");
           }
 
-          // Call n8n Safety API webhook through Cloudflare Worker proxy
+          // Call Safety API through LinkAura proxy
           const result = await callLinkAuraAPI("url-safety", {
-            url: url, // Send the original URL to n8n
+            url: url, // Send the original URL to security service
             domain_hash: hashHex,
             domain_length: domain.length,
             has_suspicious_chars: hasSuspiciousChars,
 
-            // Enhanced data for n8n pattern matching
+            // Enhanced data for pattern matching
             domain: domain,
             subdomain: subdomain,
             path: path,
@@ -2139,7 +2145,7 @@ async function generateJWT(payload, secret = 'n8n-jwt-secret-key-256-bits-minimu
 
           const jwtToken = await generateJWT(jwtPayload);
 
-          // Call the WebSecScan endpoint through Cloudflare Worker proxy
+          // Call the WebSecScan endpoint through LinkAura proxy
           const response = await callLinkAuraAPI("websecscan", {
             url: url,
             domain: domain,
@@ -2605,11 +2611,43 @@ async function generateJWT(payload, secret = 'n8n-jwt-secret-key-256-bits-minimu
       // Helper functions
       function isShortener(hostname) {
         const shorteners = [
+          // Popular shorteners
           'bit.ly', 'tinyurl.com', 't.co', 'goo.gl', 'ow.ly', 'short.link',
           'is.gd', 'v.gd', 'buff.ly', 'rebrand.ly', 'shorturl.at', 'cutt.ly',
-          'tiny.cc', 'short.cm', 'adf.ly', 'bit.do', 'short.link', 'shorte.st'
+          'tiny.cc', 'short.cm', 'adf.ly', 'bit.do', 'shorte.st',
+          'short.ly', 'shorturl.com', 'bitly.com', 'clck.ru',
+          // Social media shorteners
+          'fb.me', 'fb.com', 'youtu.be', 'youtube.com',
+          // Additional common shorteners
+          'short.link', 'shorturl.at', 'cutt.ly', 'short.ly', 'shorturl.com',
+          'short.cm', 'short.ly', 'shorturl.at', 'cutt.ly'
         ];
         return shorteners.some(shortener => hostname.includes(shortener));
+      }
+
+      // URL Expansion function - Privacy-Safe Server-Side Proxy
+      async function expandShortenedUrl(url) {
+        try {
+          const response = await fetch('https://api.linkaura.blankburn.online/api/expand-url', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ url: url })
+          });
+          
+          if (response.ok) {
+            const data = await response.json();
+            if (data.expandedUrl && data.expandedUrl !== url) {
+              return data.expandedUrl;
+            }
+          }
+          
+          return url;
+          
+        } catch (error) {
+          return url;
+        }
       }
 
       function detectSuspiciousPatterns(url) {
@@ -2621,6 +2659,91 @@ async function generateJWT(payload, secret = 'n8n-jwt-secret-key-256-bits-minimu
         
         return suspiciousPatterns.some(pattern => pattern.test(url));
       }
+
+      // Shortened URL Detection and Expansion
+      window.checkShortenedUrl = async function(url) {
+        const shortenerWarningStatusEl = document.getElementById("shortenerWarningStatus");
+        const shortenerWarningIconEl = document.getElementById("shortenerWarningIcon");
+        const shortenerWarningTextEl = document.getElementById("shortenerWarningText");
+        const shortenerOriginalUrlEl = document.getElementById("shortenerOriginalUrl");
+        const expandShortenedUrlBtn = document.getElementById("expandShortenedUrlBtn");
+
+        if (!shortenerWarningStatusEl) return;
+
+        try {
+          const urlObj = new URL(url);
+          const isShortened = isShortener(urlObj.hostname);
+          
+          if (!isShortened) {
+            shortenerWarningStatusEl.classList.add("hidden");
+            return;
+          }
+
+          // Show warning for shortened URL
+          shortenerWarningStatusEl.classList.remove("hidden");
+          shortenerWarningIconEl.textContent = "warning";
+          shortenerWarningTextEl.textContent = "Shortened URL detected - destination unknown";
+          shortenerOriginalUrlEl.textContent = "";
+
+          // Set up expand button functionality
+          expandShortenedUrlBtn.onclick = async () => {
+            try {
+              expandShortenedUrlBtn.disabled = true;
+              expandShortenedUrlBtn.innerHTML = '<span class="material-symbols-outlined text-sm mr-1 animate-spin">refresh</span>Expanding...';
+              
+              const expandedUrl = await expandShortenedUrl(url);
+              
+              if (expandedUrl !== url) {
+                shortenerOriginalUrlEl.textContent = expandedUrl;
+                shortenerWarningTextEl.textContent = "Original URL revealed:";
+                shortenerWarningIconEl.textContent = "verified";
+                expandShortenedUrlBtn.innerHTML = '<span class="material-symbols-outlined text-sm mr-1">check</span>Expanded';
+                expandShortenedUrlBtn.classList.remove("bg-yellow-600", "hover:bg-yellow-700");
+                expandShortenedUrlBtn.classList.add("bg-green-600", "hover:bg-green-700");
+                
+                // Update the main result URL with the expanded URL
+                const resultUrl = document.getElementById("resultUrl");
+                if (resultUrl) {
+                  resultUrl.textContent = expandedUrl;
+                }
+              } else {
+                shortenerWarningTextEl.textContent = "Could not expand URL - API not available";
+                shortenerWarningIconEl.textContent = "warning";
+                expandShortenedUrlBtn.innerHTML = '<span class="material-symbols-outlined text-sm mr-1">info</span>API Required';
+                expandShortenedUrlBtn.classList.remove("bg-yellow-600", "hover:bg-yellow-700");
+                expandShortenedUrlBtn.classList.add("bg-orange-600", "hover:bg-orange-700");
+                expandShortenedUrlBtn.disabled = false;
+                
+                // Show helpful message about API requirement
+                shortenerOriginalUrlEl.innerHTML = `
+                  <div class="text-orange-600 text-xs space-y-1">
+                    <p>URL expansion requires the LinkAura API to be deployed and accessible.</p>
+                    <div class="flex gap-2 mt-2">
+                      <button onclick="window.open('${url}', '_blank')" class="bg-orange-100 hover:bg-orange-200 text-orange-800 text-xs px-2 py-1 rounded">
+                        Open in New Tab
+                      </button>
+                      <button onclick="navigator.clipboard.writeText('${url}')" class="bg-orange-100 hover:bg-orange-200 text-orange-800 text-xs px-2 py-1 rounded">
+                        Copy URL
+                      </button>
+                    </div>
+                  </div>
+                `;
+              }
+            } catch (error) {
+              console.error('URL expansion failed:', error);
+              shortenerWarningTextEl.textContent = "Failed to expand URL";
+              shortenerWarningIconEl.textContent = "error";
+              expandShortenedUrlBtn.innerHTML = '<span class="material-symbols-outlined text-sm mr-1">error</span>Failed';
+              expandShortenedUrlBtn.classList.remove("bg-yellow-600", "hover:bg-yellow-700");
+              expandShortenedUrlBtn.classList.add("bg-red-600", "hover:bg-red-700");
+            }
+          };
+
+        } catch (error) {
+          console.error('Shortened URL check failed:', error);
+          shortenerWarningStatusEl.classList.add("hidden");
+        }
+      };
 
       // URL History Management
       window.saveToHistory = function(originalUrl, cleanedUrl) {
@@ -3080,6 +3203,12 @@ async function generateJWT(payload, secret = 'n8n-jwt-secret-key-256-bits-minimu
           checkUrlValidation(cleaned);
         }
 
+        // Check for shortened URLs if enabled
+        const shouldCheckShortener = document.getElementById("shortenerDetectionCheck").checked;
+        if (shouldCheckShortener) {
+          checkShortenedUrl(cleaned);
+        }
+
         if (!isPrivacy && isAnyApiOptionSelected()) {
           callLinkAuraAPI("ClickCounter", {
             source_domain: (()=>{try{return new URL(cleaned).hostname.replace("www.","")}catch{return "unknown"}})(),
@@ -3535,13 +3664,11 @@ async function generateJWT(payload, secret = 'n8n-jwt-secret-key-256-bits-minimu
 
   <!-- LinkAura API Integration -->
   <script>
-    console.log("🔗 LinkAura API Proxy Active");
 
     // LinkAura API Helper Function
     async function callLinkAuraAPI(endpoint, body = {}) {
       // Only make API calls if any API options are selected
       if (!isAnyApiOptionSelected()) {
-        console.log('🔒 No API options selected - skipping API call');
         return { error: "No API options selected", offline: true };
       }
 
@@ -3619,12 +3746,10 @@ async function generateJWT(payload, secret = 'n8n-jwt-secret-key-256-bits-minimu
     async function getToken() {
       // Only attempt API connection if any API options are selected
       if (!isAnyApiOptionSelected()) {
-        console.log('🔒 No API options selected - skipping token fetch');
         return null;
       }
 
       try {
-        console.log('🔐 Fetching JWT token...');
         const response = await fetch('https://api.linkaura.blankburn.online/auth', {
           method: 'GET',
           headers: {
@@ -3640,7 +3765,6 @@ async function generateJWT(payload, secret = 'n8n-jwt-secret-key-256-bits-minimu
             sessionStorage.setItem('linkaura_jwt', jwtToken);
             apiConnectionStatus = 'connected';
             updateStatusIndicator('Connected ✅', '#10b981');
-            console.log('✅ JWT token obtained successfully');
             return jwtToken;
           } else {
             throw new Error('No token in response');
@@ -3663,10 +3787,10 @@ async function generateJWT(payload, secret = 'n8n-jwt-secret-key-256-bits-minimu
 
     // Unified API Function
     async function callApi(endpoint, payload = {}) {
-      // All endpoints now go through Cloudflare Worker (requires JWT auth)
+      // All endpoints go through LinkAura API (requires JWT auth)
       const baseUrl = 'https://api.linkaura.blankburn.online';
 
-      // Ensure we have a valid token for Cloudflare Worker
+      // Ensure we have a valid token for LinkAura API
       if (!jwtToken) {
         await getToken();
       }
@@ -3718,7 +3842,6 @@ async function generateJWT(payload, secret = 'n8n-jwt-secret-key-256-bits-minimu
       const isPrivacy = document.getElementById('privacyMode')?.checked || false;
 
       if (isPrivacy) {
-        console.log('🔒 Privacy Mode enabled — skipping external safety checks');
         return { verdict: 'privacy', message: 'Privacy mode active' };
       }
 
@@ -3739,7 +3862,6 @@ async function generateJWT(payload, secret = 'n8n-jwt-secret-key-256-bits-minimu
       const isPrivacy = document.getElementById('privacyMode')?.checked || false;
 
       if (isPrivacy) {
-        console.log('🔒 Privacy Mode enabled — skipping web security scan');
         return { verdict: 'privacy', message: 'Privacy mode active' };
       }
 
@@ -3760,7 +3882,6 @@ async function generateJWT(payload, secret = 'n8n-jwt-secret-key-256-bits-minimu
       const isPrivacy = document.getElementById('privacyMode')?.checked || false;
 
       if (isPrivacy) {
-        console.log('🔒 Privacy Mode enabled — skipping analytics');
         return;
       }
 
@@ -3775,7 +3896,6 @@ async function generateJWT(payload, secret = 'n8n-jwt-secret-key-256-bits-minimu
       const isPrivacy = document.getElementById('privacyMode')?.checked || false;
 
       if (isPrivacy) {
-        console.log('🔒 Privacy Mode enabled — skipping counter update');
         return;
       }
 
@@ -3925,6 +4045,12 @@ async function generateJWT(payload, secret = 'n8n-jwt-secret-key-256-bits-minimu
           checkWebSecScan(cleaned);
         }
 
+        // Check for shortened URLs if enabled
+        const shouldCheckShortener = document.getElementById("shortenerDetectionCheck").checked;
+        if (shouldCheckShortener) {
+          checkShortenedUrl(cleaned);
+        }
+
         // Update global counter via new API (if not in privacy mode)
         if (!isPrivacy) {
           await updateGlobalCounter();
@@ -3943,6 +4069,12 @@ async function generateJWT(payload, secret = 'n8n-jwt-secret-key-256-bits-minimu
           if(resultWrap) resultWrap.classList.remove("hidden");
           if(qrWrap) qrWrap.classList.remove("hidden");
           renderQR(cleaned);
+          
+          // Check for shortened URLs even in fallback mode if enabled
+          const shouldCheckShortener = document.getElementById("shortenerDetectionCheck").checked;
+          if (shouldCheckShortener) {
+            checkShortenedUrl(cleaned);
+          }
         } catch (fallbackError) {
           showError("Invalid URL.");
         }
@@ -3999,11 +4131,9 @@ async function generateJWT(payload, secret = 'n8n-jwt-secret-key-256-bits-minimu
     // Initialize API connection on page load (only if API options are selected)
     document.addEventListener('DOMContentLoaded', async () => {
       if (isAnyApiOptionSelected()) {
-      console.log('🚀 LinkAura API integration initializing...');
       // Try to get initial token
       await getToken();
       } else {
-        console.log('🔒 No API options selected - API integration skipped');
       }
 
       // Note: Clean button handler is already set up earlier in the code
@@ -4056,7 +4186,6 @@ async function generateJWT(payload, secret = 'n8n-jwt-secret-key-256-bits-minimu
       }, 5 * 60 * 1000);
 
       if (isAnyApiOptionSelected()) {
-      console.log('✅ LinkAura API integration ready');
       }
 
       // Initialize history display
