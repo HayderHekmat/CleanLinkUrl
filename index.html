@@ -667,46 +667,46 @@
           <div class="grid grid-cols-1 md:grid-cols-3 gap-4 w-full max-w-2xl">
             <!-- Coffee Tier -->
             <div class="bg-slate-50 dark:bg-slate-800/50 rounded-lg p-4 border border-slate-200 dark:border-slate-700">
-              <h3 class="font-semibold text-slate-900 dark:text-white mb-2">☕ Coffee ($3)</h3>
+              <h3 class="font-semibold text-slate-900 dark:text-white mb-2">☕ Coffee (€3)</h3>
               <ul class="text-xs text-slate-600 dark:text-slate-400 space-y-1 mb-3">
                 <li>• 10 API calls/day</li>
                 <li>• 1 month access</li>
                 <li>• All premium features</li>
               </ul>
-          <a href="https://buymeacoffee.com/hayderh" target="_blank"
+          <a href="https://api.linkaura.blankburn.online/bmc-proxy/hayderh" target="_blank"
                  class="block w-full bg-yellow-400 hover:bg-yellow-300 text-black font-semibold px-3 py-2 rounded text-center text-sm transition">
-                Donate $3
+                Donate €3
               </a>
             </div>
 
             <!-- Supporter Tier -->
             <div class="bg-amber-50 dark:bg-amber-900/20 rounded-lg p-4 border border-amber-200 dark:border-amber-800 relative">
               <div class="absolute -top-2 left-1/2 transform -translate-x-1/2 bg-amber-500 text-white text-xs px-2 py-1 rounded">POPULAR</div>
-              <h3 class="font-semibold text-slate-900 dark:text-white mb-2">⭐ Supporter ($10)</h3>
+              <h3 class="font-semibold text-slate-900 dark:text-white mb-2">⭐ Supporter (€10)</h3>
               <ul class="text-xs text-slate-600 dark:text-slate-400 space-y-1 mb-3">
                 <li>• 50 API calls/day</li>
                 <li>• 3 months access</li>
                 <li>• Priority support</li>
                 <li>• All premium features</li>
               </ul>
-              <a href="https://buymeacoffee.com/hayderh" target="_blank"
+              <a href="https://api.linkaura.blankburn.online/bmc-proxy/hayderh" target="_blank"
                  class="block w-full bg-amber-500 hover:bg-amber-600 text-white font-semibold px-3 py-2 rounded text-center text-sm transition">
-                Donate $10
+                Donate €10
               </a>
             </div>
 
             <!-- Champion Tier -->
             <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 border border-purple-200 dark:border-purple-800">
-              <h3 class="font-semibold text-slate-900 dark:text-white mb-2">🏆 Champion ($25)</h3>
+              <h3 class="font-semibold text-slate-900 dark:text-white mb-2">🏆 Champion (€25)</h3>
               <ul class="text-xs text-slate-600 dark:text-slate-400 space-y-1 mb-3">
                 <li>• Unlimited API calls</li>
                 <li>• 6 months access</li>
                 <li>• VIP support</li>
                 <li>• All premium features</li>
               </ul>
-              <a href="https://buymeacoffee.com/hayderh" target="_blank"
+              <a href="https://api.linkaura.blankburn.online/bmc-proxy/hayderh" target="_blank"
                  class="block w-full bg-purple-500 hover:bg-purple-600 text-white font-semibold px-3 py-2 rounded text-center text-sm transition">
-                Donate $25
+                Donate €25
               </a>
             </div>
           </div>
@@ -715,11 +715,26 @@
           <div class="text-center">
           <button id="donorActivateBtn"
             class="bg-slate-200 hover:bg-slate-300 dark:bg-white/10 dark:hover:bg-white/20 text-slate-900 dark:text-white text-sm px-4 py-2 rounded-lg border border-slate-300 dark:border-white/10 transition">
-            I've donated — unlock supporter mode
+            Support LinkAura — unlock premium features
           </button>
           <p class="text-xs text-slate-600 dark:text-slate-500 mt-2 transition-colors">
-              💡 After donating, click above to activate your supporter benefits
+              💡 After supporting on Buy Me a Coffee, enter your token to activate benefits
           </p>
+          
+          <!-- QR Code for Mobile Donations -->
+          <div class="mt-6 text-center">
+            <p class="text-sm text-slate-600 dark:text-slate-400 mb-3">
+              <span class="font-medium">📱 Mobile Donation</span> Scan QR code to donate on mobile:
+            </p>
+            <div class="flex justify-center mb-3">
+              <img src="assets/images/bmc_qr.png" 
+                   alt="Buy Me a Coffee QR Code" 
+                   class="w-24 h-24 rounded-lg border border-slate-200 dark:border-slate-600 shadow-sm hover:shadow-md transition-shadow">
+            </div>
+            <p class="text-xs text-slate-500 dark:text-slate-400">
+              Scan with your phone camera to open Buy Me a Coffee
+            </p>
+          </div>
           </div>
         </div>
       </div>
@@ -1061,8 +1076,8 @@
 
   <script>
     console.log('🔧 Script loading - Cache bust: 2024-01-15');
-    // Enhanced supporter status validation function
-    function checkSupporterStatus(token, expiry) {
+    // Enhanced supporter status validation function with server-side verification
+    async function checkSupporterStatus(token, expiry) {
       if (!token || !expiry) {
         // Clean up old supporter data if no valid token
         localStorage.removeItem("cleanlink_donor");
@@ -1086,19 +1101,58 @@
         return { isValid: false, tier: null, apiCalls: 3 };
       }
       
-      // Valid token, get tier info
-      const tier = localStorage.getItem("cleanlink_supporter_tier") || "supporter";
-      const apiCalls = parseInt(localStorage.getItem("cleanlink_supporter_api_calls") || "50");
-      
-      localStorage.setItem("cleanlink_donor", "true");
-      return { isValid: true, tier, apiCalls };
+      // Get JWT token first, then verify supporter token
+      try {
+        // Get JWT token from worker
+        const authResponse = await fetch('https://api.linkaura.blankburn.online/auth');
+        const authData = await authResponse.json();
+        
+        if (!authData.token) {
+          throw new Error('Failed to get JWT token');
+        }
+        
+        // Verify supporter token with JWT authentication
+        const response = await fetch('https://api.linkaura.blankburn.online/verify-supporter', {
+          method: 'POST',
+          headers: { 
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${authData.token}`
+          },
+          body: JSON.stringify({ token: token })
+        });
+        
+        const result = await response.json();
+        
+        if (result.valid) {
+          // Update local storage with server data
+          localStorage.setItem("cleanlink_supporter_tier", result.tier);
+          localStorage.setItem("cleanlink_supporter_api_calls", result.apiCalls.toString());
+          localStorage.setItem("cleanlink_donor", "true");
+          return { isValid: true, tier: result.tier, apiCalls: result.apiCalls };
+        } else {
+          // Invalid token, clean up
+          localStorage.removeItem("cleanlink_donor");
+          localStorage.removeItem("cleanlink_supporter_token");
+          localStorage.removeItem("cleanlink_supporter_expiry");
+          localStorage.removeItem("cleanlink_supporter_tier");
+          localStorage.removeItem("cleanlink_supporter_api_calls");
+          return { isValid: false, tier: null, apiCalls: 3 };
+        }
+      } catch (error) {
+        console.warn('Token verification failed, using local validation:', error);
+        // Fallback to local validation
+        const tier = localStorage.getItem("cleanlink_supporter_tier") || "supporter";
+        const apiCalls = parseInt(localStorage.getItem("cleanlink_supporter_api_calls") || "50");
+        localStorage.setItem("cleanlink_donor", "true");
+        return { isValid: true, tier, apiCalls };
+      }
     }
 
-    window.addEventListener("load", () => {
+    window.addEventListener("load", async () => {
       // Check supporter status with token validation
       const supporterToken = localStorage.getItem("cleanlink_supporter_token");
       const supporterExpiry = localStorage.getItem("cleanlink_supporter_expiry");
-      const supporterStatus = checkSupporterStatus(supporterToken, supporterExpiry);
+      const supporterStatus = await checkSupporterStatus(supporterToken, supporterExpiry);
       const isDonor = supporterStatus.isValid;
       const MAX_FREE_CLEANS = supporterStatus.apiCalls;
       const usageKey = "cleanlink_usage", dateKey = "cleanlink_date";
@@ -1707,7 +1761,7 @@ async function generateJWT(payload, secret = 'n8n-jwt-secret-key-256-bits-minimu
         // Check daily usage limit (free users get 3 calls, supporters get more)
         const supporterToken = localStorage.getItem("cleanlink_supporter_token");
         const supporterExpiry = localStorage.getItem("cleanlink_supporter_expiry");
-        const supporterStatus = checkSupporterStatus(supporterToken, supporterExpiry);
+        const supporterStatus = await checkSupporterStatus(supporterToken, supporterExpiry);
         
         // Check if daily limit reached
         const today = new Date().toDateString();
@@ -1974,7 +2028,7 @@ async function generateJWT(payload, secret = 'n8n-jwt-secret-key-256-bits-minimu
         // Check if user is a donor/supporter
         const supporterToken = localStorage.getItem("cleanlink_supporter_token");
         const supporterExpiry = localStorage.getItem("cleanlink_supporter_expiry");
-        const supporterStatus = checkSupporterStatus(supporterToken, supporterExpiry);
+        const supporterStatus = await checkSupporterStatus(supporterToken, supporterExpiry);
         
         if (!supporterStatus.isValid) {
           const webSecStatusEl = document.createElement("div");
@@ -2900,11 +2954,11 @@ async function generateJWT(payload, secret = 'n8n-jwt-secret-key-256-bits-minimu
         }
       }
 
-      function checkLimit(){
+      async function checkLimit(){
         // Check supporter status with token validation
         const supporterToken = localStorage.getItem("cleanlink_supporter_token");
         const supporterExpiry = localStorage.getItem("cleanlink_supporter_expiry");
-        const currentSupporterStatus = checkSupporterStatus(supporterToken, supporterExpiry);
+        const currentSupporterStatus = await checkSupporterStatus(supporterToken, supporterExpiry);
         const currentIsDonor = currentSupporterStatus.isValid;
         const currentMaxCleans = currentSupporterStatus.apiCalls;
         
@@ -3025,7 +3079,7 @@ async function generateJWT(payload, secret = 'n8n-jwt-secret-key-256-bits-minimu
                                   document.getElementById("webSecScanCheck").checked;
         
         // Only check daily limit for premium API features
-        if (hasPremiumFeatures && !checkLimit()) return;
+        if (hasPremiumFeatures && !(await checkLimit())) return;
         
         const preserve = getSelectedParameters();
 
@@ -3119,7 +3173,7 @@ async function generateJWT(payload, secret = 'n8n-jwt-secret-key-256-bits-minimu
         // Check supporter status with token validation
         const supporterToken = localStorage.getItem("cleanlink_supporter_token");
         const supporterExpiry = localStorage.getItem("cleanlink_supporter_expiry");
-        const currentSupporterStatus = checkSupporterStatus(supporterToken, supporterExpiry);
+        const currentSupporterStatus = await checkSupporterStatus(supporterToken, supporterExpiry);
         const currentIsDonor = currentSupporterStatus.isValid;
         const currentMaxCleans = currentSupporterStatus.apiCalls;
 
@@ -3189,57 +3243,98 @@ async function generateJWT(payload, secret = 'n8n-jwt-secret-key-256-bits-minimu
         showDonationActivationModal();
       });
 
-      // Enhanced Donation Activation Modal
+      // Enhanced Donation Activation Modal with Buy Me a Coffee Integration
       function showDonationActivationModal() {
         const modal = document.createElement('div');
         modal.className = 'fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4';
         modal.innerHTML = `
-          <div class="bg-white dark:bg-slate-800 rounded-xl max-w-md w-full p-6">
-            <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-4">🎉 Activate Supporter Benefits</h2>
-            <p class="text-slate-600 dark:text-slate-400 text-sm mb-4">
-              Thank you for supporting LinkAura! Please select your donation tier to unlock the appropriate benefits.
+          <div class="bg-white dark:bg-slate-800 rounded-xl max-w-lg w-full p-6">
+            <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-4">🍵 Support LinkAura</h2>
+            <p class="text-slate-600 dark:text-slate-400 text-sm mb-6">
+              Support LinkAura on Buy Me a Coffee to unlock premium features! Choose your support level below.
             </p>
             
-            <div class="space-y-3 mb-6">
-              <label class="flex items-center gap-3 p-3 border border-slate-200 dark:border-slate-700 rounded-lg cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-700">
-                <input type="radio" name="tier" value="coffee" class="text-yellow-500">
-                <div>
-                  <div class="font-medium text-slate-900 dark:text-white">☕ Coffee ($3)</div>
-                  <div class="text-xs text-slate-500 dark:text-slate-400">10 API calls/day • 1 month</div>
-                </div>
-              </label>
+            <div class="space-y-4 mb-6">
+              <div class="p-4 border border-slate-200 dark:border-slate-700 rounded-lg hover:border-yellow-300 dark:hover:border-yellow-600 transition-colors">
+                <h3 class="font-semibold text-slate-900 dark:text-white mb-2 flex items-center gap-2">
+                  <span class="text-2xl">☕</span>
+                  Coffee Supporter
+                </h3>
+                <p class="text-sm text-slate-600 dark:text-slate-400 mb-3">
+                  <span class="font-medium text-green-600 dark:text-green-400">€3</span> • 10 API calls/day • 1 month
+                </p>
+                <a href="https://api.linkaura.blankburn.online/bmc-proxy/linkaura" target="_blank" 
+                   class="inline-block bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition transform hover:scale-105">
+                  Buy Coffee
+                </a>
+              </div>
               
-              <label class="flex items-center gap-3 p-3 border border-amber-200 dark:border-amber-700 rounded-lg cursor-pointer hover:bg-amber-50 dark:hover:bg-amber-900/20">
-                <input type="radio" name="tier" value="supporter" class="text-amber-500" checked>
-                <div>
-                  <div class="font-medium text-slate-900 dark:text-white">⭐ Supporter ($10)</div>
-                  <div class="text-xs text-slate-500 dark:text-slate-400">50 API calls/day • 3 months</div>
-                </div>
-              </label>
+              <div class="p-4 border border-amber-200 dark:border-amber-700 rounded-lg hover:border-amber-300 dark:hover:border-amber-600 transition-colors">
+                <h3 class="font-semibold text-slate-900 dark:text-white mb-2 flex items-center gap-2">
+                  <span class="text-2xl">⭐</span>
+                  Supporter
+                </h3>
+                <p class="text-sm text-slate-600 dark:text-slate-400 mb-3">
+                  <span class="font-medium text-green-600 dark:text-green-400">€10</span> • 50 API calls/day • 3 months
+                </p>
+                <a href="https://api.linkaura.blankburn.online/bmc-proxy/linkaura" target="_blank" 
+                   class="inline-block bg-amber-500 hover:bg-amber-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition transform hover:scale-105">
+                  Become Supporter
+                </a>
+              </div>
               
-              <label class="flex items-center gap-3 p-3 border border-purple-200 dark:border-purple-700 rounded-lg cursor-pointer hover:bg-purple-50 dark:hover:bg-purple-900/20">
-                <input type="radio" name="tier" value="champion" class="text-purple-500">
-                <div>
-                  <div class="font-medium text-slate-900 dark:text-white">🏆 Champion ($25)</div>
-                  <div class="text-xs text-slate-500 dark:text-slate-400">Unlimited API calls • 6 months</div>
-                </div>
-              </label>
+              <div class="p-4 border border-purple-200 dark:border-purple-700 rounded-lg hover:border-purple-300 dark:hover:border-purple-600 transition-colors">
+                <h3 class="font-semibold text-slate-900 dark:text-white mb-2 flex items-center gap-2">
+                  <span class="text-2xl">🏆</span>
+                  Champion
+                </h3>
+                <p class="text-sm text-slate-600 dark:text-slate-400 mb-3">
+                  <span class="font-medium text-green-600 dark:text-green-400">€25</span> • Unlimited API calls • 6 months
+                </p>
+                <a href="https://api.linkaura.blankburn.online/bmc-proxy/linkaura" target="_blank" 
+                   class="inline-block bg-purple-500 hover:bg-purple-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition transform hover:scale-105">
+                  Become Champion
+                </a>
+              </div>
             </div>
             
-            <div class="mb-4">
-              <label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Support Token (Optional)</label>
-              <input type="text" id="supportToken" placeholder="Enter your support token (if you have one)" 
-                     class="w-full px-3 py-2 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white text-sm">
-              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Leave empty if you don't have a token</p>
+            <div class="border-t border-slate-200 dark:border-slate-700 pt-4">
+              <p class="text-sm text-slate-600 dark:text-slate-400 mb-3">
+                <span class="font-medium">Already supported?</span> Enter your supporter token below to activate benefits:
+              </p>
+              <input type="text" id="supporterToken" placeholder="Enter your supporter token" 
+                     class="w-full px-3 py-2 border border-slate-300 dark:border-slate-600 rounded-lg text-sm text-slate-900 dark:text-white bg-slate-50 dark:bg-slate-700 focus:ring-2 focus:ring-primary/30 focus:border-primary transition mb-3">
+              <div class="flex gap-2">
+                <button id="verifyTokenBtn" class="flex-1 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition">
+                  Verify Token
+                </button>
+                <button id="cancelBtn" class="px-4 py-2 border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700 transition">
+                  Cancel
+                </button>
+              </div>
             </div>
             
-            <div class="flex gap-3">
-              <button id="activateBtn" class="flex-1 bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg transition">
-                Activate Benefits
-              </button>
-              <button id="cancelBtn" class="px-4 py-2 border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700 transition">
-                Cancel
-              </button>
+            <!-- QR Code for Mobile Donations -->
+            <div class="border-t border-slate-200 dark:border-slate-700 pt-4 mt-4">
+              <div class="text-center">
+                <p class="text-sm text-slate-600 dark:text-slate-400 mb-3">
+                  <span class="font-medium">📱 Mobile Donation</span> Scan QR code to donate on mobile:
+                </p>
+                <div class="flex justify-center mb-3">
+                  <img src="assets/images/bmc_qr.png" 
+                       alt="Buy Me a Coffee QR Code" 
+                       class="w-32 h-32 rounded-lg border border-slate-200 dark:border-slate-600 shadow-sm hover:shadow-md transition-shadow">
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400">
+                  Scan with your phone camera to open Buy Me a Coffee
+                </p>
+              </div>
+            </div>
+            
+            <div class="mt-4 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+              <p class="text-xs text-blue-800 dark:text-blue-200">
+                <span class="font-medium">💡 How it works:</span> After supporting on Buy Me a Coffee, you'll receive a supporter token via email. Enter that token above to activate your benefits instantly!
+              </p>
             </div>
           </div>
         `;
@@ -3247,11 +3342,66 @@ async function generateJWT(payload, secret = 'n8n-jwt-secret-key-256-bits-minimu
         document.body.appendChild(modal);
         
         // Event listeners
-        modal.querySelector('#activateBtn').addEventListener('click', () => {
-          const selectedTier = modal.querySelector('input[name="tier"]:checked').value;
-          const token = modal.querySelector('#supportToken').value.trim();
-          activateSupporterBenefits(selectedTier, token);
-          document.body.removeChild(modal);
+        modal.querySelector('#verifyTokenBtn').addEventListener('click', async () => {
+          const token = modal.querySelector('#supporterToken').value.trim();
+          if (!token) {
+            alert('Please enter your supporter token');
+            return;
+          }
+          
+          try {
+            // Show loading state
+            const verifyBtn = modal.querySelector('#verifyTokenBtn');
+            const originalText = verifyBtn.textContent;
+            verifyBtn.textContent = 'Verifying...';
+            verifyBtn.disabled = true;
+            
+            // Get JWT token first, then verify supporter token
+            const authResponse = await fetch('https://api.linkaura.blankburn.online/auth');
+            const authData = await authResponse.json();
+            
+            if (!authData.token) {
+              throw new Error('Failed to get JWT token');
+            }
+            
+            // Verify supporter token with JWT authentication
+            const response = await fetch('https://api.linkaura.blankburn.online/verify-supporter', {
+              method: 'POST',
+              headers: { 
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${authData.token}`
+              },
+              body: JSON.stringify({ token: token })
+            });
+            
+            const result = await response.json();
+            
+            if (result.valid) {
+              // Store supporter data
+              localStorage.setItem("cleanlink_supporter_token", token);
+              localStorage.setItem("cleanlink_supporter_expiry", result.expiresAt.toString());
+              localStorage.setItem("cleanlink_supporter_tier", result.tier);
+              localStorage.setItem("cleanlink_supporter_api_calls", result.apiCalls.toString());
+              localStorage.setItem("cleanlink_donor", "true");
+              
+              // Show success message
+              alert(`🎉 Supporter benefits activated! You now have ${result.apiCalls} API calls per day.`);
+              
+              // Close modal and reload page
+              document.body.removeChild(modal);
+              location.reload();
+            } else {
+              alert(`❌ Invalid token: ${result.reason || 'Token verification failed'}`);
+              verifyBtn.textContent = originalText;
+              verifyBtn.disabled = false;
+            }
+          } catch (error) {
+            console.error('Token verification error:', error);
+            alert('❌ Failed to verify token. Please check your connection and try again.');
+            const verifyBtn = modal.querySelector('#verifyTokenBtn');
+            verifyBtn.textContent = 'Verify Token';
+            verifyBtn.disabled = false;
+          }
         });
         
         modal.querySelector('#cancelBtn').addEventListener('click', () => {
