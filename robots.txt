@@ -1,3 +1,7 @@
 User-agent: *
 Allow: /
-Sitemap: https://cleanlink.blankburn.online/sitemap.xml
+Disallow: /test-*.html
+Disallow: /supporter-tokens.html
+Disallow: /index-test.html
+Disallow: /index-working-backup.html
+Sitemap: https://linkaura.blankburn.online/sitemap.xml
