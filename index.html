@@ -3,60 +3,107 @@
 <html lang="en" class="dark">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
+  
+  <!-- Primary Meta Tags -->
   <title>LinkAura – Free URL Cleaner | Remove Tracking Parameters | Privacy Tool</title>
+  <meta name="title" content="LinkAura – Free URL Cleaner | Remove Tracking Parameters | Privacy Tool" />
   <meta name="description" content="LinkAura removes tracking parameters (utm_*, fbclid, gclid) from URLs instantly. Free URL cleaner with unlimited local features: HTTPS/SSL checks, URL analysis, link expiration, social media detection, URL shortener detection, Geographic & CDN analysis, language detection, accessibility testing. Premium security: Safety API, SSL Certificate API, AI Website Security Scan. No ads, no tracking, privacy-first." />
-  <meta name="keywords" content="URL cleaner, remove tracking parameters, utm_ remover, fbclid cleaner, gclid remover, privacy tool, URL sanitizer, link cleaner, free URL cleaner, unlimited local features, HTTPS SSL checker, URL analysis, link expiration detector, social media detection, URL shortener detector, geographic analysis, CDN detection, language detection, accessibility testing, WCAG compliance, server location, hosting analysis, malware checker, SSL certificate validator, safety API, AI security scan, website security, threat detection, no ads, ad-free, privacy-first">
+  <meta name="keywords" content="URL cleaner, remove tracking parameters, utm_ remover, fbclid cleaner, gclid remover, privacy tool, URL sanitizer, link cleaner, free URL cleaner, unlimited local features, HTTPS SSL checker, URL analysis, link expiration detector, social media detection, URL shortener detector, geographic analysis, CDN detection, language detection, accessibility testing, WCAG compliance, server location, hosting analysis, malware checker, SSL certificate validator, safety API, AI security scan, website security, threat detection, no ads, ad-free, privacy-first" />
   <meta name="author" content="LinkAura Team" />
-  <meta name="robots" content="index, follow" />
-  <meta name="googlebot" content="index, follow" />
-  <meta name="bingbot" content="index, follow" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <meta name="bingbot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
   <meta name="language" content="English" />
   <meta name="revisit-after" content="7 days" />
   <meta name="rating" content="General" />
   <meta name="distribution" content="Global" />
-
+  <meta name="geo.region" content="US" />
+  <meta name="geo.placename" content="Global" />
+  
+  <!-- Favicon and Icons -->
   <link rel="icon" type="image/png" sizes="512x512" href="assets/images/favicon.png">
-  <link rel="apple-touch-icon" href="assets/images/favicon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon.png">
+  <link rel="manifest" href="/manifest.json">
   <link rel="canonical" href="https://linkaura.blankburn.online/" />
-  <meta name="theme-color" content="#193ce6">
+  <meta name="theme-color" content="#193ce6" />
+  <meta name="msapplication-TileColor" content="#193ce6" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="LinkAura" />
 
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://linkaura.blankburn.online/" />
   <meta property="og:title" content="LinkAura – Free URL Cleaner | Privacy-Friendly Tool" />
   <meta property="og:description" content="LinkAura removes tracking parameters (utm_*, fbclid, gclid) from URLs instantly. Free URL cleaner with unlimited local features: HTTPS/SSL checks, URL analysis, link expiration, social media detection, URL shortener detection, Geographic & CDN analysis, language detection, accessibility testing. Premium security: Safety API, SSL Certificate API, AI Website Security Scan. No ads, no tracking, privacy-first." />
-  <meta property="og:url" content="https://linkaura.blankburn.online/" />
   <meta property="og:image" content="https://linkaura.blankburn.online/images/cleanlink-icon.png" />
-  <meta property="og:type" content="website" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="LinkAura - Free URL Cleaner and Privacy Tool" />
+  <meta property="og:site_name" content="LinkAura" />
+  <meta property="og:locale" content="en_US" />
 
+  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content="https://linkaura.blankburn.online/" />
   <meta name="twitter:title" content="LinkAura – Free URL Cleaner | Privacy-Friendly Tool" />
   <meta name="twitter:description" content="LinkAura removes tracking parameters (utm_*, fbclid, gclid) from URLs instantly. Free URL cleaner with unlimited local features: HTTPS/SSL checks, URL analysis, link expiration, social media detection, URL shortener detection, Geographic & CDN analysis, language detection, accessibility testing. Premium security: Safety API, SSL Certificate API, AI Website Security Scan. No ads, no tracking, privacy-first." />
   <meta name="twitter:image" content="https://linkaura.blankburn.online/images/cleanlink-icon.png" />
+  <meta name="twitter:image:alt" content="LinkAura - Free URL Cleaner and Privacy Tool" />
+  
+  <!-- Performance: Preconnect to external domains -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://cdn.tailwindcss.com" />
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+  <link rel="dns-prefetch" href="https://cdn.tailwindcss.com" />
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com" />
 
+  <!-- Structured Data: SoftwareApplication -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     "name": "LinkAura",
+    "alternateName": "LinkAura URL Cleaner",
     "url": "https://linkaura.blankburn.online",
     "description": "A privacy-friendly URL cleaner that removes tracking parameters with unlimited free features: HTTPS/SSL checks, URL analysis, link expiration, social media detection, URL shortener detection, Geographic & CDN analysis, language detection, accessibility testing. Premium security features: Safety API, SSL Certificate API, AI Website Security Scan. No ads, no tracking, privacy-first.",
-    "applicationCategory": "Utility",
-    "operatingSystem": "Web",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Web Browser",
     "browserRequirements": "Requires JavaScript. Requires HTML5.",
     "softwareVersion": "2.0",
     "datePublished": "2024-01-01",
     "dateModified": "2024-12-01",
+    "inLanguage": "en-US",
+    "license": "https://linkaura.blankburn.online",
     "author": {
       "@type": "Organization",
-      "name": "LinkAura Team"
+      "name": "LinkAura Team",
+      "url": "https://linkaura.blankburn.online"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "LinkAura Team",
+      "url": "https://linkaura.blankburn.online",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://linkaura.blankburn.online/images/cleanlink-icon.png"
+      }
     },
     "offers": {
       "@type": "Offer",
       "price": "0",
       "priceCurrency": "EUR",
-      "availability": "https://schema.org/InStock"
+      "availability": "https://schema.org/InStock",
+      "priceValidUntil": "2025-12-31"
     },
     "featureList": [
       "Remove tracking parameters (utm_*, fbclid, gclid) - FREE",
@@ -82,8 +129,89 @@
     "aggregateRating": {
       "@type": "AggregateRating",
       "ratingValue": "4.8",
-      "ratingCount": "150"
+      "ratingCount": "150",
+      "bestRating": "5",
+      "worstRating": "1"
     }
+  }
+  </script>
+
+  <!-- Structured Data: Website -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "LinkAura",
+    "url": "https://linkaura.blankburn.online",
+    "description": "Free URL cleaner and privacy tool that removes tracking parameters from URLs instantly",
+    "inLanguage": "en-US",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://linkaura.blankburn.online/?q={search_term_string}"
+      },
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+
+  <!-- Structured Data: Organization -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "LinkAura",
+    "url": "https://linkaura.blankburn.online",
+    "logo": "https://linkaura.blankburn.online/images/cleanlink-icon.png",
+    "sameAs": [],
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "Customer Support",
+      "availableLanguage": ["English"]
+    }
+  }
+  </script>
+
+  <!-- Structured Data: FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is LinkAura?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "LinkAura is a free, privacy-first URL cleaner that removes tracking parameters (like utm_, fbclid, gclid) from URLs instantly. It runs entirely in your browser for maximum privacy and security."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is LinkAura free to use?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes! All local features are completely free and unlimited. This includes URL cleaning, HTTPS/SSL checks, URL analysis, link expiration detection, social media detection, URL shortener detection, geographic analysis, language detection, and accessibility testing. Premium API features (Safety API, SSL Certificate API, AI Website Security Scan) are available with a free daily limit."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does LinkAura track or store my data?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No! LinkAura is privacy-first. All processing happens locally in your browser. Your URLs are never sent to any server except when you explicitly use premium API features. There are no ads, no tracking, and your data stays private."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What tracking parameters does LinkAura remove?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "LinkAura removes common tracking parameters like utm_source, utm_medium, utm_campaign, utm_term, utm_content, fbclid (Facebook), gclid (Google), and many others. You can also choose which parameters to preserve."
+        }
+      }
+    ]
   }
   </script>
 
@@ -181,17 +309,17 @@
       <div class="mt-12 max-w-4xl mx-auto">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div class="bg-slate-50 dark:bg-slate-900/40 rounded-lg p-4 border border-slate-200 dark:border-slate-800 transition-colors">
-            <h4 class="font-semibold text-slate-900 dark:text-white mb-2 flex items-center gap-2">
+            <h2 class="font-semibold text-slate-900 dark:text-white mb-2 flex items-center gap-2">
               <span class="material-symbols-outlined text-blue-500 text-sm">security</span>
               Security Checks
-            </h4>
+            </h2>
             <p class="text-xs text-slate-600 dark:text-slate-400">
               HTTPS check, SSL validation, URL analysis, link expiration, social media detection, URL validation & repair, plus premium Safety API, SSL Certificate API, and AI Website Security Scan
             </p>
           </div>
 
           <div class="bg-slate-50 dark:bg-slate-900/40 rounded-lg p-4 border border-slate-200 dark:border-slate-800 transition-colors">
-            <h4 class="font-semibold text-slate-900 dark:text-white mb-2 flex items-center gap-2">
+            <h2 class="font-semibold text-slate-900 dark:text-white mb-2 flex items-center gap-2">
               <span class="material-symbols-outlined text-purple-500 text-sm">format_list_bulleted</span>
               Bulk Processing
             </h4>
@@ -201,7 +329,7 @@
           </div>
 
           <div class="bg-slate-50 dark:bg-slate-900/40 rounded-lg p-4 border border-slate-200 dark:border-slate-800 transition-colors">
-            <h4 class="font-semibold text-slate-900 dark:text-white mb-2 flex items-center gap-2">
+            <h2 class="font-semibold text-slate-900 dark:text-white mb-2 flex items-center gap-2">
               <span class="material-symbols-outlined text-green-500 text-sm">tune</span>
               Smart Parameters
             </h4>
@@ -237,12 +365,18 @@
         <div id="singleMode" class="relative">
           <span class="material-symbols-outlined absolute left-5 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500 transition-colors">link</span>
           <input id="urlInput" type="url" placeholder="Paste your URL here..."
-            class="w-full bg-slate-50 dark:bg-slate-900/70 border border-slate-300 dark:border-slate-700 rounded-xl py-4 pl-14 pr-36 text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all text-lg" />
-          <button id="cleanBtn"
-            class="absolute right-4 top-1/2 -translate-y-1/2 bg-gradient-to-r from-primary to-indigo-500 text-white font-semibold px-5 py-2 rounded-lg hover:opacity-90 flex items-center gap-1">
-            <span id="cleanBtnText">Clean</span>
-            <span class="material-symbols-outlined text-sm">arrow_forward</span>
-          </button>
+            class="w-full bg-slate-50 dark:bg-slate-900/70 border border-slate-300 dark:border-slate-700 rounded-xl py-4 pl-14 pr-32 text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all text-lg" />
+          <div class="absolute right-4 top-1/2 -translate-y-1/2 flex flex-col items-end gap-2.5 -mt-10">
+            <label class="flex items-center gap-2 text-sm font-medium text-slate-700 dark:text-slate-300 cursor-pointer transition-all hover:text-slate-900 dark:hover:text-white whitespace-nowrap px-2 py-1 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800/50">
+              <input id="privacyMode" type="checkbox" class="rounded border-slate-400 dark:border-slate-500 w-4 h-4 text-primary focus:ring-2 focus:ring-primary/30 cursor-pointer">
+              <span class="select-none">Privacy Mode</span>
+            </label>
+            <button id="cleanBtn"
+              class="bg-gradient-to-r from-primary to-indigo-500 text-white font-semibold px-5 py-2 rounded-lg hover:opacity-90 flex items-center gap-1 shadow-sm">
+              <span id="cleanBtnText">Clean</span>
+              <span class="material-symbols-outlined text-sm">arrow_forward</span>
+            </button>
+          </div>
         </div>
 
         <!-- Bulk URL Mode -->
@@ -266,10 +400,6 @@
           <label class="flex items-center gap-2 text-slate-700 dark:text-slate-400 text-sm cursor-pointer transition-colors">
             <input id="removeAll" type="checkbox" class="rounded border-slate-600">
             <span>Remove all parameters</span>
-          </label>
-          <label class="flex items-center gap-2 text-slate-700 dark:text-slate-400 text-sm cursor-pointer transition-colors">
-            <input id="privacyMode" type="checkbox" class="rounded border-slate-600">
-            <span>Privacy Mode</span>
           </label>
           <label class="flex items-center gap-2 text-slate-700 dark:text-slate-400 text-sm cursor-pointer transition-colors">
             <input id="httpsCheck" type="checkbox" class="rounded border-slate-600">
