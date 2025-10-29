@@ -175,6 +175,79 @@ Cleaned:  https://example.com/page?id=123
 2. Clean your URL as usual
 3. View validation results and repairs
 
+### 4.5 Language Detection
+
+#### What it detects
+- Page language from HTML `lang` attribute
+- Content language through text analysis
+- Confidence level (High, Medium, Low)
+- Supports multiple languages: English, Spanish, French, German, Chinese, Japanese, Korean, Russian, Arabic, and more
+
+#### How to use
+1. Check the "Language Detection" checkbox
+2. Clean your URL as usual
+3. View detected language and confidence level
+
+#### Understanding Results
+- **Language Code**: Standard language identifier (e.g., "EN (English)")
+- **Confidence Level**: 
+  - **High (declared)**: Detected from HTML lang attribute
+  - **High**: Detected from content character patterns
+  - **Medium**: Probable language from content
+  - **Low**: Unable to determine with certainty
+
+#### Use Cases
+- Verify page language before clicking
+- Understand content accessibility for your language
+- Identify multilingual websites
+- Check language compliance for international sites
+
+### 4.6 Accessibility Analysis
+
+#### What it analyzes
+- **HTML Structure**: lang attribute, title tags, headings
+- **Images**: Alt text presence and quality
+- **Forms**: Label associations and ARIA attributes
+- **Semantic HTML**: ARIA landmarks and semantic elements
+- **Readability**: Text complexity and sentence structure
+- **WCAG Compliance**: Accessibility standards compliance
+
+#### How to use
+1. Check the "Accessibility Analysis" checkbox
+2. Clean your URL as usual
+3. View accessibility score and detailed report
+4. Click "▼ Details" to expand full analysis
+
+#### Understanding Results
+
+##### Accessibility Score (0-100)
+- **90-100 (Excellent)**: Excellent accessibility compliance
+- **85-89 (Good)**: Good accessibility with minor issues
+- **70-84 (Fair)**: Fair accessibility, needs improvement
+- **0-69 (Poor)**: Poor accessibility, significant issues
+
+##### What's Checked
+- ✅ **HTML lang attribute**: Required for screen readers
+- ✅ **Page title**: Essential for navigation
+- ✅ **Image alt text**: Critical for visual accessibility
+- ✅ **Form labels**: Required for form accessibility
+- ✅ **Heading structure**: Proper H1 usage
+- ✅ **ARIA landmarks**: Semantic navigation elements
+- ✅ **Readability**: Text complexity analysis
+
+##### Detailed Report Includes
+- **Issues Found**: List of accessibility problems
+- **Passed Checks**: Successful accessibility features
+- **Readability Level**: Text complexity assessment
+- **Specific Metrics**: Image counts, form inputs, landmarks, etc.
+
+#### Use Cases
+- Verify website accessibility before sharing
+- Check WCAG compliance for compliance requirements
+- Identify accessibility issues for developers
+- Understand content accessibility barriers
+- Audit websites for accessibility improvements
+
 ---
 
 ## 5. Privacy Mode
