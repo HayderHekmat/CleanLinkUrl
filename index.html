@@ -8,8 +8,8 @@
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
   <title>LinkAura – Free URL Cleaner | Remove Tracking Parameters | Privacy Tool</title>
-  <meta name="description" content="LinkAura removes tracking parameters (utm_*, fbclid, gclid) from URLs instantly. Free URL cleaner with unlimited local features: HTTPS/SSL checks, URL analysis, link expiration, social media detection, URL shortener detection, Geographic & CDN analysis. Premium security: Safety API, SSL Certificate API, AI Website Security Scan. No ads, no tracking, privacy-first." />
-  <meta name="keywords" content="URL cleaner, remove tracking parameters, utm_ remover, fbclid cleaner, gclid remover, privacy tool, URL sanitizer, link cleaner, free URL cleaner, unlimited local features, HTTPS SSL checker, URL analysis, link expiration detector, social media detection, URL shortener detector, geographic analysis, CDN detection, server location, hosting analysis, malware checker, SSL certificate validator, safety API, AI security scan, website security, threat detection, no ads, ad-free, privacy-first">
+  <meta name="description" content="LinkAura removes tracking parameters (utm_*, fbclid, gclid) from URLs instantly. Free URL cleaner with unlimited local features: HTTPS/SSL checks, URL analysis, link expiration, social media detection, URL shortener detection, Geographic & CDN analysis, language detection, accessibility testing. Premium security: Safety API, SSL Certificate API, AI Website Security Scan. No ads, no tracking, privacy-first." />
+  <meta name="keywords" content="URL cleaner, remove tracking parameters, utm_ remover, fbclid cleaner, gclid remover, privacy tool, URL sanitizer, link cleaner, free URL cleaner, unlimited local features, HTTPS SSL checker, URL analysis, link expiration detector, social media detection, URL shortener detector, geographic analysis, CDN detection, language detection, accessibility testing, WCAG compliance, server location, hosting analysis, malware checker, SSL certificate validator, safety API, AI security scan, website security, threat detection, no ads, ad-free, privacy-first">
   <meta name="author" content="LinkAura Team" />
   <meta name="robots" content="index, follow" />
   <meta name="googlebot" content="index, follow" />
@@ -25,14 +25,14 @@
   <meta name="theme-color" content="#193ce6">
 
   <meta property="og:title" content="LinkAura – Free URL Cleaner | Privacy-Friendly Tool" />
-  <meta property="og:description" content="LinkAura removes tracking parameters (utm_*, fbclid, gclid) from URLs instantly. Free URL cleaner with unlimited local features: HTTPS/SSL checks, URL analysis, link expiration, social media detection, URL shortener detection, Geographic & CDN analysis. Premium security: Safety API, SSL Certificate API, AI Website Security Scan. No ads, no tracking, privacy-first." />
+  <meta property="og:description" content="LinkAura removes tracking parameters (utm_*, fbclid, gclid) from URLs instantly. Free URL cleaner with unlimited local features: HTTPS/SSL checks, URL analysis, link expiration, social media detection, URL shortener detection, Geographic & CDN analysis, language detection, accessibility testing. Premium security: Safety API, SSL Certificate API, AI Website Security Scan. No ads, no tracking, privacy-first." />
   <meta property="og:url" content="https://linkaura.blankburn.online/" />
   <meta property="og:image" content="https://linkaura.blankburn.online/images/cleanlink-icon.png" />
   <meta property="og:type" content="website" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="LinkAura – Free URL Cleaner | Privacy-Friendly Tool" />
-  <meta name="twitter:description" content="LinkAura removes tracking parameters (utm_*, fbclid, gclid) from URLs instantly. Free URL cleaner with unlimited local features: HTTPS/SSL checks, URL analysis, link expiration, social media detection, URL shortener detection, Geographic & CDN analysis. Premium security: Safety API, SSL Certificate API, AI Website Security Scan. No ads, no tracking, privacy-first." />
+  <meta name="twitter:description" content="LinkAura removes tracking parameters (utm_*, fbclid, gclid) from URLs instantly. Free URL cleaner with unlimited local features: HTTPS/SSL checks, URL analysis, link expiration, social media detection, URL shortener detection, Geographic & CDN analysis, language detection, accessibility testing. Premium security: Safety API, SSL Certificate API, AI Website Security Scan. No ads, no tracking, privacy-first." />
   <meta name="twitter:image" content="https://linkaura.blankburn.online/images/cleanlink-icon.png" />
 
   <script type="application/ld+json">
@@ -41,7 +41,7 @@
     "@type": "SoftwareApplication",
     "name": "LinkAura",
     "url": "https://linkaura.blankburn.online",
-    "description": "A privacy-friendly URL cleaner that removes tracking parameters with unlimited free features: HTTPS/SSL checks, URL analysis, link expiration, social media detection, URL shortener detection, Geographic & CDN analysis. Premium security features: Safety API, SSL Certificate API, AI Website Security Scan. No ads, no tracking, privacy-first.",
+    "description": "A privacy-friendly URL cleaner that removes tracking parameters with unlimited free features: HTTPS/SSL checks, URL analysis, link expiration, social media detection, URL shortener detection, Geographic & CDN analysis, language detection, accessibility testing. Premium security features: Safety API, SSL Certificate API, AI Website Security Scan. No ads, no tracking, privacy-first.",
     "applicationCategory": "Utility",
     "operatingSystem": "Web",
     "browserRequirements": "Requires JavaScript. Requires HTML5.",
@@ -67,6 +67,8 @@
       "URL validation and repair - FREE",
       "URL shortener detection and expansion - FREE",
       "Geographic & CDN analysis with interactive maps - FREE",
+      "Language detection and analysis - FREE",
+      "Accessibility compliance testing - FREE",
       "QR code generation - FREE",
       "URL history management - FREE",
       "Statistics dashboard - FREE",
@@ -216,7 +218,7 @@
 
 
       <!-- Main Form Section -->
-      <div class="mt-12 max-w-3xl mx-auto bg-white dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-lg transition-colors duration-300">
+      <div id="mainFormSection" class="mt-12 max-w-3xl mx-auto bg-white dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-lg transition-colors duration-300">
         <!-- Mode Toggle -->
         <div class="flex justify-center mb-6">
           <div class="inline-flex bg-slate-100 dark:bg-slate-800 rounded-lg p-1">
@@ -301,6 +303,20 @@
             <input id="shortenerDetectionCheck" type="checkbox" class="rounded border-slate-600">
             <span>Shortened URL Detection & Expansion</span>
           </label>
+          <label class="flex items-center gap-2 text-slate-700 dark:text-slate-400 text-sm cursor-pointer transition-colors">
+            <input id="languageDetectionCheck" type="checkbox" class="rounded border-slate-600">
+            <span>Language Detection</span>
+          </label>
+          <label class="flex items-center gap-2 text-slate-700 dark:text-slate-400 text-sm cursor-pointer transition-colors">
+            <input id="accessibilityAnalysisCheck" type="checkbox" class="rounded border-slate-600">
+            <span>Accessibility Analysis</span>
+          </label>
+          
+          <!-- History Button -->
+          <button id="historyToggleBtn" class="hidden w-full bg-blue-50 hover:bg-blue-100 dark:bg-blue-900/20 dark:hover:bg-blue-900/30 border border-blue-200 dark:border-blue-700 rounded-lg px-4 py-3 text-sm text-blue-700 dark:text-blue-300 transition-colors flex items-center justify-center gap-2 mt-2">
+            <span class="material-symbols-outlined text-base">history</span>
+            <span>View URL History</span>
+          </button>
           
           <!-- Premium API Features -->
           <div class="w-full border-t border-slate-300 dark:border-slate-700 my-2"></div>
@@ -477,6 +493,22 @@
           <span id="geographicApiText" class="text-slate-700 dark:text-slate-300 transition-colors"></span>
         </div>
 
+        <div id="languageDetectionStatus" class="hidden mt-3 flex items-center gap-2 text-sm">
+          <span id="languageDetectionIcon" class="material-symbols-outlined text-base"></span>
+          <span id="languageDetectionText" class="text-slate-700 dark:text-slate-300 transition-colors"></span>
+        </div>
+
+        <div id="accessibilityAnalysisStatus" class="hidden mt-3">
+          <div class="flex items-center gap-2 text-sm mb-2">
+            <span id="accessibilityAnalysisIcon" class="material-symbols-outlined text-base"></span>
+            <span id="accessibilityAnalysisText" class="text-slate-700 dark:text-slate-300 transition-colors"></span>
+          </div>
+          <div id="accessibilityAnalysisDetails" class="hidden bg-slate-50 dark:bg-slate-800/60 border border-slate-300 dark:border-slate-700 rounded-lg p-3 text-sm">
+            <div id="accessibilityScoreInfo" class="mb-2"></div>
+            <div id="accessibilityIssuesInfo"></div>
+          </div>
+        </div>
+
         <div id="geographicAnalysisStatus" class="hidden mt-3">
           <div class="flex items-center gap-2 text-sm mb-2">
             <span id="geographicAnalysisIcon" class="material-symbols-outlined text-base"></span>
@@ -542,26 +574,118 @@
           <button id="shareBtn" class="bg-slate-200 hover:bg-slate-300 dark:bg-slate-800 dark:hover:bg-slate-700 border border-slate-300 dark:border-slate-700 rounded-lg px-3 py-2 text-sm text-slate-900 dark:text-white transition-colors">Share</button>
         </div>
 
-        <div id="historyWrap" class="mt-6 bg-slate-100 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 rounded-xl p-5 text-left transition-colors duration-300">
-          <h3 class="text-slate-700 dark:text-slate-300 font-semibold mb-3 flex items-center gap-1 transition-colors">
-            <span class="material-symbols-outlined text-base">history</span>
-            Recent cleaned URLs
-          </h3>
-          <ul id="historyList" class="text-slate-600 dark:text-slate-400 text-sm space-y-1 transition-colors"></ul>
-        <div class="flex gap-2 mt-3">
-          <button id="clearHistoryBtn"
-            class="bg-slate-200 hover:bg-slate-300 dark:bg-white/10 dark:hover:bg-white/20 text-slate-900 dark:text-white text-xs px-3 py-1 rounded-md transition-colors">
-            Clear history
-          </button>
-          <button id="exportHistoryBtn"
-            class="bg-slate-200 hover:bg-slate-300 dark:bg-white/10 dark:hover:bg-white/20 text-slate-900 dark:text-white text-xs px-3 py-1 rounded-md transition-colors">
-            Export
-          </button>
-          <button id="showStatsBtn"
-            class="bg-blue-200 hover:bg-blue-300 dark:bg-blue-900/30 dark:hover:bg-blue-900/50 text-blue-900 dark:text-blue-200 text-xs px-3 py-1 rounded-md transition-colors">
-            📊 Statistics
-          </button>
-        </div>
+        <div id="historyWrap" class="hidden mt-6 bg-slate-100 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 rounded-xl p-5 text-left transition-colors duration-300" data-history-hidden="true">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-slate-700 dark:text-slate-300 font-semibold flex items-center gap-1 transition-colors">
+              <span class="material-symbols-outlined text-base">history</span>
+              URL History
+            </h3>
+            <div class="flex gap-2">
+              <button id="clearHistoryBtn"
+                class="bg-slate-200 hover:bg-slate-300 dark:bg-white/10 dark:hover:bg-white/20 text-slate-900 dark:text-white text-xs px-3 py-1 rounded-md transition-colors">
+                Clear
+              </button>
+              <button id="exportHistoryBtn"
+                class="bg-slate-200 hover:bg-slate-300 dark:bg-white/10 dark:hover:bg-white/20 text-slate-900 dark:text-white text-xs px-3 py-1 rounded-md transition-colors">
+                Export
+              </button>
+              <button id="showStatsBtn"
+                class="bg-blue-200 hover:bg-blue-300 dark:bg-blue-900/30 dark:hover:bg-blue-900/50 text-blue-900 dark:text-blue-200 text-xs px-3 py-1 rounded-md transition-colors">
+                📊 Statistics
+              </button>
+            </div>
+          </div>
+
+          <!-- Selection Actions (hidden by default) -->
+          <div id="selectionActions" class="hidden mb-4 p-3 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="text-sm text-blue-700 dark:text-blue-300">
+                  <span id="selectedCount">0</span> URL(s) selected
+                </span>
+              </div>
+              <div class="flex gap-2">
+                <button id="generateQRBtn" class="bg-green-200 hover:bg-green-300 dark:bg-green-900/30 dark:hover:bg-green-900/50 text-green-800 dark:text-green-200 text-xs px-3 py-1 rounded-md transition-colors flex items-center gap-1">
+                  <span class="material-symbols-outlined text-sm">qr_code</span>
+                  Generate QR
+                </button>
+                <button id="recleanBtn" class="bg-orange-200 hover:bg-orange-300 dark:bg-orange-900/30 dark:hover:bg-orange-900/50 text-orange-800 dark:text-orange-200 text-xs px-3 py-1 rounded-md transition-colors flex items-center gap-1">
+                  <span class="material-symbols-outlined text-sm">refresh</span>
+                  Re-clean
+                </button>
+                <button id="clearSelectionBtn" class="bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 text-xs px-3 py-1 rounded-md transition-colors">
+                  Clear Selection
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Search and Filter Controls -->
+          <div class="mb-4 space-y-3">
+            <!-- Search Bar -->
+            <div class="relative">
+              <input type="text" id="historySearch" placeholder="Search URLs, domains, or keywords..." 
+                class="w-full px-4 py-2 pl-10 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded-lg text-slate-900 dark:text-white placeholder-slate-500 dark:placeholder-slate-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors">
+              <span class="material-symbols-outlined absolute left-3 top-2.5 text-slate-400 text-lg">search</span>
+            </div>
+
+            <!-- Filter Controls -->
+            <div class="flex flex-wrap gap-2">
+              <!-- Date Filter -->
+              <select id="dateFilter" class="px-3 py-2 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded-lg text-slate-900 dark:text-white text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors">
+                <option value="all">All Time</option>
+                <option value="today">Today</option>
+                <option value="week">This Week</option>
+                <option value="month">This Month</option>
+                <option value="custom">Custom Range</option>
+              </select>
+
+              <!-- Domain Filter -->
+              <select id="domainFilter" class="px-3 py-2 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded-lg text-slate-900 dark:text-white text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors">
+                <option value="all">All Domains</option>
+              </select>
+
+              <!-- Type Filter -->
+              <select id="typeFilter" class="px-3 py-2 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded-lg text-slate-900 dark:text-white text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors">
+                <option value="all">All Types</option>
+                <option value="social">Social Media</option>
+                <option value="shortener">URL Shorteners</option>
+                <option value="ecommerce">E-commerce</option>
+                <option value="news">News & Media</option>
+                <option value="other">Other</option>
+              </select>
+
+              <!-- Sort Options -->
+              <select id="sortFilter" class="px-3 py-2 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded-lg text-slate-900 dark:text-white text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors">
+                <option value="newest">Newest First</option>
+                <option value="oldest">Oldest First</option>
+                <option value="domain">Domain A-Z</option>
+                <option value="domain-desc">Domain Z-A</option>
+                <option value="security">Security Score</option>
+              </select>
+
+              <!-- Clear Filters -->
+              <button id="clearFiltersBtn" class="px-3 py-2 bg-slate-200 hover:bg-slate-300 dark:bg-slate-700 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-300 text-sm rounded-lg transition-colors">
+                Clear Filters
+              </button>
+            </div>
+
+            <!-- Custom Date Range (hidden by default) -->
+            <div id="customDateRange" class="hidden flex gap-2">
+              <input type="date" id="startDate" class="px-3 py-2 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded-lg text-slate-900 dark:text-white text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors">
+              <span class="text-slate-500 dark:text-slate-400 self-center">to</span>
+              <input type="date" id="endDate" class="px-3 py-2 bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded-lg text-slate-900 dark:text-white text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors">
+            </div>
+          </div>
+
+          <!-- Results Count -->
+          <div id="resultsCount" class="text-sm text-slate-500 dark:text-slate-400 mb-3"></div>
+
+          <!-- History List -->
+          <ul id="historyList" class="text-slate-600 dark:text-slate-400 text-sm space-y-2 transition-colors"></ul>
+
+          <!-- Pagination -->
+          <div id="pagination" class="mt-4 flex justify-center items-center gap-2"></div>
         </div>
 
         <div id="qrWrap" class="hidden mt-6 flex flex-col items-center">
@@ -686,7 +810,7 @@
               </ul>
             </div>
             
-            <div class="bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-950/20 dark:to-cyan-950/20 p-6 rounded-xl border border-blue-200 dark:border-blue-800 transition-colors duration-300">
+            <div class="group bg-white dark:bg-slate-800/50 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/10 hover:-translate-y-1 hover:border-blue-300 dark:hover:border-blue-600">
               <div class="flex items-center justify-center w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-600 shadow-lg shadow-blue-500/25">
                 <span class="material-symbols-outlined text-white text-2xl">security</span>
               </div>
@@ -946,6 +1070,8 @@
               <li>• Social media platform detection</li>
               <li>• URL shortener detection (with API)</li>
               <li>• Geographic & CDN analysis (with API)</li>
+              <li>• Language detection and analysis</li>
+              <li>• Accessibility compliance testing</li>
               <li>• QR code generation and history</li>
             </ul>
           </div>
@@ -1125,6 +1251,12 @@
     
   <script>
     document.addEventListener("DOMContentLoaded", async () => {
+      // Check history button visibility immediately on page load
+      setTimeout(() => {
+        if (typeof window.updateHistoryButtonVisibility === 'function') {
+          window.updateHistoryButtonVisibility();
+        }
+      }, 50);
       try {
         const txt = await navigator.clipboard.readText();
         if (txt.startsWith("http")) {
@@ -1524,7 +1656,7 @@
         }
         
         // Handle API option checkbox changes
-        if (e.target.id === "safetyApiCheck" || e.target.id === "sslApiCheck" || e.target.id === "webSecScanCheck" || e.target.id === "shortenerDetectionCheck" || e.target.id === "geographicAnalysisCheck") {
+        if (e.target.id === "safetyApiCheck" || e.target.id === "sslApiCheck" || e.target.id === "webSecScanCheck" || e.target.id === "shortenerDetectionCheck" || e.target.id === "geographicAnalysisCheck" || e.target.id === "languageDetectionCheck" || e.target.id === "accessibilityAnalysisCheck") {
           updateApiStatusVisibility();
           // If API options are selected, try to get token
           if (isAnyApiOptionSelected()) {
@@ -2519,6 +2651,160 @@ async function generateJWT(payload, secret = 'jwt-secret-key-256-bits-minimum') 
         }
       };
 
+      // Language Detection
+      window.checkLanguageDetection = async function(url) {
+        const languageDetectionStatusEl = document.getElementById("languageDetectionStatus");
+        const languageDetectionIconEl = document.getElementById("languageDetectionIcon");
+        const languageDetectionTextEl = document.getElementById("languageDetectionText");
+
+        if (!languageDetectionStatusEl) return;
+
+        const isPrivacy = document.getElementById("privacyToggle")?.checked;
+        if (isPrivacy) {
+          languageDetectionStatusEl.classList.remove("hidden");
+          languageDetectionIconEl.textContent = "privacy_tip";
+          languageDetectionIconEl.className = "material-symbols-outlined text-base text-amber-500 dark:text-amber-400";
+          languageDetectionTextEl.textContent = "Privacy mode active";
+          return;
+        }
+
+        try {
+          languageDetectionStatusEl.classList.remove("hidden");
+          languageDetectionIconEl.textContent = "schedule";
+          languageDetectionIconEl.className = "material-symbols-outlined text-base text-blue-500 dark:text-blue-400";
+          languageDetectionTextEl.textContent = "Detecting language...";
+
+          // Use LinkAura API to fetch and analyze page (bypasses CORS)
+          const result = await callLinkAuraAPI("language-detection", { url: url });
+
+          if (result.error || result.offline) {
+            throw new Error(result.error || "API unavailable");
+          }
+
+          const detectedLang = result.language || result.detectedLang || 'Unknown';
+          const confidence = result.confidence || 'Medium';
+
+          languageDetectionIconEl.textContent = "translate";
+          languageDetectionIconEl.className = "material-symbols-outlined text-base text-blue-500 dark:text-blue-400";
+          languageDetectionTextEl.innerHTML = `Language: <strong>${detectedLang}</strong> (${confidence} confidence)`;
+
+        } catch (error) {
+          console.error("Language detection error:", error);
+          languageDetectionStatusEl.classList.remove("hidden");
+          languageDetectionIconEl.textContent = "help";
+          languageDetectionIconEl.className = "material-symbols-outlined text-base text-slate-500 dark:text-slate-400";
+          languageDetectionTextEl.textContent = "Language detection unavailable";
+        }
+      };
+
+      // Accessibility Analysis
+      window.checkAccessibilityAnalysis = async function(url) {
+        const accessibilityAnalysisStatusEl = document.getElementById("accessibilityAnalysisStatus");
+        const accessibilityAnalysisIconEl = document.getElementById("accessibilityAnalysisIcon");
+        const accessibilityAnalysisTextEl = document.getElementById("accessibilityAnalysisText");
+        const accessibilityAnalysisDetailsEl = document.getElementById("accessibilityAnalysisDetails");
+        const accessibilityScoreInfoEl = document.getElementById("accessibilityScoreInfo");
+        const accessibilityIssuesInfoEl = document.getElementById("accessibilityIssuesInfo");
+
+        if (!accessibilityAnalysisStatusEl) return;
+
+        const isPrivacy = document.getElementById("privacyToggle")?.checked;
+        if (isPrivacy) {
+          accessibilityAnalysisStatusEl.classList.remove("hidden");
+          accessibilityAnalysisIconEl.textContent = "privacy_tip";
+          accessibilityAnalysisIconEl.className = "material-symbols-outlined text-base text-amber-500 dark:text-amber-400";
+          accessibilityAnalysisTextEl.textContent = "Privacy mode active";
+          return;
+        }
+
+        try {
+          accessibilityAnalysisStatusEl.classList.remove("hidden");
+          accessibilityAnalysisIconEl.textContent = "schedule";
+          accessibilityAnalysisIconEl.className = "material-symbols-outlined text-base text-blue-500 dark:text-blue-400";
+          accessibilityAnalysisTextEl.textContent = "Analyzing accessibility...";
+
+          // Use LinkAura API to fetch and analyze page (bypasses CORS)
+          const result = await callLinkAuraAPI("accessibility-analysis", { url: url });
+
+          if (result.error || result.offline) {
+            throw new Error(result.error || "API unavailable");
+          }
+
+          // Use API results
+          let score = result.score || 100;
+          let issues = result.issues || [];
+          let passed = result.passed || [];
+          let readabilityLevel = result.readability || 'Good';
+          
+          // Ensure score doesn't go below 0
+          score = Math.max(0, score);
+          
+          // Determine overall rating
+          let rating = 'Excellent';
+          let ratingColor = 'text-green-500 dark:text-green-400';
+          let ratingIcon = 'verified';
+          
+          if (score < 50) {
+            rating = 'Poor';
+            ratingColor = 'text-red-500 dark:text-red-400';
+            ratingIcon = 'error';
+          } else if (score < 70) {
+            rating = 'Fair';
+            ratingColor = 'text-orange-500 dark:text-orange-400';
+            ratingIcon = 'warning';
+          } else if (score < 85) {
+            rating = 'Good';
+            ratingColor = 'text-blue-500 dark:text-blue-400';
+            ratingIcon = 'info';
+          }
+          
+          // Update UI
+          accessibilityAnalysisIconEl.textContent = ratingIcon;
+          accessibilityAnalysisIconEl.className = `material-symbols-outlined text-base ${ratingColor}`;
+          accessibilityAnalysisTextEl.innerHTML = `Accessibility: <strong>${rating}</strong> (Score: ${score}/100) <span class="text-xs cursor-pointer" onclick="document.getElementById('accessibilityAnalysisDetails').classList.toggle('hidden')">▼ Details</span>`;
+          
+          // Build details
+          let detailsHTML = `
+            <div class="mb-3">
+              <div class="text-slate-700 dark:text-slate-300 font-semibold mb-1">Score: ${score}/100 (${rating})</div>
+              <div class="text-slate-600 dark:text-slate-400 text-xs mb-2">Readability: ${readabilityLevel}</div>
+            </div>
+          `;
+          
+          if (issues.length > 0) {
+            detailsHTML += `
+              <div class="mb-3">
+                <div class="text-red-600 dark:text-red-400 font-semibold mb-1 text-xs">Issues Found (${issues.length}):</div>
+                <ul class="list-disc list-inside text-slate-600 dark:text-slate-400 text-xs space-y-1">
+                  ${issues.map(issue => `<li>${issue}</li>`).join('')}
+                </ul>
+              </div>
+            `;
+          }
+          
+          if (passed.length > 0) {
+            detailsHTML += `
+              <div>
+                <div class="text-green-600 dark:text-green-400 font-semibold mb-1 text-xs">Passed Checks (${passed.length}):</div>
+                <ul class="list-disc list-inside text-slate-600 dark:text-slate-400 text-xs space-y-1">
+                  ${passed.map(check => `<li>${check}</li>`).join('')}
+                </ul>
+              </div>
+            `;
+          }
+          
+          accessibilityAnalysisDetailsEl.innerHTML = detailsHTML;
+          accessibilityAnalysisDetailsEl.classList.remove("hidden");
+
+        } catch (error) {
+          console.error("Accessibility analysis error:", error);
+          accessibilityAnalysisStatusEl.classList.remove("hidden");
+          accessibilityAnalysisIconEl.textContent = "help";
+          accessibilityAnalysisIconEl.className = "material-symbols-outlined text-base text-slate-500 dark:text-slate-400";
+          accessibilityAnalysisTextEl.textContent = "Accessibility analysis unavailable";
+        }
+      };
+
       // Geographic & CDN Analysis
       window.checkGeographicAnalysis = async function(url) {
         const geographicApiStatusEl = document.getElementById("geographicApiStatus");
@@ -3151,56 +3437,139 @@ async function generateJWT(payload, secret = 'jwt-secret-key-256-bits-minimum') 
       };
 
       // URL History Management
-      window.saveToHistory = function(originalUrl, cleanedUrl) {
+      window.saveToHistory = function(originalUrl, cleanedUrl, analysisData = {}) {
         try {
           const history = JSON.parse(localStorage.getItem('linkaura_history') || '[]');
+          const urlObj = new URL(cleanedUrl);
+          const domain = urlObj.hostname;
+          
+          // Determine URL type
+          let urlType = 'other';
+          if (domain.includes('facebook.com') || domain.includes('twitter.com') || domain.includes('instagram.com') || 
+              domain.includes('linkedin.com') || domain.includes('tiktok.com') || domain.includes('youtube.com')) {
+            urlType = 'social';
+          } else if (domain.includes('bit.ly') || domain.includes('tinyurl.com') || domain.includes('t.co') || 
+                     domain.includes('goo.gl') || domain.includes('ow.ly') || domain.includes('short.link')) {
+            urlType = 'shortener';
+          } else if (domain.includes('amazon.com') || domain.includes('ebay.com') || domain.includes('shopify.com') || 
+                     domain.includes('etsy.com') || domain.includes('alibaba.com')) {
+            urlType = 'ecommerce';
+          } else if (domain.includes('cnn.com') || domain.includes('bbc.com') || domain.includes('reuters.com') || 
+                     domain.includes('nytimes.com') || domain.includes('washingtonpost.com')) {
+            urlType = 'news';
+          }
+          
+          // Calculate parameters removed
+          const originalParams = new URL(originalUrl).searchParams;
+          const cleanedParams = new URL(cleanedUrl).searchParams;
+          const paramsRemoved = originalParams.size - cleanedParams.size;
+          
           const historyItem = {
             original: originalUrl,
             cleaned: cleanedUrl,
             timestamp: Date.now(),
-            domain: new URL(cleanedUrl).hostname
+            domain: domain,
+            urlType: urlType,
+            paramsRemoved: paramsRemoved,
+            securityScore: analysisData.securityScore || null,
+            language: analysisData.language || null,
+            accessibilityScore: analysisData.accessibilityScore || null,
+            isShortener: analysisData.isShortener || false,
+            expandedUrl: analysisData.expandedUrl || null,
+            title: analysisData.title || null,
+            description: analysisData.description || null
           };
           
-          // Add to beginning and limit to 50 items
+          // Add to beginning and limit to 100 items
           history.unshift(historyItem);
-          const limitedHistory = history.slice(0, 50);
+          const limitedHistory = history.slice(0, 100);
           
           localStorage.setItem('linkaura_history', JSON.stringify(limitedHistory));
           updateHistoryDisplay();
+          window.updateHistoryButtonVisibility();
         } catch (error) {
           console.error('Failed to save to history:', error);
         }
       }
+
+      // Global variables for filtering
+      let currentPage = 1;
+      const itemsPerPage = 10;
+      let filteredHistory = [];
 
       window.updateHistoryDisplay = function() {
         try {
           const history = JSON.parse(localStorage.getItem('linkaura_history') || '[]');
           const historyList = document.getElementById('historyList');
           const historyWrap = document.getElementById('historyWrap');
+          const resultsCount = document.getElementById('resultsCount');
           
           if (!historyList) return;
           
-          if (history.length === 0) {
-            historyList.innerHTML = '<li class="text-slate-500 dark:text-slate-400 text-sm">No URLs cleaned yet</li>';
+          // Apply filters
+          filteredHistory = applyFilters(history);
+          
+          // Update results count
+          if (resultsCount) {
+            resultsCount.textContent = `Showing ${filteredHistory.length} of ${history.length} URLs`;
+          }
+          
+          if (filteredHistory.length === 0) {
+            historyList.innerHTML = '<li class="text-slate-500 dark:text-slate-400 text-sm text-center py-4">No URLs found matching your criteria</li>';
+            updatePagination(0);
             return;
           }
+          
+          // Apply pagination
+          const startIndex = (currentPage - 1) * itemsPerPage;
+          const endIndex = startIndex + itemsPerPage;
+          const paginatedHistory = filteredHistory.slice(startIndex, endIndex);
+          
           historyList.innerHTML = '';
           
-          history.slice(0, 10).forEach(item => {
+          paginatedHistory.forEach(item => {
             const li = document.createElement('li');
-            li.className = 'flex items-center justify-between p-2 bg-white dark:bg-slate-800 rounded border border-slate-200 dark:border-slate-700';
+            li.className = 'flex items-center justify-between p-3 bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700 hover:shadow-sm transition-shadow';
+            
+            // Create type badge
+            const typeBadge = getTypeBadge(item.urlType);
+            
+            // Create security score indicator
+            const securityIndicator = item.securityScore ? 
+              `<span class="text-xs px-2 py-1 rounded-full ${getSecurityScoreClass(item.securityScore)}">${item.securityScore}/100</span>` : '';
+            
+            // Create parameters removed indicator
+            const paramsIndicator = item.paramsRemoved > 0 ? 
+              `<span class="text-xs text-green-600 dark:text-green-400">-${item.paramsRemoved} params</span>` : '';
             
             const timeAgo = getTimeAgo(item.timestamp);
             const domain = item.domain.replace('www.', '');
             
             li.innerHTML = `
-              <div class="flex-1 min-w-0">
-                <div class="text-xs text-slate-500 dark:text-slate-400 mb-1">${domain} • ${timeAgo}</div>
-                <div class="text-sm text-slate-700 dark:text-slate-300 truncate" title="${item.cleaned}">${item.cleaned}</div>
+              <div class="flex items-center gap-3 flex-1 min-w-0">
+                <input type="checkbox" class="history-checkbox w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" 
+                  data-url="${item.cleaned}" data-original="${item.original}" data-timestamp="${item.timestamp}">
+                <div class="flex-1 min-w-0">
+                  <div class="flex items-center gap-2 mb-1">
+                    <div class="text-slate-900 dark:text-white font-medium truncate">${item.cleaned}</div>
+                    ${typeBadge}
+                    ${securityIndicator}
+                  </div>
+                  <div class="text-xs text-slate-500 dark:text-slate-400 flex items-center gap-2">
+                    <span>${domain}</span>
+                    <span>•</span>
+                    <span>${timeAgo}</span>
+                    ${paramsIndicator}
+                  </div>
+                  ${item.title ? `<div class="text-xs text-slate-600 dark:text-slate-300 mt-1 truncate">${item.title}</div>` : ''}
+                </div>
               </div>
-              <div class="flex gap-1 ml-2">
+              <div class="flex items-center gap-1 ml-2">
                 <button onclick="copyToClipboard('${item.cleaned}')" class="p-1 text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200" title="Copy">
                   <span class="material-symbols-outlined text-sm">content_copy</span>
+                </button>
+                <button onclick="openUrl('${item.cleaned}')" class="p-1 text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200" title="Open">
+                  <span class="material-symbols-outlined text-sm">open_in_new</span>
                 </button>
                 <button onclick="removeFromHistory(${item.timestamp})" class="p-1 text-slate-500 hover:text-red-500 dark:text-slate-400 dark:hover:text-red-400" title="Remove">
                   <span class="material-symbols-outlined text-sm">close</span>
@@ -3210,8 +3579,175 @@ async function generateJWT(payload, secret = 'jwt-secret-key-256-bits-minimum') 
             
             historyList.appendChild(li);
           });
+          
+          updatePagination(filteredHistory.length);
+          
+          // Add event listeners for checkboxes
+          addCheckboxListeners();
         } catch (error) {
           console.error('Failed to update history display:', error);
+        }
+      }
+
+      // Apply filters to history
+      function applyFilters(history) {
+        let filtered = [...history];
+        
+        // Search filter
+        const searchTerm = document.getElementById('historySearch')?.value.toLowerCase() || '';
+        if (searchTerm) {
+          filtered = filtered.filter(item => 
+            item.cleaned.toLowerCase().includes(searchTerm) ||
+            item.original.toLowerCase().includes(searchTerm) ||
+            item.domain.toLowerCase().includes(searchTerm) ||
+            (item.title && item.title.toLowerCase().includes(searchTerm)) ||
+            (item.description && item.description.toLowerCase().includes(searchTerm))
+          );
+        }
+        
+        // Date filter
+        const dateFilter = document.getElementById('dateFilter')?.value || 'all';
+        if (dateFilter !== 'all') {
+          const now = Date.now();
+          const oneDay = 24 * 60 * 60 * 1000;
+          const oneWeek = 7 * oneDay;
+          const oneMonth = 30 * oneDay;
+          
+          filtered = filtered.filter(item => {
+            const itemDate = item.timestamp;
+            switch (dateFilter) {
+              case 'today':
+                return (now - itemDate) < oneDay;
+              case 'week':
+                return (now - itemDate) < oneWeek;
+              case 'month':
+                return (now - itemDate) < oneMonth;
+              case 'custom':
+                const startDate = document.getElementById('startDate')?.value;
+                const endDate = document.getElementById('endDate')?.value;
+                if (startDate && endDate) {
+                  const start = new Date(startDate).getTime();
+                  const end = new Date(endDate).getTime() + oneDay - 1;
+                  return itemDate >= start && itemDate <= end;
+                }
+                return true;
+              default:
+                return true;
+            }
+          });
+        }
+        
+        // Domain filter
+        const domainFilter = document.getElementById('domainFilter')?.value || 'all';
+        if (domainFilter !== 'all') {
+          filtered = filtered.filter(item => item.domain === domainFilter);
+        }
+        
+        // Type filter
+        const typeFilter = document.getElementById('typeFilter')?.value || 'all';
+        if (typeFilter !== 'all') {
+          filtered = filtered.filter(item => item.urlType === typeFilter);
+        }
+        
+        // Sort
+        const sortFilter = document.getElementById('sortFilter')?.value || 'newest';
+        filtered.sort((a, b) => {
+          switch (sortFilter) {
+            case 'newest':
+              return b.timestamp - a.timestamp;
+            case 'oldest':
+              return a.timestamp - b.timestamp;
+            case 'domain':
+              return a.domain.localeCompare(b.domain);
+            case 'domain-desc':
+              return b.domain.localeCompare(a.domain);
+            case 'security':
+              return (b.securityScore || 0) - (a.securityScore || 0);
+            default:
+              return b.timestamp - a.timestamp;
+          }
+        });
+        
+        return filtered;
+      }
+
+      // Helper functions
+      function getTypeBadge(type) {
+        const badges = {
+          social: '<span class="text-xs px-2 py-1 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300">Social</span>',
+          shortener: '<span class="text-xs px-2 py-1 rounded-full bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300">Shortener</span>',
+          ecommerce: '<span class="text-xs px-2 py-1 rounded-full bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300">E-commerce</span>',
+          news: '<span class="text-xs px-2 py-1 rounded-full bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300">News</span>',
+          other: '<span class="text-xs px-2 py-1 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300">Other</span>'
+        };
+        return badges[type] || badges.other;
+      }
+
+      function getSecurityScoreClass(score) {
+        if (score >= 80) return 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300';
+        if (score >= 60) return 'bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-300';
+        return 'bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300';
+      }
+
+      function updatePagination(totalItems) {
+        const pagination = document.getElementById('pagination');
+        if (!pagination) return;
+        
+        const totalPages = Math.ceil(totalItems / itemsPerPage);
+        
+        if (totalPages <= 1) {
+          pagination.innerHTML = '';
+          return;
+        }
+        
+        let paginationHTML = '';
+        
+        // Previous button
+        paginationHTML += `<button onclick="changePage(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''} 
+          class="px-3 py-1 text-sm rounded-lg ${currentPage === 1 ? 'bg-gray-100 dark:bg-gray-700 text-gray-400 cursor-not-allowed' : 'bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700'}">Previous</button>`;
+        
+        // Page numbers
+        for (let i = 1; i <= totalPages; i++) {
+          if (i === 1 || i === totalPages || (i >= currentPage - 2 && i <= currentPage + 2)) {
+            paginationHTML += `<button onclick="changePage(${i})" 
+              class="px-3 py-1 text-sm rounded-lg ${i === currentPage ? 'bg-blue-500 text-white' : 'bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700'}">${i}</button>`;
+          } else if (i === currentPage - 3 || i === currentPage + 3) {
+            paginationHTML += '<span class="px-2 text-slate-500">...</span>';
+          }
+        }
+        
+        // Next button
+        paginationHTML += `<button onclick="changePage(${currentPage + 1})" ${currentPage === totalPages ? 'disabled' : ''} 
+          class="px-3 py-1 text-sm rounded-lg ${currentPage === totalPages ? 'bg-gray-100 dark:bg-gray-700 text-gray-400 cursor-not-allowed' : 'bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700'}">Next</button>`;
+        
+        pagination.innerHTML = paginationHTML;
+      }
+
+      function changePage(page) {
+        const totalPages = Math.ceil(filteredHistory.length / itemsPerPage);
+        if (page >= 1 && page <= totalPages) {
+          currentPage = page;
+          updateHistoryDisplay();
+        }
+      }
+
+      function openUrl(url) {
+        window.open(url, '_blank');
+      }
+
+      // Update history item with analysis data
+      window.updateHistoryItem = function(timestamp, analysisData) {
+        try {
+          const history = JSON.parse(localStorage.getItem('linkaura_history') || '[]');
+          const itemIndex = history.findIndex(item => item.timestamp === timestamp);
+          
+          if (itemIndex !== -1) {
+            history[itemIndex] = { ...history[itemIndex], ...analysisData };
+            localStorage.setItem('linkaura_history', JSON.stringify(history));
+            updateHistoryDisplay();
+          }
+        } catch (error) {
+          console.error('Failed to update history item:', error);
         }
       }
 
@@ -3234,6 +3770,7 @@ async function generateJWT(payload, secret = 'jwt-secret-key-256-bits-minimum') 
           const filteredHistory = history.filter(item => item.timestamp !== timestamp);
           localStorage.setItem('linkaura_history', JSON.stringify(filteredHistory));
           updateHistoryDisplay();
+          window.updateHistoryButtonVisibility();
         } catch (error) {
           console.error('Failed to remove from history:', error);
         }
@@ -3511,6 +4048,7 @@ async function generateJWT(payload, secret = 'jwt-secret-key-256-bits-minimum') 
           localStorage.removeItem('linkaura_stats');
           hideStatisticsDashboard();
           updateHistoryDisplay();
+          window.updateHistoryButtonVisibility();
           alert('Statistics have been reset.');
         }
       }
@@ -3562,6 +4100,8 @@ async function generateJWT(payload, secret = 'jwt-secret-key-256-bits-minimum') 
         const shouldCheckSocialMedia = document.getElementById("socialDetectionCheck").checked;
         const shouldCheckGeographicAnalysis = document.getElementById("geographicAnalysisCheck").checked;
         const shouldCheckUrlValidation = document.getElementById("urlValidationCheck").checked;
+        const shouldCheckLanguageDetection = document.getElementById("languageDetectionCheck").checked;
+        const shouldCheckAccessibilityAnalysis = document.getElementById("accessibilityAnalysisCheck").checked;
 
         if (shouldCheckHTTPS && !isPrivacy) {
           checkHTTPS(cleaned);
@@ -3618,6 +4158,14 @@ async function generateJWT(payload, secret = 'jwt-secret-key-256-bits-minimum') 
           checkUrlValidation(cleaned);
         }
 
+        if (shouldCheckLanguageDetection) {
+          checkLanguageDetection(cleaned);
+        }
+
+        if (shouldCheckAccessibilityAnalysis) {
+          checkAccessibilityAnalysis(cleaned);
+        }
+
         // Check for shortened URLs if enabled
         const shouldCheckShortener = document.getElementById("shortenerDetectionCheck").checked;
         if (shouldCheckShortener) {
@@ -3667,8 +4215,17 @@ async function generateJWT(payload, secret = 'jwt-secret-key-256-bits-minimum') 
           if(qrWrap) qrWrap.classList.remove("hidden");
           renderQR(cleaned);
 
-          // Save to history
-          saveToHistory(raw, cleaned);
+          // Save to history with analysis data
+          const analysisData = {
+            securityScore: null, // Will be updated after security checks
+            language: null, // Will be updated after language detection
+            accessibilityScore: null, // Will be updated after accessibility analysis
+            isShortener: false, // Will be updated after shortener detection
+            expandedUrl: null, // Will be updated after URL expansion
+            title: null, // Will be updated after page analysis
+            description: null // Will be updated after page analysis
+          };
+          saveToHistory(raw, cleaned, analysisData);
 
           // Run unlimited security checks after URL is cleaned
           await runUnlimitedSecurityChecks(cleaned, preserve);
@@ -3691,12 +4248,446 @@ async function generateJWT(payload, secret = 'jwt-secret-key-256-bits-minimum') 
           if (confirm('Are you sure you want to clear all history?')) {
             localStorage.removeItem('linkaura_history');
             updateHistoryDisplay();
+            window.updateHistoryButtonVisibility();
           }
         });
       }
       
       if (exportHistoryBtn) {
         exportHistoryBtn.addEventListener('click', exportHistory);
+      }
+
+      // Search and Filter Event Listeners
+      const historySearch = document.getElementById('historySearch');
+      const dateFilter = document.getElementById('dateFilter');
+      const domainFilter = document.getElementById('domainFilter');
+      const typeFilter = document.getElementById('typeFilter');
+      const sortFilter = document.getElementById('sortFilter');
+      const clearFiltersBtn = document.getElementById('clearFiltersBtn');
+      const customDateRange = document.getElementById('customDateRange');
+      const startDate = document.getElementById('startDate');
+      const endDate = document.getElementById('endDate');
+
+      // Search functionality
+      if (historySearch) {
+        let searchTimeout;
+        historySearch.addEventListener('input', () => {
+          clearTimeout(searchTimeout);
+          searchTimeout = setTimeout(() => {
+            currentPage = 1;
+            updateHistoryDisplay();
+          }, 300);
+        });
+      }
+
+      // Date filter
+      if (dateFilter) {
+        dateFilter.addEventListener('change', () => {
+          currentPage = 1;
+          if (dateFilter.value === 'custom') {
+            customDateRange.classList.remove('hidden');
+          } else {
+            customDateRange.classList.add('hidden');
+          }
+          updateHistoryDisplay();
+        });
+      }
+
+      // Custom date range
+      if (startDate && endDate) {
+        [startDate, endDate].forEach(input => {
+          input.addEventListener('change', () => {
+            if (dateFilter.value === 'custom') {
+              currentPage = 1;
+              updateHistoryDisplay();
+            }
+          });
+        });
+      }
+
+      // Domain filter
+      if (domainFilter) {
+        domainFilter.addEventListener('change', () => {
+          currentPage = 1;
+          updateHistoryDisplay();
+        });
+      }
+
+      // Type filter
+      if (typeFilter) {
+        typeFilter.addEventListener('change', () => {
+          currentPage = 1;
+          updateHistoryDisplay();
+        });
+      }
+
+      // Sort filter
+      if (sortFilter) {
+        sortFilter.addEventListener('change', () => {
+          currentPage = 1;
+          updateHistoryDisplay();
+        });
+      }
+
+      // Clear filters
+      if (clearFiltersBtn) {
+        clearFiltersBtn.addEventListener('click', () => {
+          if (historySearch) historySearch.value = '';
+          if (dateFilter) dateFilter.value = 'all';
+          if (domainFilter) domainFilter.value = 'all';
+          if (typeFilter) typeFilter.value = 'all';
+          if (sortFilter) sortFilter.value = 'newest';
+          if (customDateRange) customDateRange.classList.add('hidden');
+          if (startDate) startDate.value = '';
+          if (endDate) endDate.value = '';
+          currentPage = 1;
+          updateHistoryDisplay();
+        });
+      }
+
+      // Populate domain filter
+      function populateDomainFilter() {
+        if (!domainFilter) return;
+        
+        const history = JSON.parse(localStorage.getItem('linkaura_history') || '[]');
+        const domains = [...new Set(history.map(item => item.domain))].sort();
+        
+        // Clear existing options except "All Domains"
+        domainFilter.innerHTML = '<option value="all">All Domains</option>';
+        
+        domains.forEach(domain => {
+          const option = document.createElement('option');
+          option.value = domain;
+          option.textContent = domain.replace('www.', '');
+          domainFilter.appendChild(option);
+        });
+      }
+
+      // History toggle functionality
+      window.updateHistoryButtonVisibility = function() {
+        const history = JSON.parse(localStorage.getItem('linkaura_history') || '[]');
+        const btn = document.getElementById('historyToggleBtn');
+        const historyWrap = document.getElementById('historyWrap');
+        
+        if (btn) {
+          if (history.length > 0) {
+            btn.classList.remove('hidden');
+            // Keep history section hidden by default - only show when button is clicked
+            if (historyWrap) {
+              historyWrap.classList.add('hidden');
+              historyWrap.style.setProperty('display', 'none', 'important');
+              historyWrap.setAttribute('data-history-hidden', 'true');
+              btn.innerHTML = '<span class="material-symbols-outlined text-base">history</span><span>View URL History</span>';
+            }
+          } else {
+            btn.classList.add('hidden');
+            // Hide the history section if no entries
+            if (historyWrap) {
+              historyWrap.classList.add('hidden');
+              historyWrap.style.setProperty('display', 'none', 'important');
+              historyWrap.setAttribute('data-history-hidden', 'true');
+              btn.innerHTML = '<span class="material-symbols-outlined text-base">history</span><span>View URL History</span>';
+            }
+          }
+        }
+      }
+      
+      // Set up history toggle event listener after DOM is ready
+      let historyToggleSetup = false;
+      window.setupHistoryToggle = function() {
+        if (historyToggleSetup) return; // Prevent multiple setups
+        historyToggleSetup = true;
+        
+        const historyToggleBtn = document.getElementById('historyToggleBtn');
+        const historyWrap = document.getElementById('historyWrap');
+        
+        if (historyToggleBtn && historyWrap) {
+          // Ensure history section starts hidden
+          historyWrap.classList.add('hidden');
+          historyWrap.style.setProperty('display', 'none', 'important');
+          historyWrap.setAttribute('data-history-hidden', 'true');
+          
+          // Ensure main form section (parent) is always visible
+          const mainFormSection = document.getElementById('mainFormSection');
+          if (mainFormSection) {
+            mainFormSection.classList.remove('hidden');
+            mainFormSection.style.setProperty('display', 'block', 'important');
+          }
+          
+          // Remove any existing event listeners by cloning
+          const newBtn = historyToggleBtn.cloneNode(true);
+          historyToggleBtn.parentNode.replaceChild(newBtn, historyToggleBtn);
+          
+          // Get fresh reference
+          const btn = document.getElementById('historyToggleBtn');
+          const wrap = document.getElementById('historyWrap');
+          
+          // Ensure wrap is still hidden after cloning
+          if (wrap) {
+            wrap.classList.add('hidden');
+            wrap.style.setProperty('display', 'none', 'important');
+            wrap.setAttribute('data-history-hidden', 'true');
+          }
+          
+          btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            // Check current state - use data attribute as source of truth
+            const currentWrap = document.getElementById('historyWrap');
+            if (!currentWrap) {
+              console.error('historyWrap element not found!');
+              return;
+            }
+            
+            // Use data attribute to track visibility state reliably
+            const isCurrentlyHidden = currentWrap.getAttribute('data-history-hidden') === 'true' ||
+                                     currentWrap.classList.contains('hidden') ||
+                                     window.getComputedStyle(currentWrap).display === 'none';
+            
+            if (isCurrentlyHidden) {
+              // Show history section AND Clean URL result section
+              // First ensure parent is visible (should always be, but check anyway)
+              const parent = currentWrap.parentElement;
+              if (parent) {
+                const parentDisplay = window.getComputedStyle(parent).display;
+                if (parentDisplay === 'none') {
+                  parent.classList.remove('hidden');
+                  parent.style.setProperty('display', 'block', 'important');
+                }
+              }
+              
+              // Show history section
+              currentWrap.classList.remove('hidden');
+              currentWrap.setAttribute('data-history-hidden', 'false');
+              currentWrap.style.cssText = 'display: block !important; visibility: visible !important; opacity: 1 !important; height: auto !important; overflow: visible !important;';
+              
+              // Show Clean URL result section
+              const resultWrap = document.getElementById('resultWrap');
+              if (resultWrap) {
+                resultWrap.classList.remove('hidden');
+                resultWrap.style.setProperty('display', 'block', 'important');
+              }
+              
+              btn.innerHTML = '<span class="material-symbols-outlined text-base">history</span><span>Hide URL History</span>';
+            } else {
+              // Hide history section AND Clean URL result section
+              currentWrap.classList.add('hidden');
+              currentWrap.setAttribute('data-history-hidden', 'true');
+              currentWrap.style.cssText = 'transition: none !important; display: none !important; visibility: hidden !important; opacity: 0 !important; height: 0 !important; overflow: hidden !important; margin: 0 !important; padding: 0 !important;';
+              
+              // Hide Clean URL result section
+              const resultWrap = document.getElementById('resultWrap');
+              if (resultWrap) {
+                resultWrap.classList.add('hidden');
+                resultWrap.style.setProperty('display', 'none', 'important');
+              }
+              
+              btn.innerHTML = '<span class="material-symbols-outlined text-base">history</span><span>View URL History</span>';
+            }
+          });
+        }
+      }
+      
+      // Call the function with delay to ensure DOM is ready
+      setTimeout(() => {
+        window.setupHistoryToggle();
+      }, 500);
+
+      // Selection functionality
+      let selectedUrls = new Set();
+      
+      function updateSelectionUI() {
+        const selectionActions = document.getElementById('selectionActions');
+        const selectedCount = document.getElementById('selectedCount');
+        
+        if (selectedCount) {
+          selectedCount.textContent = selectedUrls.size;
+        }
+        
+        if (selectionActions) {
+          if (selectedUrls.size > 0) {
+            selectionActions.classList.remove('hidden');
+          } else {
+            selectionActions.classList.add('hidden');
+          }
+        }
+      }
+
+      function handleCheckboxChange(checkbox) {
+        const url = checkbox.dataset.url;
+        const timestamp = parseInt(checkbox.dataset.timestamp);
+        
+        if (checkbox.checked) {
+          selectedUrls.add({ url, timestamp });
+        } else {
+          selectedUrls.delete({ url, timestamp });
+        }
+        
+        updateSelectionUI();
+      }
+
+      // Add event listeners for checkboxes
+      function addCheckboxListeners() {
+        const checkboxes = document.querySelectorAll('.history-checkbox');
+        checkboxes.forEach(checkbox => {
+          checkbox.addEventListener('change', () => handleCheckboxChange(checkbox));
+        });
+      }
+
+      // Generate QR for selected URLs
+      const generateQRBtn = document.getElementById('generateQRBtn');
+      if (generateQRBtn) {
+        generateQRBtn.addEventListener('click', () => {
+          if (selectedUrls.size === 0) return;
+          
+          if (selectedUrls.size === 1) {
+            // Single URL - generate QR directly
+            const selectedUrl = Array.from(selectedUrls)[0];
+            generateQRForUrl(selectedUrl.url);
+          } else {
+            // Multiple URLs - show selection dialog
+            showQRSelectionDialog();
+          }
+        });
+      }
+
+      // Re-clean selected URLs
+      const recleanBtn = document.getElementById('recleanBtn');
+      if (recleanBtn) {
+        recleanBtn.addEventListener('click', () => {
+          if (selectedUrls.size === 0) return;
+          
+          if (selectedUrls.size === 1) {
+            // Single URL - add to input and clean
+            const selectedUrl = Array.from(selectedUrls)[0];
+            addUrlToInput(selectedUrl.url);
+          } else {
+            // Multiple URLs - show selection dialog
+            showRecleanSelectionDialog();
+          }
+        });
+      }
+
+      // Clear selection
+      const clearSelectionBtn = document.getElementById('clearSelectionBtn');
+      if (clearSelectionBtn) {
+        clearSelectionBtn.addEventListener('click', () => {
+          selectedUrls.clear();
+          document.querySelectorAll('.history-checkbox').forEach(cb => cb.checked = false);
+          updateSelectionUI();
+        });
+      }
+
+      function generateQRForUrl(url) {
+        const qrWrap = document.getElementById('qrWrap');
+        const qrcodeEl = document.getElementById('qrcode');
+        
+        if (qrWrap && qrcodeEl) {
+          qrWrap.classList.remove('hidden');
+          qrcodeEl.innerHTML = '';
+          
+          // Generate QR code
+          const qr = new QRCode(qrcodeEl, {
+            text: url,
+            width: 200,
+            height: 200,
+            colorDark: '#000000',
+            colorLight: '#ffffff',
+            correctLevel: QRCode.CorrectLevel.H
+          });
+        }
+      }
+
+      function addUrlToInput(url) {
+        const input = document.getElementById('urlInput');
+        if (input) {
+          input.value = url;
+          input.focus();
+          // Trigger the clean button
+          const cleanBtn = document.getElementById('cleanBtn');
+          if (cleanBtn) {
+            cleanBtn.click();
+          }
+        }
+      }
+
+      function showQRSelectionDialog() {
+        const urls = Array.from(selectedUrls).map(item => item.url);
+        const urlList = urls.map((url, index) => 
+          `<div class="flex items-center gap-2 p-2 hover:bg-slate-100 dark:hover:bg-slate-700 rounded">
+            <input type="radio" name="qrUrl" value="${url}" id="qrUrl${index}" ${index === 0 ? 'checked' : ''}>
+            <label for="qrUrl${index}" class="text-sm text-slate-700 dark:text-slate-300 truncate">${url}</label>
+          </div>`
+        ).join('');
+        
+        const dialog = document.createElement('div');
+        dialog.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
+        dialog.innerHTML = `
+          <div class="bg-white dark:bg-slate-800 rounded-lg p-6 max-w-md w-full mx-4">
+            <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-4">Select URL for QR Code</h3>
+            <div class="space-y-2 max-h-60 overflow-y-auto mb-4">
+              ${urlList}
+            </div>
+            <div class="flex gap-2 justify-end">
+              <button id="cancelQR" class="px-4 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-700 rounded">Cancel</button>
+              <button id="generateQR" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Generate QR</button>
+            </div>
+          </div>
+        `;
+        
+        document.body.appendChild(dialog);
+        
+        document.getElementById('cancelQR').addEventListener('click', () => {
+          document.body.removeChild(dialog);
+        });
+        
+        document.getElementById('generateQR').addEventListener('click', () => {
+          const selectedUrl = document.querySelector('input[name="qrUrl"]:checked')?.value;
+          if (selectedUrl) {
+            generateQRForUrl(selectedUrl);
+            document.body.removeChild(dialog);
+          }
+        });
+      }
+
+      function showRecleanSelectionDialog() {
+        const urls = Array.from(selectedUrls).map(item => item.url);
+        const urlList = urls.map((url, index) => 
+          `<div class="flex items-center gap-2 p-2 hover:bg-slate-100 dark:hover:bg-slate-700 rounded">
+            <input type="radio" name="recleanUrl" value="${url}" id="recleanUrl${index}" ${index === 0 ? 'checked' : ''}>
+            <label for="recleanUrl${index}" class="text-sm text-slate-700 dark:text-slate-300 truncate">${url}</label>
+          </div>`
+        ).join('');
+        
+        const dialog = document.createElement('div');
+        dialog.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
+        dialog.innerHTML = `
+          <div class="bg-white dark:bg-slate-800 rounded-lg p-6 max-w-md w-full mx-4">
+            <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-4">Select URL to Re-clean</h3>
+            <div class="space-y-2 max-h-60 overflow-y-auto mb-4">
+              ${urlList}
+            </div>
+            <div class="flex gap-2 justify-end">
+              <button id="cancelReclean" class="px-4 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-700 rounded">Cancel</button>
+              <button id="recleanUrl" class="px-4 py-2 bg-orange-500 text-white rounded hover:bg-orange-600">Re-clean</button>
+            </div>
+          </div>
+        `;
+        
+        document.body.appendChild(dialog);
+        
+        document.getElementById('cancelReclean').addEventListener('click', () => {
+          document.body.removeChild(dialog);
+        });
+        
+        document.getElementById('recleanUrl').addEventListener('click', () => {
+          const selectedUrl = document.querySelector('input[name="recleanUrl"]:checked')?.value;
+          if (selectedUrl) {
+            addUrlToInput(selectedUrl);
+            document.body.removeChild(dialog);
+          }
+        });
       }
 
       // Statistics Dashboard
@@ -4141,13 +5132,16 @@ async function generateJWT(payload, secret = 'jwt-secret-key-256-bits-minimum') 
     document.body.appendChild(statusIndicator);
 
     // Function to check if any API options are selected
+    // Note: Language Detection and Accessibility Analysis require API for CORS bypass
     function isAnyApiOptionSelected() {
       const safetyApiCheck = document.getElementById("safetyApiCheck")?.checked || false;
       const sslApiCheck = document.getElementById("sslApiCheck")?.checked || false;
       const webSecScanCheck = document.getElementById("webSecScanCheck")?.checked || false;
+      const languageDetectionCheck = document.getElementById("languageDetectionCheck")?.checked || false;
+      const accessibilityAnalysisCheck = document.getElementById("accessibilityAnalysisCheck")?.checked || false;
       const shortenerDetectionCheck = document.getElementById("shortenerDetectionCheck")?.checked || false;
       const geographicAnalysisCheck = document.getElementById("geographicAnalysisCheck")?.checked || false;
-      return safetyApiCheck || sslApiCheck || webSecScanCheck || shortenerDetectionCheck || geographicAnalysisCheck;
+      return safetyApiCheck || sslApiCheck || webSecScanCheck || languageDetectionCheck || accessibilityAnalysisCheck || shortenerDetectionCheck || geographicAnalysisCheck;
     }
 
     // Function to update API status visibility
@@ -4621,13 +5615,46 @@ async function generateJWT(payload, secret = 'jwt-secret-key-256-bits-minimum') 
         if (typeof window.updateHistoryDisplay === 'function') {
           window.updateHistoryDisplay();
         }
+        if (typeof populateDomainFilter === 'function') {
+          populateDomainFilter();
+        }
+        if (typeof window.updateHistoryButtonVisibility === 'function') {
+          window.updateHistoryButtonVisibility();
+        }
       }, 100);
+
+      // Also check immediately when DOM is ready
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+          if (typeof window.updateHistoryButtonVisibility === 'function') {
+            window.updateHistoryButtonVisibility();
+          }
+          if (typeof setupHistoryToggle === 'function') {
+            setupHistoryToggle();
+          }
+        });
+      } else {
+        // DOM is already ready
+        if (typeof window.updateHistoryButtonVisibility === 'function') {
+          window.updateHistoryButtonVisibility();
+        }
+      }
     });
 
     // Handle page visibility changes (refresh token when user returns)
     document.addEventListener('visibilitychange', async () => {
       if (!document.hidden && isAnyApiOptionSelected() && (!jwtToken || apiConnectionStatus === 'disconnected')) {
         await getToken();
+      }
+    });
+
+    // Also check history button visibility when window loads
+    window.addEventListener('load', () => {
+      if (typeof window.updateHistoryButtonVisibility === 'function') {
+        window.updateHistoryButtonVisibility();
+      }
+      if (typeof setupHistoryToggle === 'function') {
+        setupHistoryToggle();
       }
     });
   </script>
