@@ -20,6 +20,8 @@ A powerful, privacy-focused tool that removes tracking parameters from URLs whil
 - **SSL Certificate Validation**: Certificate health and security grading
 - **AI Website Security Scan**: Comprehensive AI-powered security analysis
 - **Local Security Features**: URL structure analysis, expiration checking, social media detection
+- **Language Detection**: Automatic detection of web page language
+- **Accessibility Analysis**: WCAG compliance testing and accessibility scoring
 
 ### 🚀 Advanced Features
 - **Bulk URL Processing**: Clean multiple URLs at once
@@ -81,6 +83,8 @@ LinkAura uses a Cloudflare Worker as a proxy to handle CORS issues and provide u
 - **WebSecScan**: AI-powered security scanning via n8n workflows
 - **Domain Age**: WHOIS-based domain analysis
 - **Malware Check**: Multi-engine malware detection
+- **Language Detection**: Content language identification
+- **Accessibility Analysis**: WCAG compliance testing
 
 ## 📊 Usage Statistics
 

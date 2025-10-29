@@ -8,8 +8,8 @@
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
   <title>LinkAura – Free URL Cleaner | Remove Tracking Parameters | Privacy Tool</title>
-  <meta name="description" content="LinkAura removes tracking parameters (utm_*, fbclid, gclid) from URLs instantly. Free URL cleaner with unlimited local features: HTTPS/SSL checks, URL analysis, link expiration, social media detection, URL shortener detection, Geographic & CDN analysis. Premium security: Safety API, SSL Certificate API, AI Website Security Scan. No ads, no tracking, privacy-first." />
-  <meta name="keywords" content="URL cleaner, remove tracking parameters, utm_ remover, fbclid cleaner, gclid remover, privacy tool, URL sanitizer, link cleaner, free URL cleaner, unlimited local features, HTTPS SSL checker, URL analysis, link expiration detector, social media detection, URL shortener detector, geographic analysis, CDN detection, server location, hosting analysis, malware checker, SSL certificate validator, safety API, AI security scan, website security, threat detection, no ads, ad-free, privacy-first">
+  <meta name="description" content="LinkAura removes tracking parameters (utm_*, fbclid, gclid) from URLs instantly. Free URL cleaner with unlimited local features: HTTPS/SSL checks, URL analysis, link expiration, social media detection, URL shortener detection, Geographic & CDN analysis, language detection, accessibility testing. Premium security: Safety API, SSL Certificate API, AI Website Security Scan. No ads, no tracking, privacy-first." />
+  <meta name="keywords" content="URL cleaner, remove tracking parameters, utm_ remover, fbclid cleaner, gclid remover, privacy tool, URL sanitizer, link cleaner, free URL cleaner, unlimited local features, HTTPS SSL checker, URL analysis, link expiration detector, social media detection, URL shortener detector, geographic analysis, CDN detection, language detection, accessibility testing, WCAG compliance, server location, hosting analysis, malware checker, SSL certificate validator, safety API, AI security scan, website security, threat detection, no ads, ad-free, privacy-first">
   <meta name="author" content="LinkAura Team" />
   <meta name="robots" content="index, follow" />
   <meta name="googlebot" content="index, follow" />
@@ -25,14 +25,14 @@
   <meta name="theme-color" content="#193ce6">
 
   <meta property="og:title" content="LinkAura – Free URL Cleaner | Privacy-Friendly Tool" />
-  <meta property="og:description" content="LinkAura removes tracking parameters (utm_*, fbclid, gclid) from URLs instantly. Free URL cleaner with unlimited local features: HTTPS/SSL checks, URL analysis, link expiration, social media detection, URL shortener detection, Geographic & CDN analysis. Premium security: Safety API, SSL Certificate API, AI Website Security Scan. No ads, no tracking, privacy-first." />
+  <meta property="og:description" content="LinkAura removes tracking parameters (utm_*, fbclid, gclid) from URLs instantly. Free URL cleaner with unlimited local features: HTTPS/SSL checks, URL analysis, link expiration, social media detection, URL shortener detection, Geographic & CDN analysis, language detection, accessibility testing. Premium security: Safety API, SSL Certificate API, AI Website Security Scan. No ads, no tracking, privacy-first." />
   <meta property="og:url" content="https://linkaura.blankburn.online/" />
   <meta property="og:image" content="https://linkaura.blankburn.online/images/cleanlink-icon.png" />
   <meta property="og:type" content="website" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="LinkAura – Free URL Cleaner | Privacy-Friendly Tool" />
-  <meta name="twitter:description" content="LinkAura removes tracking parameters (utm_*, fbclid, gclid) from URLs instantly. Free URL cleaner with unlimited local features: HTTPS/SSL checks, URL analysis, link expiration, social media detection, URL shortener detection, Geographic & CDN analysis. Premium security: Safety API, SSL Certificate API, AI Website Security Scan. No ads, no tracking, privacy-first." />
+  <meta name="twitter:description" content="LinkAura removes tracking parameters (utm_*, fbclid, gclid) from URLs instantly. Free URL cleaner with unlimited local features: HTTPS/SSL checks, URL analysis, link expiration, social media detection, URL shortener detection, Geographic & CDN analysis, language detection, accessibility testing. Premium security: Safety API, SSL Certificate API, AI Website Security Scan. No ads, no tracking, privacy-first." />
   <meta name="twitter:image" content="https://linkaura.blankburn.online/images/cleanlink-icon.png" />
 
   <script type="application/ld+json">
@@ -41,7 +41,7 @@
     "@type": "SoftwareApplication",
     "name": "LinkAura",
     "url": "https://linkaura.blankburn.online",
-    "description": "A privacy-friendly URL cleaner that removes tracking parameters with unlimited free features: HTTPS/SSL checks, URL analysis, link expiration, social media detection, URL shortener detection, Geographic & CDN analysis. Premium security features: Safety API, SSL Certificate API, AI Website Security Scan. No ads, no tracking, privacy-first.",
+    "description": "A privacy-friendly URL cleaner that removes tracking parameters with unlimited free features: HTTPS/SSL checks, URL analysis, link expiration, social media detection, URL shortener detection, Geographic & CDN analysis, language detection, accessibility testing. Premium security features: Safety API, SSL Certificate API, AI Website Security Scan. No ads, no tracking, privacy-first.",
     "applicationCategory": "Utility",
     "operatingSystem": "Web",
     "browserRequirements": "Requires JavaScript. Requires HTML5.",
@@ -67,6 +67,8 @@
       "URL validation and repair - FREE",
       "URL shortener detection and expansion - FREE",
       "Geographic & CDN analysis with interactive maps - FREE",
+      "Language detection and analysis - FREE",
+      "Accessibility compliance testing - FREE",
       "QR code generation - FREE",
       "URL history management - FREE",
       "Statistics dashboard - FREE",
@@ -301,6 +303,14 @@
             <input id="shortenerDetectionCheck" type="checkbox" class="rounded border-slate-600">
             <span>Shortened URL Detection & Expansion</span>
           </label>
+          <label class="flex items-center gap-2 text-slate-700 dark:text-slate-400 text-sm cursor-pointer transition-colors">
+            <input id="languageDetectionCheck" type="checkbox" class="rounded border-slate-600">
+            <span>Language Detection</span>
+          </label>
+          <label class="flex items-center gap-2 text-slate-700 dark:text-slate-400 text-sm cursor-pointer transition-colors">
+            <input id="accessibilityAnalysisCheck" type="checkbox" class="rounded border-slate-600">
+            <span>Accessibility Analysis</span>
+          </label>
           
           <!-- Premium API Features -->
           <div class="w-full border-t border-slate-300 dark:border-slate-700 my-2"></div>
@@ -475,6 +485,22 @@
         <div id="geographicApiStatus" class="hidden mt-3 flex items-center gap-2 text-sm">
           <span id="geographicApiIcon" class="material-symbols-outlined text-base"></span>
           <span id="geographicApiText" class="text-slate-700 dark:text-slate-300 transition-colors"></span>
+        </div>
+
+        <div id="languageDetectionStatus" class="hidden mt-3 flex items-center gap-2 text-sm">
+          <span id="languageDetectionIcon" class="material-symbols-outlined text-base"></span>
+          <span id="languageDetectionText" class="text-slate-700 dark:text-slate-300 transition-colors"></span>
+        </div>
+
+        <div id="accessibilityAnalysisStatus" class="hidden mt-3">
+          <div class="flex items-center gap-2 text-sm mb-2">
+            <span id="accessibilityAnalysisIcon" class="material-symbols-outlined text-base"></span>
+            <span id="accessibilityAnalysisText" class="text-slate-700 dark:text-slate-300 transition-colors"></span>
+          </div>
+          <div id="accessibilityAnalysisDetails" class="hidden bg-slate-50 dark:bg-slate-800/60 border border-slate-300 dark:border-slate-700 rounded-lg p-3 text-sm">
+            <div id="accessibilityScoreInfo" class="mb-2"></div>
+            <div id="accessibilityIssuesInfo"></div>
+          </div>
         </div>
 
         <div id="geographicAnalysisStatus" class="hidden mt-3">
@@ -686,7 +712,7 @@
               </ul>
             </div>
             
-            <div class="bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-950/20 dark:to-cyan-950/20 p-6 rounded-xl border border-blue-200 dark:border-blue-800 transition-colors duration-300">
+            <div class="group bg-white dark:bg-slate-800/50 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/10 hover:-translate-y-1 hover:border-blue-300 dark:hover:border-blue-600">
               <div class="flex items-center justify-center w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-600 shadow-lg shadow-blue-500/25">
                 <span class="material-symbols-outlined text-white text-2xl">security</span>
               </div>
@@ -946,6 +972,8 @@
               <li>• Social media platform detection</li>
               <li>• URL shortener detection (with API)</li>
               <li>• Geographic & CDN analysis (with API)</li>
+              <li>• Language detection and analysis</li>
+              <li>• Accessibility compliance testing</li>
               <li>• QR code generation and history</li>
             </ul>
           </div>
@@ -1524,7 +1552,7 @@
         }
         
         // Handle API option checkbox changes
-        if (e.target.id === "safetyApiCheck" || e.target.id === "sslApiCheck" || e.target.id === "webSecScanCheck" || e.target.id === "shortenerDetectionCheck" || e.target.id === "geographicAnalysisCheck") {
+        if (e.target.id === "safetyApiCheck" || e.target.id === "sslApiCheck" || e.target.id === "webSecScanCheck" || e.target.id === "shortenerDetectionCheck" || e.target.id === "geographicAnalysisCheck" || e.target.id === "languageDetectionCheck" || e.target.id === "accessibilityAnalysisCheck") {
           updateApiStatusVisibility();
           // If API options are selected, try to get token
           if (isAnyApiOptionSelected()) {
@@ -2516,6 +2544,160 @@ async function generateJWT(payload, secret = 'jwt-secret-key-256-bits-minimum') 
           urlAnalysisIconEl.textContent = "error";
           urlAnalysisIconEl.className = "material-symbols-outlined text-base text-red-500 dark:text-red-400";
           urlAnalysisTextEl.textContent = "URL analysis failed";
+        }
+      };
+
+      // Language Detection
+      window.checkLanguageDetection = async function(url) {
+        const languageDetectionStatusEl = document.getElementById("languageDetectionStatus");
+        const languageDetectionIconEl = document.getElementById("languageDetectionIcon");
+        const languageDetectionTextEl = document.getElementById("languageDetectionText");
+
+        if (!languageDetectionStatusEl) return;
+
+        const isPrivacy = document.getElementById("privacyToggle")?.checked;
+        if (isPrivacy) {
+          languageDetectionStatusEl.classList.remove("hidden");
+          languageDetectionIconEl.textContent = "privacy_tip";
+          languageDetectionIconEl.className = "material-symbols-outlined text-base text-amber-500 dark:text-amber-400";
+          languageDetectionTextEl.textContent = "Privacy mode active";
+          return;
+        }
+
+        try {
+          languageDetectionStatusEl.classList.remove("hidden");
+          languageDetectionIconEl.textContent = "schedule";
+          languageDetectionIconEl.className = "material-symbols-outlined text-base text-blue-500 dark:text-blue-400";
+          languageDetectionTextEl.textContent = "Detecting language...";
+
+          // Use LinkAura API to fetch and analyze page (bypasses CORS)
+          const result = await callLinkAuraAPI("language-detection", { url: url });
+
+          if (result.error || result.offline) {
+            throw new Error(result.error || "API unavailable");
+          }
+
+          const detectedLang = result.language || result.detectedLang || 'Unknown';
+          const confidence = result.confidence || 'Medium';
+
+          languageDetectionIconEl.textContent = "translate";
+          languageDetectionIconEl.className = "material-symbols-outlined text-base text-blue-500 dark:text-blue-400";
+          languageDetectionTextEl.innerHTML = `Language: <strong>${detectedLang}</strong> (${confidence} confidence)`;
+
+        } catch (error) {
+          console.error("Language detection error:", error);
+          languageDetectionStatusEl.classList.remove("hidden");
+          languageDetectionIconEl.textContent = "help";
+          languageDetectionIconEl.className = "material-symbols-outlined text-base text-slate-500 dark:text-slate-400";
+          languageDetectionTextEl.textContent = "Language detection unavailable";
+        }
+      };
+
+      // Accessibility Analysis
+      window.checkAccessibilityAnalysis = async function(url) {
+        const accessibilityAnalysisStatusEl = document.getElementById("accessibilityAnalysisStatus");
+        const accessibilityAnalysisIconEl = document.getElementById("accessibilityAnalysisIcon");
+        const accessibilityAnalysisTextEl = document.getElementById("accessibilityAnalysisText");
+        const accessibilityAnalysisDetailsEl = document.getElementById("accessibilityAnalysisDetails");
+        const accessibilityScoreInfoEl = document.getElementById("accessibilityScoreInfo");
+        const accessibilityIssuesInfoEl = document.getElementById("accessibilityIssuesInfo");
+
+        if (!accessibilityAnalysisStatusEl) return;
+
+        const isPrivacy = document.getElementById("privacyToggle")?.checked;
+        if (isPrivacy) {
+          accessibilityAnalysisStatusEl.classList.remove("hidden");
+          accessibilityAnalysisIconEl.textContent = "privacy_tip";
+          accessibilityAnalysisIconEl.className = "material-symbols-outlined text-base text-amber-500 dark:text-amber-400";
+          accessibilityAnalysisTextEl.textContent = "Privacy mode active";
+          return;
+        }
+
+        try {
+          accessibilityAnalysisStatusEl.classList.remove("hidden");
+          accessibilityAnalysisIconEl.textContent = "schedule";
+          accessibilityAnalysisIconEl.className = "material-symbols-outlined text-base text-blue-500 dark:text-blue-400";
+          accessibilityAnalysisTextEl.textContent = "Analyzing accessibility...";
+
+          // Use LinkAura API to fetch and analyze page (bypasses CORS)
+          const result = await callLinkAuraAPI("accessibility-analysis", { url: url });
+
+          if (result.error || result.offline) {
+            throw new Error(result.error || "API unavailable");
+          }
+
+          // Use API results
+          let score = result.score || 100;
+          let issues = result.issues || [];
+          let passed = result.passed || [];
+          let readabilityLevel = result.readability || 'Good';
+          
+          // Ensure score doesn't go below 0
+          score = Math.max(0, score);
+          
+          // Determine overall rating
+          let rating = 'Excellent';
+          let ratingColor = 'text-green-500 dark:text-green-400';
+          let ratingIcon = 'verified';
+          
+          if (score < 50) {
+            rating = 'Poor';
+            ratingColor = 'text-red-500 dark:text-red-400';
+            ratingIcon = 'error';
+          } else if (score < 70) {
+            rating = 'Fair';
+            ratingColor = 'text-orange-500 dark:text-orange-400';
+            ratingIcon = 'warning';
+          } else if (score < 85) {
+            rating = 'Good';
+            ratingColor = 'text-blue-500 dark:text-blue-400';
+            ratingIcon = 'info';
+          }
+          
+          // Update UI
+          accessibilityAnalysisIconEl.textContent = ratingIcon;
+          accessibilityAnalysisIconEl.className = `material-symbols-outlined text-base ${ratingColor}`;
+          accessibilityAnalysisTextEl.innerHTML = `Accessibility: <strong>${rating}</strong> (Score: ${score}/100) <span class="text-xs cursor-pointer" onclick="document.getElementById('accessibilityAnalysisDetails').classList.toggle('hidden')">▼ Details</span>`;
+          
+          // Build details
+          let detailsHTML = `
+            <div class="mb-3">
+              <div class="text-slate-700 dark:text-slate-300 font-semibold mb-1">Score: ${score}/100 (${rating})</div>
+              <div class="text-slate-600 dark:text-slate-400 text-xs mb-2">Readability: ${readabilityLevel}</div>
+            </div>
+          `;
+          
+          if (issues.length > 0) {
+            detailsHTML += `
+              <div class="mb-3">
+                <div class="text-red-600 dark:text-red-400 font-semibold mb-1 text-xs">Issues Found (${issues.length}):</div>
+                <ul class="list-disc list-inside text-slate-600 dark:text-slate-400 text-xs space-y-1">
+                  ${issues.map(issue => `<li>${issue}</li>`).join('')}
+                </ul>
+              </div>
+            `;
+          }
+          
+          if (passed.length > 0) {
+            detailsHTML += `
+              <div>
+                <div class="text-green-600 dark:text-green-400 font-semibold mb-1 text-xs">Passed Checks (${passed.length}):</div>
+                <ul class="list-disc list-inside text-slate-600 dark:text-slate-400 text-xs space-y-1">
+                  ${passed.map(check => `<li>${check}</li>`).join('')}
+                </ul>
+              </div>
+            `;
+          }
+          
+          accessibilityAnalysisDetailsEl.innerHTML = detailsHTML;
+          accessibilityAnalysisDetailsEl.classList.remove("hidden");
+
+        } catch (error) {
+          console.error("Accessibility analysis error:", error);
+          accessibilityAnalysisStatusEl.classList.remove("hidden");
+          accessibilityAnalysisIconEl.textContent = "help";
+          accessibilityAnalysisIconEl.className = "material-symbols-outlined text-base text-slate-500 dark:text-slate-400";
+          accessibilityAnalysisTextEl.textContent = "Accessibility analysis unavailable";
         }
       };
 
@@ -3562,6 +3744,8 @@ async function generateJWT(payload, secret = 'jwt-secret-key-256-bits-minimum') 
         const shouldCheckSocialMedia = document.getElementById("socialDetectionCheck").checked;
         const shouldCheckGeographicAnalysis = document.getElementById("geographicAnalysisCheck").checked;
         const shouldCheckUrlValidation = document.getElementById("urlValidationCheck").checked;
+        const shouldCheckLanguageDetection = document.getElementById("languageDetectionCheck").checked;
+        const shouldCheckAccessibilityAnalysis = document.getElementById("accessibilityAnalysisCheck").checked;
 
         if (shouldCheckHTTPS && !isPrivacy) {
           checkHTTPS(cleaned);
@@ -3616,6 +3800,14 @@ async function generateJWT(payload, secret = 'jwt-secret-key-256-bits-minimum') 
 
         if (shouldCheckUrlValidation) {
           checkUrlValidation(cleaned);
+        }
+
+        if (shouldCheckLanguageDetection) {
+          checkLanguageDetection(cleaned);
+        }
+
+        if (shouldCheckAccessibilityAnalysis) {
+          checkAccessibilityAnalysis(cleaned);
         }
 
         // Check for shortened URLs if enabled
@@ -4141,13 +4333,16 @@ async function generateJWT(payload, secret = 'jwt-secret-key-256-bits-minimum') 
     document.body.appendChild(statusIndicator);
 
     // Function to check if any API options are selected
+    // Note: Language Detection and Accessibility Analysis require API for CORS bypass
     function isAnyApiOptionSelected() {
       const safetyApiCheck = document.getElementById("safetyApiCheck")?.checked || false;
       const sslApiCheck = document.getElementById("sslApiCheck")?.checked || false;
       const webSecScanCheck = document.getElementById("webSecScanCheck")?.checked || false;
+      const languageDetectionCheck = document.getElementById("languageDetectionCheck")?.checked || false;
+      const accessibilityAnalysisCheck = document.getElementById("accessibilityAnalysisCheck")?.checked || false;
       const shortenerDetectionCheck = document.getElementById("shortenerDetectionCheck")?.checked || false;
       const geographicAnalysisCheck = document.getElementById("geographicAnalysisCheck")?.checked || false;
-      return safetyApiCheck || sslApiCheck || webSecScanCheck || shortenerDetectionCheck || geographicAnalysisCheck;
+      return safetyApiCheck || sslApiCheck || webSecScanCheck || languageDetectionCheck || accessibilityAnalysisCheck || shortenerDetectionCheck || geographicAnalysisCheck;
     }
 
     // Function to update API status visibility

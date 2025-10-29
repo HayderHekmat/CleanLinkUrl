@@ -14,6 +14,8 @@ LinkAura is a privacy-focused web application that removes tracking parameters f
 ### 1.2 Key Features
 - **URL Parameter Cleaning**: Removes tracking parameters (utm_*, fbclid, gclid)
 - **Security Analysis**: Multiple security check APIs
+- **Language Detection**: Automatic web page language identification
+- **Accessibility Analysis**: WCAG compliance testing and scoring
 - **Privacy Protection**: No user tracking, no ads
 - **Local Features**: Unlimited free local functionality
 - **Premium APIs**: Tiered usage limits for advanced features
