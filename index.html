@@ -7,9 +7,9 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
-  <title>LinkAura – Remove URL Tracking Parameters | Privacy Tool</title>
-  <meta name="description" content="LinkAura removes tracking parameters (utm_*, fbclid, gclid) from URLs instantly. Free URL cleaner for privacy-conscious users. No ads, no tracking, unlimited local features, privacy-safe global counter. Advanced security: Safety API, SSL Certificate API, AI Website Security Scan." />
-  <meta name="keywords" content="URL cleaner, remove tracking parameters, utm_ remover, fbclid cleaner, gclid remover, privacy tool, URL sanitizer, link cleaner, malware checker, SSL certificate validator, no ads, ad-free, unlimited local features, safety API, AI security scan, website security, threat detection">
+  <title>LinkAura – Free URL Cleaner | Remove Tracking Parameters | Privacy Tool</title>
+  <meta name="description" content="LinkAura removes tracking parameters (utm_*, fbclid, gclid) from URLs instantly. Free URL cleaner with unlimited local features: HTTPS/SSL checks, URL analysis, link expiration, social media detection, URL shortener detection, Geographic & CDN analysis. Premium security: Safety API, SSL Certificate API, AI Website Security Scan. No ads, no tracking, privacy-first." />
+  <meta name="keywords" content="URL cleaner, remove tracking parameters, utm_ remover, fbclid cleaner, gclid remover, privacy tool, URL sanitizer, link cleaner, free URL cleaner, unlimited local features, HTTPS SSL checker, URL analysis, link expiration detector, social media detection, URL shortener detector, geographic analysis, CDN detection, server location, hosting analysis, malware checker, SSL certificate validator, safety API, AI security scan, website security, threat detection, no ads, ad-free, privacy-first">
   <meta name="author" content="LinkAura Team" />
   <meta name="robots" content="index, follow" />
   <meta name="googlebot" content="index, follow" />
@@ -24,15 +24,15 @@
   <link rel="canonical" href="https://linkaura.blankburn.online/" />
   <meta name="theme-color" content="#193ce6">
 
-  <meta property="og:title" content="LinkAura – Privacy-Friendly URL Cleaner" />
-  <meta property="og:description" content="LinkAura removes tracking parameters (utm_*, fbclid, gclid) from URLs instantly. Free URL cleaner with advanced security features: Safety API, SSL Certificate API, AI Website Security Scan. No ads, no tracking, unlimited local features." />
+  <meta property="og:title" content="LinkAura – Free URL Cleaner | Privacy-Friendly Tool" />
+  <meta property="og:description" content="LinkAura removes tracking parameters (utm_*, fbclid, gclid) from URLs instantly. Free URL cleaner with unlimited local features: HTTPS/SSL checks, URL analysis, link expiration, social media detection, URL shortener detection, Geographic & CDN analysis. Premium security: Safety API, SSL Certificate API, AI Website Security Scan. No ads, no tracking, privacy-first." />
   <meta property="og:url" content="https://linkaura.blankburn.online/" />
   <meta property="og:image" content="https://linkaura.blankburn.online/images/cleanlink-icon.png" />
   <meta property="og:type" content="website" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="LinkAura – Privacy-Friendly URL Cleaner" />
-  <meta name="twitter:description" content="LinkAura removes tracking parameters (utm_*, fbclid, gclid) from URLs instantly. Free URL cleaner with advanced security features: Safety API, SSL Certificate API, AI Website Security Scan. No ads, no tracking, unlimited local features." />
+  <meta name="twitter:title" content="LinkAura – Free URL Cleaner | Privacy-Friendly Tool" />
+  <meta name="twitter:description" content="LinkAura removes tracking parameters (utm_*, fbclid, gclid) from URLs instantly. Free URL cleaner with unlimited local features: HTTPS/SSL checks, URL analysis, link expiration, social media detection, URL shortener detection, Geographic & CDN analysis. Premium security: Safety API, SSL Certificate API, AI Website Security Scan. No ads, no tracking, privacy-first." />
   <meta name="twitter:image" content="https://linkaura.blankburn.online/images/cleanlink-icon.png" />
 
   <script type="application/ld+json">
@@ -41,7 +41,7 @@
     "@type": "SoftwareApplication",
     "name": "LinkAura",
     "url": "https://linkaura.blankburn.online",
-    "description": "A privacy-friendly tool that removes tracking parameters from URLs with advanced security features including Safety API, SSL Certificate API, and AI Website Security Scan.",
+    "description": "A privacy-friendly URL cleaner that removes tracking parameters with unlimited free features: HTTPS/SSL checks, URL analysis, link expiration, social media detection, URL shortener detection, Geographic & CDN analysis. Premium security features: Safety API, SSL Certificate API, AI Website Security Scan. No ads, no tracking, privacy-first.",
     "applicationCategory": "Utility",
     "operatingSystem": "Web",
     "browserRequirements": "Requires JavaScript. Requires HTML5.",
@@ -59,19 +59,21 @@
       "availability": "https://schema.org/InStock"
     },
     "featureList": [
-      "Remove tracking parameters (utm_*, fbclid, gclid)",
-      "HTTPS and SSL certificate validation",
-      "URL structure analysis",
-      "Link expiration detection",
-      "Social media platform detection",
-      "URL validation and repair",
-      "Safety API for threat detection",
-      "SSL Certificate API for security analysis",
-      "AI Website Security Scan",
-      "QR code generation",
-      "URL history management",
-      "Statistics dashboard",
-      "Bulk URL processing",
+      "Remove tracking parameters (utm_*, fbclid, gclid) - FREE",
+      "HTTPS and SSL certificate validation - FREE",
+      "URL structure analysis - FREE",
+      "Link expiration detection - FREE",
+      "Social media platform detection - FREE",
+      "URL validation and repair - FREE",
+      "URL shortener detection and expansion - FREE",
+      "Geographic & CDN analysis with interactive maps - FREE",
+      "QR code generation - FREE",
+      "URL history management - FREE",
+      "Statistics dashboard - FREE",
+      "Bulk URL processing - FREE",
+      "Safety API for threat detection - PREMIUM",
+      "SSL Certificate API for security analysis - PREMIUM",
+      "AI Website Security Scan - PREMIUM",
       "Privacy-first design with no ads or tracking"
     ],
     "screenshot": "https://linkaura.blankburn.online/images/cleanlink-icon.png",
@@ -288,6 +290,10 @@
             <span>Social Media Detection</span>
           </label>
           <label class="flex items-center gap-2 text-slate-700 dark:text-slate-400 text-sm cursor-pointer transition-colors">
+            <input id="geographicAnalysisCheck" type="checkbox" class="rounded border-slate-600">
+            <span>Geographic & CDN Analysis</span>
+          </label>
+          <label class="flex items-center gap-2 text-slate-700 dark:text-slate-400 text-sm cursor-pointer transition-colors">
             <input id="urlValidationCheck" type="checkbox" class="rounded border-slate-600">
             <span>URL Validation & Repair</span>
           </label>
@@ -466,6 +472,27 @@
           <span id="shortenerApiText" class="text-slate-700 dark:text-slate-300 transition-colors"></span>
         </div>
 
+        <div id="geographicApiStatus" class="hidden mt-3 flex items-center gap-2 text-sm">
+          <span id="geographicApiIcon" class="material-symbols-outlined text-base"></span>
+          <span id="geographicApiText" class="text-slate-700 dark:text-slate-300 transition-colors"></span>
+        </div>
+
+        <div id="geographicAnalysisStatus" class="hidden mt-3">
+          <div class="flex items-center gap-2 text-sm mb-2">
+            <span id="geographicAnalysisIcon" class="material-symbols-outlined text-base"></span>
+            <span id="geographicAnalysisText" class="text-slate-700 dark:text-slate-300 transition-colors"></span>
+          </div>
+          <div id="geographicAnalysisDetails" class="hidden bg-slate-50 dark:bg-slate-800/60 border border-slate-300 dark:border-slate-700 rounded-lg p-3 text-sm">
+            <div id="serverLocationInfo" class="mb-2"></div>
+            <div id="cdnInfo" class="mb-2"></div>
+            <div id="mapContainer" class="hidden mt-3">
+              <div id="map" class="w-full h-48 bg-slate-200 dark:bg-slate-700 rounded-lg flex items-center justify-center text-slate-500 dark:text-slate-400">
+                <span>Map loading...</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div id="shortenerWarningStatus" class="hidden mt-3 p-3 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg">
           <div class="flex items-start gap-2">
             <span id="shortenerWarningIcon" class="material-symbols-outlined text-base text-yellow-600 dark:text-yellow-400 mt-0.5"></span>
@@ -604,7 +631,7 @@
         <h2 class="text-3xl font-bold text-slate-900 dark:text-white mb-8 transition-colors">Why LinkAura?</h2>
         
         <!-- Core Features -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           <div class="bg-white dark:bg-slate-800/60 p-6 rounded-xl border border-slate-200 dark:border-slate-700 transition-colors duration-300">
             <span class="material-symbols-outlined text-primary text-4xl mb-3">privacy_tip</span>
             <h3 class="text-lg font-semibold mb-2 text-slate-900 dark:text-white transition-colors">Privacy First</h3>
@@ -616,6 +643,11 @@
             <p class="text-slate-600 dark:text-slate-400 text-sm transition-colors">Removes known trackers while preserving key parameters.</p>
           </div>
           <div class="bg-white dark:bg-slate-800/60 p-6 rounded-xl border border-slate-200 dark:border-slate-700 transition-colors duration-300">
+            <span class="material-symbols-outlined text-primary text-4xl mb-3">location_searching</span>
+            <h3 class="text-lg font-semibold mb-2 text-slate-900 dark:text-white transition-colors">Geographic Analysis</h3>
+            <p class="text-slate-600 dark:text-slate-400 text-sm transition-colors">Discover server locations, CDN usage, and hosting details with interactive maps.</p>
+          </div>
+          <div class="bg-white dark:bg-slate-800/60 p-6 rounded-xl border border-slate-200 dark:border-slate-700 transition-colors duration-300">
             <span class="material-symbols-outlined text-primary text-4xl mb-3">share</span>
             <h3 class="text-lg font-semibold mb-2 text-slate-900 dark:text-white transition-colors">Easy Sharing</h3>
             <p class="text-slate-600 dark:text-slate-400 text-sm transition-colors">Generate QR codes and share clean links instantly.</p>
@@ -623,65 +655,145 @@
         </div>
 
         <!-- Advanced Security Features -->
-        <div class="max-w-4xl mx-auto">
-          <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-6 transition-colors">Advanced Security Features</h3>
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950/20 dark:to-emerald-950/20 p-6 rounded-xl border border-green-200 dark:border-green-800 transition-colors duration-300">
-              <span class="material-symbols-outlined text-green-600 dark:text-green-400 text-4xl mb-3">verified_user</span>
-              <h4 class="text-lg font-semibold mb-2 text-slate-900 dark:text-white transition-colors">Safety API</h4>
-              <p class="text-slate-600 dark:text-slate-400 text-sm transition-colors mb-3">
+        <div class="max-w-7xl mx-auto">
+          <h3 class="text-3xl font-bold text-slate-900 dark:text-white mb-8 transition-colors text-center">Advanced Security Features</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+            <div class="group bg-white dark:bg-slate-800/50 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 transition-all duration-300 hover:shadow-xl hover:shadow-green-500/10 hover:-translate-y-1 hover:border-green-300 dark:hover:border-green-600">
+              <div class="flex items-center justify-center w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-green-500 to-emerald-600 shadow-lg shadow-green-500/25">
+                <span class="material-symbols-outlined text-white text-2xl">verified_user</span>
+              </div>
+              <h4 class="text-lg font-bold mb-3 text-slate-900 dark:text-white transition-colors text-center">Safety API</h4>
+              <p class="text-slate-600 dark:text-slate-400 text-sm transition-colors mb-4 text-center leading-relaxed">
                 Advanced threat detection powered by professional security databases and community reports.
               </p>
-              <ul class="text-xs text-slate-500 dark:text-slate-500 text-left space-y-1">
-                <li>• Malware & phishing detection</li>
-                <li>• Community threat intelligence</li>
-                <li>• Real-time security updates</li>
-                <li>• Professional security databases</li>
+              <ul class="text-xs text-slate-500 dark:text-slate-500 space-y-2">
+                <li class="flex items-center gap-2">
+                  <div class="w-1.5 h-1.5 rounded-full bg-green-500"></div>
+                  Malware & phishing detection
+                </li>
+                <li class="flex items-center gap-2">
+                  <div class="w-1.5 h-1.5 rounded-full bg-green-500"></div>
+                  Community threat intelligence
+                </li>
+                <li class="flex items-center gap-2">
+                  <div class="w-1.5 h-1.5 rounded-full bg-green-500"></div>
+                  Real-time security updates
+                </li>
+                <li class="flex items-center gap-2">
+                  <div class="w-1.5 h-1.5 rounded-full bg-green-500"></div>
+                  Professional security databases
+                </li>
               </ul>
             </div>
             
             <div class="bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-950/20 dark:to-cyan-950/20 p-6 rounded-xl border border-blue-200 dark:border-blue-800 transition-colors duration-300">
-              <span class="material-symbols-outlined text-blue-600 dark:text-blue-400 text-4xl mb-3">security</span>
-              <h4 class="text-lg font-semibold mb-2 text-slate-900 dark:text-white transition-colors">SSL Certificate API</h4>
-              <p class="text-slate-600 dark:text-slate-400 text-sm transition-colors mb-3">
+              <div class="flex items-center justify-center w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-600 shadow-lg shadow-blue-500/25">
+                <span class="material-symbols-outlined text-white text-2xl">security</span>
+              </div>
+              <h4 class="text-lg font-bold mb-3 text-slate-900 dark:text-white transition-colors text-center">SSL Certificate API</h4>
+              <p class="text-slate-600 dark:text-slate-400 text-sm transition-colors mb-4 text-center leading-relaxed">
                 Comprehensive SSL certificate validation with detailed security analysis and expiration monitoring.
               </p>
-              <ul class="text-xs text-slate-500 dark:text-slate-500 text-left space-y-1">
-                <li>• Certificate validity & expiration</li>
-                <li>• Security grade assessment</li>
-                <li>• Issuer verification</li>
-                <li>• Algorithm strength analysis</li>
+              <ul class="text-xs text-slate-500 dark:text-slate-500 space-y-2">
+                <li class="flex items-center gap-2">
+                  <div class="w-1.5 h-1.5 rounded-full bg-blue-500"></div>
+                  Certificate validity & expiration
+                </li>
+                <li class="flex items-center gap-2">
+                  <div class="w-1.5 h-1.5 rounded-full bg-blue-500"></div>
+                  Security grade assessment
+                </li>
+                <li class="flex items-center gap-2">
+                  <div class="w-1.5 h-1.5 rounded-full bg-blue-500"></div>
+                  Issuer verification
+                </li>
+                <li class="flex items-center gap-2">
+                  <div class="w-1.5 h-1.5 rounded-full bg-blue-500"></div>
+                  Algorithm strength analysis
+                </li>
               </ul>
             </div>
             
-            <div class="bg-gradient-to-br from-purple-50 to-violet-50 dark:from-purple-950/20 dark:to-violet-950/20 p-6 rounded-xl border border-purple-200 dark:border-purple-800 transition-colors duration-300">
-              <span class="material-symbols-outlined text-purple-600 dark:text-purple-400 text-4xl mb-3">psychology</span>
-              <h4 class="text-lg font-semibold mb-2 text-slate-900 dark:text-white transition-colors">AI Website Security Scan</h4>
-              <p class="text-slate-600 dark:text-slate-400 text-sm transition-colors mb-3">
+            <div class="group bg-white dark:bg-slate-800/50 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 transition-all duration-300 hover:shadow-xl hover:shadow-purple-500/10 hover:-translate-y-1 hover:border-purple-300 dark:hover:border-purple-600">
+              <div class="flex items-center justify-center w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-purple-500 to-violet-600 shadow-lg shadow-purple-500/25">
+                <span class="material-symbols-outlined text-white text-2xl">psychology</span>
+              </div>
+              <h4 class="text-lg font-bold mb-3 text-slate-900 dark:text-white transition-colors text-center">AI Website Security Scan</h4>
+              <p class="text-slate-600 dark:text-slate-400 text-sm transition-colors mb-4 text-center leading-relaxed">
                 Intelligent security analysis using AI to detect vulnerabilities, suspicious patterns, and potential threats.
               </p>
-              <ul class="text-xs text-slate-500 dark:text-slate-500 text-left space-y-1">
-                <li>• AI-powered threat detection</li>
-                <li>• Vulnerability scanning</li>
-                <li>• Suspicious pattern analysis</li>
-                <li>• Comprehensive security report</li>
+              <ul class="text-xs text-slate-500 dark:text-slate-500 space-y-2">
+                <li class="flex items-center gap-2">
+                  <div class="w-1.5 h-1.5 rounded-full bg-purple-500"></div>
+                  AI-powered threat detection
+                </li>
+                <li class="flex items-center gap-2">
+                  <div class="w-1.5 h-1.5 rounded-full bg-purple-500"></div>
+                  Vulnerability scanning
+                </li>
+                <li class="flex items-center gap-2">
+                  <div class="w-1.5 h-1.5 rounded-full bg-purple-500"></div>
+                  Suspicious pattern analysis
+                </li>
+                <li class="flex items-center gap-2">
+                  <div class="w-1.5 h-1.5 rounded-full bg-purple-500"></div>
+                  Comprehensive security report
+                </li>
               </ul>
             </div>
-          </div>
-          
-          <!-- Additional Security Features -->
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
-            <div class="bg-gradient-to-br from-orange-50 to-red-50 dark:from-orange-950/20 dark:to-red-950/20 p-6 rounded-xl border border-orange-200 dark:border-orange-800 transition-colors duration-300">
-              <span class="material-symbols-outlined text-orange-600 dark:text-orange-400 text-4xl mb-3">link</span>
-              <h4 class="text-lg font-semibold mb-2 text-slate-900 dark:text-white transition-colors">URL Shortener Detection</h4>
-              <p class="text-slate-600 dark:text-slate-400 text-sm transition-colors mb-3">
+            
+            <div class="group bg-white dark:bg-slate-800/50 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 transition-all duration-300 hover:shadow-xl hover:shadow-indigo-500/10 hover:-translate-y-1 hover:border-indigo-300 dark:hover:border-indigo-600">
+              <div class="flex items-center justify-center w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-indigo-500 to-blue-600 shadow-lg shadow-indigo-500/25">
+                <span class="material-symbols-outlined text-white text-2xl">location_searching</span>
+              </div>
+              <h4 class="text-lg font-bold mb-3 text-slate-900 dark:text-white transition-colors text-center">Geographic & CDN Analysis</h4>
+              <p class="text-slate-600 dark:text-slate-400 text-sm transition-colors mb-4 text-center leading-relaxed">
+                Discover server locations, CDN usage, and hosting infrastructure with interactive maps and detailed analysis.
+              </p>
+              <ul class="text-xs text-slate-500 dark:text-slate-500 space-y-2">
+                <li class="flex items-center gap-2">
+                  <div class="w-1.5 h-1.5 rounded-full bg-indigo-500"></div>
+                  Server location mapping
+                </li>
+                <li class="flex items-center gap-2">
+                  <div class="w-1.5 h-1.5 rounded-full bg-indigo-500"></div>
+                  CDN provider detection
+                </li>
+                <li class="flex items-center gap-2">
+                  <div class="w-1.5 h-1.5 rounded-full bg-indigo-500"></div>
+                  Hosting type analysis
+                </li>
+                <li class="flex items-center gap-2">
+                  <div class="w-1.5 h-1.5 rounded-full bg-indigo-500"></div>
+                  Interactive geographic maps
+                </li>
+              </ul>
+            </div>
+            <div class="group bg-white dark:bg-slate-800/50 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 transition-all duration-300 hover:shadow-xl hover:shadow-orange-500/10 hover:-translate-y-1 hover:border-orange-300 dark:hover:border-orange-600">
+              <div class="flex items-center justify-center w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-orange-500 to-red-600 shadow-lg shadow-orange-500/25">
+                <span class="material-symbols-outlined text-white text-2xl">link</span>
+              </div>
+              <h4 class="text-lg font-bold mb-3 text-slate-900 dark:text-white transition-colors text-center">URL Shortener Detection</h4>
+              <p class="text-slate-600 dark:text-slate-400 text-sm transition-colors mb-4 text-center leading-relaxed">
                 Automatically detect and expand shortened URLs to reveal their true destinations before you click.
               </p>
-              <ul class="text-xs text-slate-500 dark:text-slate-500 text-left space-y-1">
-                <li>• Detects popular shorteners (bit.ly, tinyurl, etc.)</li>
-                <li>• Expands URLs to show true destination</li>
-                <li>• Privacy-safe server-side expansion</li>
-                <li>• Free with API connection</li>
+              <ul class="text-xs text-slate-500 dark:text-slate-500 space-y-2">
+                <li class="flex items-center gap-2">
+                  <div class="w-1.5 h-1.5 rounded-full bg-orange-500"></div>
+                  Detects popular shorteners
+                </li>
+                <li class="flex items-center gap-2">
+                  <div class="w-1.5 h-1.5 rounded-full bg-orange-500"></div>
+                  Expands URLs to show destination
+                </li>
+                <li class="flex items-center gap-2">
+                  <div class="w-1.5 h-1.5 rounded-full bg-orange-500"></div>
+                  Privacy-safe server-side expansion
+                </li>
+                <li class="flex items-center gap-2">
+                  <div class="w-1.5 h-1.5 rounded-full bg-orange-500"></div>
+                  Free with API connection
+                </li>
               </ul>
             </div>
           </div>
@@ -815,7 +927,6 @@
               <li>• IP addresses are anonymized through secure proxy</li>
               <li>• No personal data stored or logged</li>
               <li>• Encrypted connections to external APIs</li>
-              <li>• URL shortener expansion through secure proxy</li>
               <li>• Automatic data deletion after processing</li>
             </ul>
           </div>
@@ -834,6 +945,7 @@
               <li>• Link expiration detection</li>
               <li>• Social media platform detection</li>
               <li>• URL shortener detection (with API)</li>
+              <li>• Geographic & CDN analysis (with API)</li>
               <li>• QR code generation and history</li>
             </ul>
           </div>
@@ -853,6 +965,14 @@
               <li>• Only anonymous counter (no IP sharing) when using API features</li>
             </ul>
           </div>
+        </div>
+
+        <!-- Free API Features Privacy Note -->
+        <div class="bg-blue-50 dark:bg-blue-950/20 rounded-lg p-4 mb-8 border border-blue-200 dark:border-blue-800">
+          <p class="text-sm text-blue-800 dark:text-blue-200">
+            <strong>🔒 Privacy-Safe Free Features:</strong> URL shortener detection and Geographic & CDN analysis are free features that use our secure worker proxy to protect your IP address and personal information. 
+            Your privacy is never compromised, even when using these free API features.
+          </p>
         </div>
 
         <div class="bg-white dark:bg-slate-800/50 rounded-lg p-6 border border-slate-200 dark:border-slate-700 transition-colors mb-8">
@@ -1404,7 +1524,7 @@
         }
         
         // Handle API option checkbox changes
-        if (e.target.id === "safetyApiCheck" || e.target.id === "sslApiCheck" || e.target.id === "webSecScanCheck" || e.target.id === "shortenerDetectionCheck") {
+        if (e.target.id === "safetyApiCheck" || e.target.id === "sslApiCheck" || e.target.id === "webSecScanCheck" || e.target.id === "shortenerDetectionCheck" || e.target.id === "geographicAnalysisCheck") {
           updateApiStatusVisibility();
           // If API options are selected, try to get token
           if (isAnyApiOptionSelected()) {
@@ -2399,6 +2519,236 @@ async function generateJWT(payload, secret = 'jwt-secret-key-256-bits-minimum') 
         }
       };
 
+      // Geographic & CDN Analysis
+      window.checkGeographicAnalysis = async function(url) {
+        const geographicApiStatusEl = document.getElementById("geographicApiStatus");
+        const geographicApiIconEl = document.getElementById("geographicApiIcon");
+        const geographicApiTextEl = document.getElementById("geographicApiText");
+        const geographicAnalysisStatusEl = document.getElementById("geographicAnalysisStatus");
+        const geographicAnalysisIconEl = document.getElementById("geographicAnalysisIcon");
+        const geographicAnalysisTextEl = document.getElementById("geographicAnalysisText");
+        const geographicAnalysisDetailsEl = document.getElementById("geographicAnalysisDetails");
+        const serverLocationInfoEl = document.getElementById("serverLocationInfo");
+        const cdnInfoEl = document.getElementById("cdnInfo");
+        const mapContainerEl = document.getElementById("mapContainer");
+
+        if (!geographicAnalysisStatusEl) return;
+
+        try {
+          const urlObj = new URL(url);
+          const domain = urlObj.hostname.toLowerCase().replace('www.', '');
+          
+          // Show API status immediately (like Shortened URL Detection)
+          geographicApiStatusEl.classList.remove("hidden");
+          geographicApiIconEl.textContent = "location_searching";
+          geographicApiIconEl.className = "material-symbols-outlined text-base text-blue-500 dark:text-blue-400";
+          geographicApiTextEl.textContent = "Geographic API - Analyzing location...";
+
+          // Show analysis status
+          geographicAnalysisStatusEl.classList.remove("hidden");
+          geographicAnalysisIconEl.textContent = "schedule";
+          geographicAnalysisIconEl.className = "material-symbols-outlined text-base text-blue-500 dark:text-blue-400";
+          geographicAnalysisTextEl.textContent = "Analyzing geographic location and CDN...";
+
+          // Get IP address and geolocation data
+          const ipData = await getIpGeolocation(domain);
+          
+          if (ipData) {
+            // Update API status - success
+            geographicApiIconEl.textContent = "verified";
+            geographicApiIconEl.className = "material-symbols-outlined text-base text-green-500 dark:text-green-400";
+            geographicApiTextEl.textContent = "Geographic API - Location data retrieved";
+
+            // Update analysis status
+            geographicAnalysisIconEl.textContent = "location_on";
+            geographicAnalysisIconEl.className = "material-symbols-outlined text-base text-green-500 dark:text-green-400";
+            geographicAnalysisTextEl.textContent = "Geographic analysis complete";
+            
+            // Show details
+            geographicAnalysisDetailsEl.classList.remove("hidden");
+            
+            // Display server location info
+            serverLocationInfoEl.innerHTML = `
+              <div class="font-semibold text-slate-900 dark:text-slate-100 mb-1">Server Location</div>
+              <div class="text-slate-700 dark:text-slate-300">
+                <div><strong>Country:</strong> ${ipData.country || 'Unknown'}</div>
+                <div><strong>Region:</strong> ${ipData.regionName || ipData.region || 'Unknown'}</div>
+                <div><strong>City:</strong> ${ipData.city || 'Unknown'}</div>
+                <div><strong>ISP:</strong> ${ipData.isp || 'Unknown'}</div>
+                <div><strong>IP Address:</strong> ${ipData.query || 'Unknown'}</div>
+              </div>
+            `;
+            
+            // Detect CDN
+            const cdnInfo = detectCDN(domain, ipData);
+            cdnInfoEl.innerHTML = `
+              <div class="font-semibold text-slate-900 dark:text-slate-100 mb-1">CDN & Hosting</div>
+              <div class="text-slate-700 dark:text-slate-300">
+                <div><strong>CDN Provider:</strong> ${cdnInfo.provider || 'None detected'}</div>
+                <div><strong>Hosting Type:</strong> ${cdnInfo.type || 'Unknown'}</div>
+                ${cdnInfo.confidence ? `<div><strong>Confidence:</strong> ${cdnInfo.confidence}%</div>` : ''}
+              </div>
+            `;
+            
+            // Show map if coordinates are available
+            if (ipData.lat && ipData.lon) {
+              mapContainerEl.classList.remove("hidden");
+              await showMap(ipData.lat, ipData.lon, ipData.city, ipData.country);
+            }
+          } else {
+            throw new Error("Failed to get geolocation data");
+          }
+
+        } catch (error) {
+          console.warn("Geographic analysis failed:", error.message);
+          
+          // Update API status - error
+          geographicApiStatusEl.classList.remove("hidden");
+          geographicApiIconEl.textContent = "error";
+          geographicApiIconEl.className = "material-symbols-outlined text-base text-red-500 dark:text-red-400";
+          geographicApiTextEl.textContent = "Geographic API - Service unavailable";
+
+          // Update analysis status - error
+          geographicAnalysisStatusEl.classList.remove("hidden");
+          geographicAnalysisIconEl.textContent = "error";
+          geographicAnalysisIconEl.className = "material-symbols-outlined text-base text-red-500 dark:text-red-400";
+          geographicAnalysisTextEl.textContent = "Geographic analysis failed";
+        }
+      };
+
+      // Get IP geolocation data via worker proxy
+      async function getIpGeolocation(domain) {
+        try {
+          // Call geolocation API through worker proxy (no auth required)
+          const geoResponse = await fetch('https://api.linkaura.blankburn.online/api/geolocation', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ domain })
+          });
+          
+          if (geoResponse.ok) {
+            const geoData = await geoResponse.json();
+            
+            if (geoData.status === 'success') {
+              return geoData;
+            } else {
+              throw new Error(geoData.message || 'Geolocation service failed');
+            }
+          } else {
+            const errorData = await geoResponse.json();
+            throw new Error(errorData.error || 'Geolocation service unavailable');
+          }
+        } catch (error) {
+          console.warn("Geolocation API failed:", error);
+          return null;
+        }
+      }
+
+      // Detect CDN provider
+      function detectCDN(domain, ipData) {
+        const cdnPatterns = {
+          'Cloudflare': /cloudflare/i,
+          'Amazon CloudFront': /cloudfront/i,
+          'AWS': /amazonaws/i,
+          'Google Cloud CDN': /googleusercontent|googleapis/i,
+          'Azure CDN': /azure|microsoft/i,
+          'Fastly': /fastly/i,
+          'KeyCDN': /keycdn/i,
+          'MaxCDN': /maxcdn/i,
+          'Incapsula': /incapsula/i,
+          'Akamai': /akamai/i,
+          'CDN77': /cdn77/i,
+          'BunnyCDN': /bunnycdn/i,
+          'StackPath': /stackpath/i
+        };
+
+        const hostingPatterns = {
+          'Shared Hosting': /shared|hosting/i,
+          'VPS': /vps|virtual/i,
+          'Dedicated Server': /dedicated/i,
+          'Cloud Hosting': /cloud|aws|azure|gcp/i
+        };
+
+        let detectedCDN = null;
+        let detectedHosting = null;
+        let confidence = 0;
+
+        // Check domain patterns
+        for (const [provider, pattern] of Object.entries(cdnPatterns)) {
+          if (pattern.test(domain) || pattern.test(ipData.org || '') || pattern.test(ipData.isp || '')) {
+            detectedCDN = provider;
+            confidence = 85;
+            break;
+          }
+        }
+
+        // Check hosting type
+        for (const [type, pattern] of Object.entries(hostingPatterns)) {
+          if (pattern.test(ipData.org || '') || pattern.test(ipData.isp || '')) {
+            detectedHosting = type;
+            break;
+          }
+        }
+
+        // If no CDN detected, check for common hosting providers
+        if (!detectedCDN) {
+          const hostingProviders = {
+            'GoDaddy': /godaddy/i,
+            'Bluehost': /bluehost/i,
+            'HostGator': /hostgator/i,
+            'SiteGround': /siteground/i,
+            'DigitalOcean': /digitalocean/i,
+            'Linode': /linode/i,
+            'Vultr': /vultr/i,
+            'Hetzner': /hetzner/i
+          };
+
+          for (const [provider, pattern] of Object.entries(hostingProviders)) {
+            if (pattern.test(ipData.org || '') || pattern.test(ipData.isp || '')) {
+              detectedHosting = provider;
+              confidence = 70;
+              break;
+            }
+          }
+        }
+
+        return {
+          provider: detectedCDN,
+          type: detectedHosting || 'Unknown',
+          confidence: confidence || (detectedCDN ? 85 : 0)
+        };
+      }
+
+      // Show map with server location
+      async function showMap(lat, lon, city, country) {
+        const mapEl = document.getElementById("map");
+        
+        try {
+          // Create a simple map using OpenStreetMap
+          const mapUrl = `https://www.openstreetmap.org/export/embed.html?bbox=${lon-0.1},${lat-0.1},${lon+0.1},${lat+0.1}&layer=mapnik&marker=${lat},${lon}`;
+          
+          mapEl.innerHTML = `
+            <iframe 
+              src="${mapUrl}" 
+              width="100%" 
+              height="100%" 
+              style="border: none; border-radius: 0.5rem;"
+              title="Server location map">
+            </iframe>
+          `;
+        } catch (error) {
+          mapEl.innerHTML = `
+            <div class="text-center">
+              <div class="text-slate-500 dark:text-slate-400 mb-2">📍</div>
+              <div class="text-sm">Server located in ${city}, ${country}</div>
+              <div class="text-xs text-slate-400 dark:text-slate-500">Coordinates: ${lat.toFixed(4)}, ${lon.toFixed(4)}</div>
+            </div>
+          `;
+        }
+      }
+
       // Link Expiration Check
       window.checkLinkExpiration = async function(url) {
         const linkExpirationStatusEl = document.getElementById("linkExpirationStatus");
@@ -3200,6 +3550,8 @@ async function generateJWT(payload, secret = 'jwt-secret-key-256-bits-minimum') 
         const shortenerApiStatusEl = document.getElementById("shortenerApiStatus");
         if (shortenerApiStatusEl) shortenerApiStatusEl.classList.add("hidden");
 
+        // Note: Geographic status elements are managed by checkGeographicAnalysis function
+
         const isPrivacy = privacyToggle.checked;
         const shouldCheckHTTPS = document.getElementById("httpsCheck").checked;
         const shouldCheckSSL = document.getElementById("sslCheck").checked;
@@ -3208,6 +3560,7 @@ async function generateJWT(payload, secret = 'jwt-secret-key-256-bits-minimum') 
         const shouldCheckUrlAnalysis = document.getElementById("urlAnalysisCheck").checked;
         const shouldCheckLinkExpiration = document.getElementById("linkExpirationCheck").checked;
         const shouldCheckSocialMedia = document.getElementById("socialDetectionCheck").checked;
+        const shouldCheckGeographicAnalysis = document.getElementById("geographicAnalysisCheck").checked;
         const shouldCheckUrlValidation = document.getElementById("urlValidationCheck").checked;
 
         if (shouldCheckHTTPS && !isPrivacy) {
@@ -3247,6 +3600,10 @@ async function generateJWT(payload, secret = 'jwt-secret-key-256-bits-minimum') 
         // New free features
         if (shouldCheckUrlAnalysis) {
           checkUrlAnalysis(cleaned);
+        }
+
+        if (shouldCheckGeographicAnalysis && !isPrivacy) {
+          checkGeographicAnalysis(cleaned);
         }
 
         if (shouldCheckLinkExpiration) {
@@ -3789,7 +4146,8 @@ async function generateJWT(payload, secret = 'jwt-secret-key-256-bits-minimum') 
       const sslApiCheck = document.getElementById("sslApiCheck")?.checked || false;
       const webSecScanCheck = document.getElementById("webSecScanCheck")?.checked || false;
       const shortenerDetectionCheck = document.getElementById("shortenerDetectionCheck")?.checked || false;
-      return safetyApiCheck || sslApiCheck || webSecScanCheck || shortenerDetectionCheck;
+      const geographicAnalysisCheck = document.getElementById("geographicAnalysisCheck")?.checked || false;
+      return safetyApiCheck || sslApiCheck || webSecScanCheck || shortenerDetectionCheck || geographicAnalysisCheck;
     }
 
     // Function to update API status visibility
@@ -4059,6 +4417,8 @@ async function generateJWT(payload, secret = 'jwt-secret-key-256-bits-minimum') 
         const shortenerApiStatusEl = document.getElementById("shortenerApiStatus");
         if (shortenerApiStatusEl) shortenerApiStatusEl.classList.add("hidden");
 
+        // Note: Geographic status elements are managed by checkGeographicAnalysis function
+
         // Check which options are enabled
         const isPrivacy = privacyToggle.checked;
         const shouldCheckHTTPS = document.getElementById("httpsCheck").checked;
@@ -4105,6 +4465,12 @@ async function generateJWT(payload, secret = 'jwt-secret-key-256-bits-minimum') 
         // Handle WebSecScan option
         if (shouldCheckWebSecScan && !isPrivacy) {
           checkWebSecScan(cleaned);
+        }
+
+        // Handle Geographic Analysis option
+        const shouldCheckGeographicAnalysis2 = document.getElementById("geographicAnalysisCheck").checked;
+        if (shouldCheckGeographicAnalysis2 && !isPrivacy) {
+          checkGeographicAnalysis(cleaned);
         }
 
         // Check for shortened URLs if enabled
