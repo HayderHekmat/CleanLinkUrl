@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkAura Supporter Token Generator</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f8fafc;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #1e293b;
+            margin-bottom: 30px;
+        }
+        .tier {
+            background: #f1f5f9;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+            border-left: 4px solid #3b82f6;
+        }
+        .tier.coffee { border-left-color: #f59e0b; }
+        .tier.supporter { border-left-color: #10b981; }
+        .tier.champion { border-left-color: #8b5cf6; }
+        
+        .tier h3 {
+            margin: 0 0 10px 0;
+            color: #1e293b;
+        }
+        .tier p {
+            margin: 5px 0;
+            color: #64748b;
+        }
+        .token {
+            background: #1e293b;
+            color: #f8fafc;
+            padding: 10px;
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 14px;
+            margin: 10px 0;
+            word-break: break-all;
+        }
+        .copy-btn {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        .copy-btn:hover {
+            background: #2563eb;
+        }
+        .instructions {
+            background: #dbeafe;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .instructions h3 {
+            margin-top: 0;
+            color: #1e40af;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🍵 LinkAura Supporter Token Generator</h1>
+        
+        <div class="instructions">
+            <h3>📋 How to Use This Tool</h3>
+            <ol>
+                <li><strong>Generate tokens</strong> for each supporter tier</li>
+                <li><strong>Copy the token</strong> and send it to your supporter</li>
+                <li><strong>Supporter enters token</strong> in LinkAura to activate benefits</li>
+                <li><strong>Tokens expire</strong> based on the tier (1-6 months)</li>
+            </ol>
+        </div>
+
+        <div class="tier coffee">
+            <h3>☕ Coffee Tier (€3)</h3>
+            <p><strong>Benefits:</strong> 10 API calls/day • 1 month access</p>
+            <p><strong>Token:</strong></p>
+            <div class="token" id="coffee-token">Click "Generate Coffee Token" below</div>
+            <button class="copy-btn" onclick="copyToken('coffee-token')">Copy Token</button>
+            <button class="copy-btn" onclick="generateToken('coffee')">Generate Coffee Token</button>
+        </div>
+
+        <div class="tier supporter">
+            <h3>🌟 Supporter Tier (€10)</h3>
+            <p><strong>Benefits:</strong> 50 API calls/day • 3 months access</p>
+            <p><strong>Token:</strong></p>
+            <div class="token" id="supporter-token">Click "Generate Supporter Token" below</div>
+            <button class="copy-btn" onclick="copyToken('supporter-token')">Copy Token</button>
+            <button class="copy-btn" onclick="generateToken('supporter')">Generate Supporter Token</button>
+        </div>
+
+        <div class="tier champion">
+            <h3>👑 Champion Tier (€25)</h3>
+            <p><strong>Benefits:</strong> Unlimited API calls • 6 months access</p>
+            <p><strong>Token:</strong></p>
+            <div class="token" id="champion-token">Click "Generate Champion Token" below</div>
+            <button class="copy-btn" onclick="copyToken('champion-token')">Copy Token</button>
+            <button class="copy-btn" onclick="generateToken('champion')">Generate Champion Token</button>
+        </div>
+
+        <div class="instructions">
+            <h3>📧 Email Template for Supporters</h3>
+            <p>Copy this template and send it to your supporters:</p>
+            <div style="background: #f8fafc; padding: 15px; border-radius: 6px; font-family: monospace; font-size: 14px; white-space: pre-line;">
+Subject: 🍵 Your LinkAura Supporter Token - [TIER] Tier
+
+Hi [SUPPORTER_NAME],
+
+Thank you for supporting LinkAura! 🎉
+
+Your supporter token: [TOKEN]
+
+To activate your benefits:
+1. Go to https://linkaura.blankburn.online
+2. Click "Support LinkAura — unlock premium features"
+3. Enter your token: [TOKEN]
+4. Click "Verify Token"
+
+Your benefits:
+• [API_CALLS] API calls per day
+• [DURATION] months of access
+• All premium security features
+
+If you have any questions, just reply to this email!
+
+Best regards,
+The LinkAura Team
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function generateToken(tier) {
+            const timestamp = Date.now();
+            const random = Math.random().toString(36).substr(2, 9);
+            const token = `bmc_${tier}_${timestamp}_${random}`;
+            
+            document.getElementById(`${tier}-token`).textContent = token;
+            
+            // Store in localStorage for easy access
+            localStorage.setItem(`linkaura_${tier}_token`, token);
+            
+            console.log(`Generated ${tier} token:`, token);
+        }
+
+        function copyToken(elementId) {
+            const token = document.getElementById(elementId).textContent;
+            navigator.clipboard.writeText(token).then(() => {
+                alert('Token copied to clipboard!');
+            }).catch(() => {
+                // Fallback for older browsers
+                const textArea = document.createElement('textarea');
+                textArea.value = token;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                alert('Token copied to clipboard!');
+            });
+        }
+
+        // Load existing tokens from localStorage
+        window.onload = function() {
+            ['coffee', 'supporter', 'champion'].forEach(tier => {
+                const savedToken = localStorage.getItem(`linkaura_${tier}_token`);
+                if (savedToken) {
+                    document.getElementById(`${tier}-token`).textContent = savedToken;
+                }
+            });
+        };
+    </script>
+</body>
+</html>
